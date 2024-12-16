@@ -1,0 +1,396 @@
+  /* 텍스트 스타일 (아래로 살짝 내림) */
+  .title-text {
+    font-size: 0.9rem !important;
+    color: #000000;
+    margin-bottom: 20px;
+    /* 텍스트를 아래로 살짝 내림 */
+    /*margin-top: 50px;  /* 텍스트를 아래로 살짝 내림 */
+  }
+  
+  .title-text2 {
+    font-size: 1.5rem !important;
+    color: #000000;
+    margin-bottom: 30px;
+    /* 텍스트를 아래로 살짝 내림 */
+    margin-top: -37px;
+    margin-left: 195px;
+    /* 텍스트를 아래로 살짝 내림 */
+  }
+  
+  .title-text3 {
+    font-size: 1.2rem !important;
+    color: #000000;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    /* 텍스트를 아래로 살짝 내림 */
+    margin-left: 10px;
+  }
+  
+  .title-text4 {
+    font-size: 1.2rem !important;
+    color: #000000;
+    margin-bottom: 10px;
+    margin-left: 8px;
+    margin-top: 10px;
+
+    /* 텍스트를 아래로 살짝 내림 */
+    margin-right: 260px;
+  }
+
+  .title-text5 {
+    font-size: 1.2rem !important;
+    color: #000000;
+    margin-bottom: 5px;
+    /* 텍스트를 아래로 살짝 내림 */
+    margin-right: 5px;
+    margin-top: 10px;
+
+  }
+
+  .title-text6 {
+    font-size: 1.2rem !important;
+    color: #000000;
+    margin-bottom: 10px;
+    /* 텍스트를 아래로 살짝 내림 */
+    margin-top: 10px;
+    margin-right: 300px;
+  }
+  
+  .app-main_message2 {
+    height: 25px;
+    margin-top: -25px;
+    margin-left: 300px;
+  }
+  
+  .app-main_message3 {
+    height: 35px;
+    margin-top: -29px;
+    margin-left: 355px;
+  }
+  
+  /* INFO 텍스트 */
+  h2 {
+    font-size: 2.4rem;
+    color: #0056A0;
+    margin-bottom: 0px;
+    margin-right: 5px;
+    /* 텍스트를 아래로 살짝 내림 */
+  
+  }
+  
+  .app-arrow {
+    height: 35px;
+    margin-top: 20px;
+    margin-right: 380px;
+    cursor: pointer;
+    /* 커서를 손 모양으로 변경 */
+    transition: transform 0.3s ease;
+    /* 부드러운 확대 효과 추가 */
+  }
+  
+  .app-bar {
+    height: 2.5px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+  }
+  
+ /* 입력 필드 */
+.input {
+  width: 80%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* 내용 입력란 (큰 텍스트 영역) */
+.textarea {
+  width: 80%;
+  height: 200px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none; /* 크기 조절 불가능 */
+}
+  
+  
+/* 작성 버튼 스타일 */
+.submit-group {
+  margin-top: 10px;
+  margin-right: 23px;
+  display: flex;
+  justify-content: center;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #73B3E3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* 모집기간 스타일 */
+.date-range {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-left:-3px;
+  width: 96%; /* 제목 입력 필드와 동일한 너비로 설정 */
+}
+
+/* 날짜 입력 필드 스타일 */
+.input-date {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  flex: 1; /* 각 날짜 입력 필드를 동일한 크기로 */
+  margin: 0 5px;
+}
+
+.date-separator {
+  margin: 0 10px; /* 구분자 간격 조정 */
+}
+
+/* 제목과 해시태그 필드 동일한 너비 적용 */
+.input, .textarea {
+  width: 90%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.classroomContainer {
+  width: 80%;
+  max-width: 800px;
+}
+
+.floorNav {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.floor {
+  font-size: 16px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+}
+
+.searchIcon {
+  width: 20px;
+  margin-left: 10px;
+}
+
+.classroomList {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.classroomRow {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.roomNumber {
+  width: 50px;
+  font-weight: bold;
+}
+
+.availability {
+  display: flex;
+  flex: 1;
+  margin: 0 20px;
+}
+
+.timeSlot {
+  width: 10%;
+  height: 20px;
+  background-color: #ccc;
+}
+
+.active {
+  background-color: #003399;
+}
+
+.mascotIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pageNumber {
+  margin: 0 5px;
+  cursor: pointer;
+}
+.floor {
+  font-size: 16px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.activeFloor {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+.timeLabels {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50px;
+  margin-bottom: 10px;
+  margin-left: 12px;
+}
+
+.timeLabel {
+  font-size: 14px;
+  color: #555;
+  width: 10%;
+  text-align: center;
+}
+
+.availability {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  margin: 0 20px;
+}
+
+.timeSlot {
+  width: 10%;
+  height: 20px;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.available {
+  background-color: rgb(50, 50, 218); /* 사용 가능: 파란색 */
+}
+
+.unavailable {
+  background-color: grey; /* 사용 불가: 회색 */
+  pointer-events: none; /* 클릭 비활성화 */
+}
+
+
+
+
+.subTabNav {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.subTab {
+  margin: 0 10px;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.activeSubTab {
+  font-weight: bold;
+  color: blue;
+}
+
+
+/* 게시물 목록 */
+.postList {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  /* 각 게시물 사이 간격 */
+}
+
+/* 개별 게시물 항목 */
+.postItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #ffffff;
+  /* 게시물의 배경색 */
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  /* 약간의 그림자 */
+}
+
+/* HOT 태그 */
+.hotTag {
+  color: red;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* 게시물 정보 */
+.postInfo {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* 게시물 제목 */
+.postTitle {
+  cursor: pointer;
+  /* 마우스를 올리면 손가락 커서로 변경 */
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.postTitle:hover {
+  color: black;
+  text-decoration: underline;
+  font-weight: 1000;
+}
+
+/* 게시물 날짜 */
+.postDate {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* 스크랩 아이콘 */
+.scrapIcon {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}

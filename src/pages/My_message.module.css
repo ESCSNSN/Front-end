@@ -1,0 +1,213 @@
+  /* 텍스트 스타일 (아래로 살짝 내림) */
+  .title-text {
+    font-size: 0.9rem !important;
+    color: #000000;
+    margin-bottom: 20px;
+    /* 텍스트를 아래로 살짝 내림 */
+    /*margin-top: 50px;  /* 텍스트를 아래로 살짝 내림 */
+  }
+  
+  .title-text2 {
+    font-size: 1.5rem !important;
+    color: #000000;
+    margin-bottom: 30px;
+    /* 텍스트를 아래로 살짝 내림 */
+    margin-top: -37px;
+    margin-left: 175px;
+    /* 텍스트를 아래로 살짝 내림 */
+  }
+  
+  .app-main_message2 {
+    height: 25px;
+    margin-top: -25px;
+    margin-left: 300px;
+  }
+  
+  .app-main_message3 {
+    height: 35px;
+    margin-top: -29px;
+    margin-left: 355px;
+  }
+  
+  /* INFO 텍스트 */
+  h2 {
+    font-size: 2.4rem;
+    color: #0056A0;
+    margin-bottom: 0px;
+    margin-right: 5px;
+    /* 텍스트를 아래로 살짝 내림 */
+  
+  }
+  
+  .app-arrow {
+    height: 35px;
+    margin-top: 20px;
+    margin-right: 380px;
+    cursor: pointer;
+    /* 커서를 손 모양으로 변경 */
+    transition: transform 0.3s ease;
+    /* 부드러운 확대 효과 추가 */
+  }
+  
+  .app-bar {
+    height: 2.5px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+  }
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: white;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.messageList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.messageItem {
+  width: 150%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  cursor: pointer;
+}
+
+.messageInfo {
+  display: flex;
+  flex-direction: column;  /* 유저 이름, 제목, 마지막 내용 순으로 세로 배치 */
+  gap: 5px;                /* 각 요소 간의 간격 */
+}
+
+.headerInfo {
+  display: flex;           /* 유저 이름과 글 제목을 같은 행에 배치 */
+  gap: 10px;               /* 유저 이름과 글 제목 사이 간격 */
+  align-items: center;     /* 세로 정렬을 위해 가운데 정렬 */
+}
+
+.nickname {
+  color: black;
+  font-weight: bold;
+  font-size:large;
+}
+
+.title {
+  font-weight: bold;
+  color: #244A95;
+  cursor: pointer;
+}
+
+.lastMessage {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+
+.menuIcon {
+  cursor: pointer;
+  height: 1.5rem;
+}
+
+.dropdownMenu { 
+  position: absolute;  /* 절대 위치로 설정 */
+  top: 0;              /* 메뉴 아이콘의 바로 아래에 나타나도록 설정 */
+  right: 0;
+  transform: translateY(110%);  /* 간격을 줄여서 삭제 버튼이 메뉴 버튼과 더 가까워지도록 설정 */
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+
+.deleteButton {
+  background-color: #ff4c4c;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.loadMoreButton {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;   /* 왼쪽 여백을 자동으로 설정 */
+  margin-right: auto;  /* 오른쪽 여백을 자동으로 설정 */
+  text-align: center;  /* 버튼 내부 텍스트를 가운데 정렬 */
+}
+
+.loadMoreButton:hover {
+  background-color: gray;
+}
+
+/* 삭제 확인 모달 스타일 */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  max-width: 90%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.cancelButton {
+  background-color: #ccc;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.deleteConfirmButton {
+  background-color: #ff4c4c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

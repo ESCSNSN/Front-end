@@ -1,0 +1,198 @@
+   /* 텍스트 스타일 (아래로 살짝 내림) */
+   .title-text {
+    font-size: 0.9rem ;
+    color: #000000;
+    margin-bottom: 20px;
+    /* 텍스트를 아래로 살짝 내림 */
+    /*margin-top: 50px;  /* 텍스트를 아래로 살짝 내림 */
+  }
+  
+  .title-text2 {
+    font-size: 1.5rem ;
+    color: #000000;
+    margin-bottom: 20px;
+    /* 텍스트를 아래로 살짝 내림 */
+    margin-top: -38px;
+    margin-left: 160px;
+    /* 텍스트를 아래로 살짝 내림 */
+  }
+  
+  .title-text3 {
+    font-size: 1.2rem ;
+    color: #000000;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    /* 텍스트를 아래로 살짝 내림 */
+    margin-left: 10px;
+  }
+  
+  .title-text4 {
+    font-size: 1.2rem ;
+    color: #000000;
+    margin-bottom: 10px;
+    margin-left: 8px;
+    margin-top: 10px;
+
+    /* 텍스트를 아래로 살짝 내림 */
+    margin-right: 260px;
+  }
+
+  .title-text5 {
+    font-size: 1.2rem ;
+    color: #000000;
+    margin-bottom: 5px;
+    /* 텍스트를 아래로 살짝 내림 */
+    margin-right: 5px;
+    margin-top: 10px;
+
+  }
+
+  .title-text6 {
+    font-size: 1.2rem !important;
+    color: #000000;
+    margin-bottom: 10px;
+    /* 텍스트를 아래로 살짝 내림 */
+    margin-top: 10px;
+    margin-right: 300px;
+  }
+  
+  .app-main_message2 {
+    height: 25px;
+    margin-top: -25px;
+    margin-left: 300px;
+  }
+  
+  .app-main_message3 {
+    height: 35px;
+    margin-top: -29px;
+    margin-left: 355px;
+  }
+  
+  /* INFO 텍스트 */
+  h2 {
+    font-size: 2.4rem;
+    color: #0056A0;
+    margin-bottom: 0px;
+    margin-right: 5px;
+    /* 텍스트를 아래로 살짝 내림 */
+  
+  }
+  
+  .app-arrow {
+    height: 35px;
+    margin-top: 25px;
+    margin-right: 380px;
+    cursor: pointer;
+    /* 커서를 손 모양으로 변경 */
+    transition: transform 0.3s ease;
+    /* 부드러운 확대 효과 추가 */
+  }
+  
+  .app-bar {
+    height: 2.5px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+  }
+  
+ /* 입력 필드 */
+.input {
+  width: 80%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* 내용 입력란 (큰 텍스트 영역) */
+.textarea {
+  width: 80%;
+  height: 200px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none; /* 크기 조절 불가능 */
+}
+  
+  
+/* 작성 버튼 스타일 */
+.submit-group {
+  margin-top: -50px;
+  margin-left: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #73B3E3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* 모집기간 스타일 */
+.date-range {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-left:-3px;
+  width: 96%; /* 제목 입력 필드와 동일한 너비로 설정 */
+}
+
+/* 날짜 입력 필드 스타일 */
+.input-date {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  flex: 1; /* 각 날짜 입력 필드를 동일한 크기로 */
+  margin: 0 5px;
+}
+
+.date-separator {
+  margin: 0 10px; /* 구분자 간격 조정 */
+}
+
+/* 제목과 해시태그 필드 동일한 너비 적용 */
+.input, .textarea {
+  width: 90%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: px;
+}
+
+.image-upload {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.camera-icon {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.image-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.image-preview {
+  max-width: 80%;
+  max-height: 120px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

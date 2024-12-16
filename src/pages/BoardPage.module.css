@@ -1,0 +1,340 @@
+  .container {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .content {
+    margin-top: 20px;
+    /* 상단바도 하나의 그룹이라 내가 원하는 항목 만들면 아래로 밀림.*/
+    padding: 20px;
+    background-color: white;
+    /* 배경색 설정 */
+    height: 100vh;
+    overflow-y: auto;
+    /* 스크롤 가능 */
+  }
+  
+  .titleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 중앙 정렬 */
+    width: 100%;
+    position: relative;
+  }
+  
+  .pageTitle {
+    margin-top: -150px;
+    font-size: 1.2rem;
+    text-align: center;
+    flex-grow: 1;
+    /* 제목이 가능한 넓은 공간을 차지하도록 설정 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* 제목을 정확히 중앙으로 이동 */
+  }
+  
+  .goBackButton {
+    cursor: pointer;
+    height: 2rem;
+    position: absolute;
+    left: 10px;
+    /* 화면 왼쪽에 고정 */
+  }
+  
+  .downMenuButton {
+    cursor: pointer;
+    height: 1rem;
+    position: absolute;
+    right: 80px;
+    /* 화면 오른쪽에 고정 */
+    margin-left: 5px;
+    /* 제목과 메뉴 버튼 간격 */
+  }
+  
+  .dropdownMenu {
+    position: absolute;
+    top: 7rem;
+    /* 버튼 아래에 위치 */
+    margin-right: 2rem;
+    right: 60px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    /* 다른 요소 위에 보이게 */
+  }
+  
+  .dropdownMenu li:hover {
+    background-color: #f5f5f5;
+    /* 마우스 오버 시 배경색 */
+  }
+  
+  .menuItem {
+   
+    padding: 10px 20px;
+    /* 각 항목의 크기를 적절히 조정 */
+    cursor: pointer;
+    list-style: none;
+    font-size: 1.1rem;
+    /* 텍스트 크기를 살짝 줄임 */
+    font-weight: bold;
+    /* 텍스트를 더 두껍게 표시 */
+  }
+  
+  .controlPanel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* 간격을 조금 줄여 공간 확보 */
+    margin-top: 30px;
+    /* 상단과의 간격 줄이기 */
+  }
+  
+  .writeButton {
+    background-color: #244A95;
+    color: white;
+    padding: 5px 5px;
+    /* 버튼의 패딩을 줄여 크기 조절 */
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    width: 70px;
+    margin-left:10px;
+    /* 버튼의 너비를 줄여 균형 잡기 */
+  }
+  
+  .writeButton:hover {
+    background-color: #1a3571;
+  }
+  
+  .searchBar {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    padding: 3px 30px;
+    /* 패딩을 조정해 전체 크기를 줄임 */
+    margin-left: 15px;
+    /* 검색창을 살짝 오른쪽으로 이동 */
+  }
+  
+  .searchInput {
+    border: none;
+    background: none;
+    outline: none;
+    width: 100px;
+    /* 너비를 줄여 공간 확보 */
+    /* padding-left: 0px; */
+  }
+  
+  .searchIcon {
+    height: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .sortButtons {
+    display: flex;
+    gap: 5px;
+    /* 간격을 줄여 정렬 버튼 간의 공간 줄이기 */
+    margin-left: 0px;
+    /* 왼쪽 여백을 주어 오른쪽으로 더 옮김 */
+  }
+  
+  /* 최신순 버튼 전용 스타일 */
+  .latestSortButton {
+    background: none;
+    border: none;
+    color: #555;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.0rem;
+
+  }
+  
+  .sortButton {
+    background: none;
+    border: none;
+    color: #555;
+    font-weight: bold;
+    cursor: pointer;
+    width: 60px;
+    /* 너비를 줄여 균형 잡기 */
+    margin-left: -10px;
+  }
+  
+  .activeSortButton {
+    color: #000;
+  }
+  
+  
+  /* 게시물 목록 */
+  .postList {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* 각 게시물 사이 간격 */
+  }
+  
+  /* 개별 게시물 항목 */
+  .postItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #ffffff;
+    /* 게시물의 배경색 */
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* 약간의 그림자 */
+  }
+  
+  /* HOT 태그 */
+  .hotTag {
+    color: red;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  /* 게시물 정보 */
+  .postInfo {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  /* 게시물 제목 */
+  .postTitle {
+    cursor: pointer;
+    /* 마우스를 올리면 손가락 커서로 변경 */
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .postTitle:hover {
+    color: black;
+    text-decoration: underline;
+    font-weight: 1000;
+  }
+  
+  /* 게시물 날짜 */
+  .postDate {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  /* 스크랩 아이콘 */
+  .scrapIcon {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+  }
+  
+  /* 페이지네이션 */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+    /* 각 페이지 번호 사이 간격 */
+  }
+  
+  /* 페이지 번호 버튼 */
+  .pageButton {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pageButton:hover {
+    background-color: #f0f0f0;
+  }
+  
+  
+  /* 모달 팝업창 스타일 */
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modalButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .reportTextarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .cancelButton {
+    background-color: #ccc;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .cancelButton:hover {
+    background-color: #aaa;
+  }
+
+  .categoryContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-top:20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .category {
+    cursor: pointer;
+    padding: 5px 10px;
+    color: #444;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .category:hover {
+    color: #007bff;
+  }
+  
+  .activeCategory {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+  }
