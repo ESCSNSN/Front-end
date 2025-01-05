@@ -10,9 +10,9 @@ import main_mascot from '../images/대학 심볼 횃불이.png';  // 로고 이�
 import main_bell from '../images/bell.png';  // 로고 이미지 불러오기
 import main_message from '../images/message.png';  // 로고 이미지 불러오기
 import main_my from '../images/my.png';  // 로고 이미지 불러오기
-import competitionImage1 from '../images/com1.png'; // 대회 이미지 1 (추가)
-import competitionImage2 from '../images/com2.png'; // 대회 이미지 2 (추가)
-import competitionImage3 from '../images/com3.png'; // 대회 이미지 3 (추가)
+import competitionImage1 from '../images/대회1.png'; // 대회 이미지 1 (추가)
+import competitionImage2 from '../images/대회2.png'; // 대회 이미지 2 (추가)
+import competitionImage3 from '../images/대회3.png'; // 대회 이미지 3 (추가)
 import PlusButton from '../assets/MoreButton'; // 플러스 버튼 컴포넌트 import
 
 import Icon1 from '../images/하트이모지.png';  // 방 1의 아이콘

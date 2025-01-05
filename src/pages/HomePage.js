@@ -9,9 +9,9 @@ import main_mascot from '../images/대학 심볼 횃불이.png';  // 로고 이�
 import main_bell from '../images/bell.png';  // 로고 이미지 불러오기
 import main_message from '../images/message.png';  // 로고 이미지 불러오기
 import main_my from '../images/my.png';  // 로고 이미지 불러오기
-import competitionImage1 from '../images/com1.png'; // 대회 이미지 1 (추가)
-import competitionImage2 from '../images/com2.png'; // 대회 이미지 2 (추가)
-import competitionImage3 from '../images/com3.png'; // 대회 이미지 3 (추가)
+import competitionImage1 from '../images/대회1.png'; // 대회 이미지 1 (추가)
+import competitionImage2 from '../images/대회2.png'; // 대회 이미지 2 (추가)
+import competitionImage3 from '../images/대회3.png'; // 대회 이미지 3 (추가)
 import PlusButton from '../assets/MoreButton'; // 플러스 버튼 컴포넌트 import
 
 import S_cute from '../assets/S_cuteButton'; //스크랩
@@ -84,6 +84,16 @@ const [error, setError] = useState(null);
   const [dropdownVisible, setDropdownVisible] = useState(false);  // 드롭다운 상태 관리
   const [activeTab, setActiveTab] = useState('정보게시판'); // Default active tab
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false); //logout
+
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
+  const handleImageError = (e) => {
+    e.target.src = 'default-image.jpg'; // 이미지 로딩 실패 시 기본 이미지
+  };
 
 
 
@@ -159,29 +169,24 @@ const [error, setError] = useState(null);
 
           {/* 코딩 게시판 상위 2개 게시물 리스트 */}
           <div className={styles.postList}>
-               {codingBoardData.slice(0, 2).map((post) => (  // 상위 2개 게시물만 렌더링
-                    <div
-                         key={post.id}
-                         className={styles.postItem}
-                         onClick={() => handleQuestionClick(post.id)} // 게시물 클릭 시 상세 페이지로 이동
-                    >
-                         <span className={styles.index}>{codingBoardData.indexOf(post) + 1}</span>
-                         <span className={styles.question}>{post.codingTitle || '제목 없음'}</span>
-                         <span className={styles.date}>
-                              {new Date(post.codingCreatedTime).toLocaleDateString()}
-                         </span>
-                         {/* 첨부파일이 있으면 이미지로 표시 */}
-                         {post.fileAttached === 1 && post.storedFileName && (
-                              <img
-                                   src={`path/to/images/${post.storedFileName[0]}`}  // 이미지 경로 맞게 수정
-                                   alt="Coding Image"
-                                   className={styles.codingImage}
-                              />
-                         )}
-                    </div>
-               ))}
+  {codingBoardData.slice(0, 2).map((post) => (
+    <div
+      key={post.id}
+      className={styles.postItem}
+      onClick={() => handleQuestionClick(post.id)} // 게시물 클릭 시 상세 페이지로 이동
+    >
+      <span className={styles.index}>{codingBoardData.indexOf(post) + 1}</span>
+      <span className={styles.question}>{post.codingTitle || '제목 없음'}</span>
+      <span className={styles.date}>
+        {new Date(post.codingCreatedTime).toLocaleDateString()}
+      </span>
+      {/* 첨부파일 여부와 관계없이 S_cute 표시 */}
+      <S_cute className={styles.S_cute} />
+    </div>
+  ))}
+</div>
+
           </div>
-     </div>
 
 
 
@@ -489,16 +494,26 @@ const [error, setError] = useState(null);
       <div className={`${styles.competitions} ${isDesktop ? styles.desktopCompetitions : ''}`}>
             {competitionBoardData.slice(0, 3).map((post) => (  // 상위 3개 게시물만 렌더링
                   <div key={post.id} className={styles.competitionItem}>
-                        <span className={styles.index2}>HOT</span>
-                        <span className={styles.competitionTitle}>{post.competitionTitle}</span>
-                        <span className={styles.date}>{new Date(post.competitionCreatedTime).toLocaleDateString()}</span>
-                        {post.fileAttached === 1 && post.storedFileName.length > 0 && (
-                              <img
-                                    src={`path/to/images/${post.storedFileName[0]}`}  // 파일 경로에 맞게 수정
-                                    alt="Competition Image"
-                                    className={styles.competitionImage}
-                              />
-                        )}
+  
+                        {post.imageUrls && post.imageUrls.length > 0 ? (
+        <div className={styles.imageContainer}>
+          {post.imageUrls.slice(0, 3).map((url, index) => (
+            <div key={index} className={styles.imageWrapper}>
+              {!imageLoaded && <div className={styles.loader}>Loading...</div>} {/* 로딩 표시 */}
+              <img
+                src={url}
+                alt={`Competition Image ${index + 1}`}
+                className={styles.competitionImage}
+                onLoad={handleImageLoad}
+                onError={handleImageError}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <span className={styles.noImageText}>이미지가 없습니다</span>
+      )}
+
                   </div>
             ))}
       </div>
