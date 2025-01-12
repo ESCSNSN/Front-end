@@ -188,7 +188,7 @@ const G_HomePage = () => {
                         {new Date(item.graduateCreatedTime).toLocaleDateString()}
                       </span>
                       <S_cute className={styles.S_cute} />
-                      
+
                     </div>
                   ))}
                   {/* 질문 게시판 데이터 렌더링 */}
@@ -314,6 +314,23 @@ const G_HomePage = () => {
               onClick={toggleDropdown}
             />
           </div>
+          {/* 드롭다운 메뉴 */}
+          {dropdownVisible && (
+            <div className={styles["dropdown-menu"]}>
+              <a href="/scrap" className={styles["menu-item"]}>스크랩</a>
+              <a href="/My_board" className={styles["menu-item"]}>작성 게시글</a>
+              <a href="/My_message" className={styles["menu-item"]}>작성 댓글</a>
+              <a href="/add" className={styles["menu-item"]}>스터디 신청 확인</a>
+              <a
+                href="#"
+                onClick={handleLogoutClick}
+                className={`${styles["menu-item"]} ${styles["logout"]}`}
+              >
+                로그아웃
+              </a>
+            </div>
+          )}
+
         </div>
       </header>
 
