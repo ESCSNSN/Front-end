@@ -11,16 +11,16 @@ import IconUnscrap from '../images/횃불이스크랩X.png';
 // API에서 사용할 기본 URL과 헤더 설정
 const BASE_URL = 'http://info-rmation.kro.kr/api/board';
 const getAuthHeaders = () => {
-  const accessToken = localStorage.getItem('accessToken');
-  const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
-  console.log(localStorage.getItem('userId'));
+    const accessToken = localStorage.getItem('accessToken');
+    const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
+    console.log(localStorage.getItem('userId'));
 
-  return {
-    'Authorization': `Bearer ${accessToken}`,
-    'X-USER-ID': userId, // 사용자 ID를 X-USER-ID로 추가
-    'Content-Type': 'application/json',
-    'ngrok-skip-browser-warning': 1
-  };
+    return {
+        'Authorization': `Bearer ${accessToken}`,
+        'X-USER-ID': userId, // 사용자 ID를 X-USER-ID로 추가
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 1
+    };
 };
 
 const Scrap = () => {
@@ -32,97 +32,95 @@ const Scrap = () => {
     const [scrapStatus, setScrapStatus] = useState({}); // 각 게시물의 스크랩 상태 관리
     const [totalPages, setTotalPages] = useState(0); // 전체 페이지 수
     const [page, setPage] = useState(0); // 현재 페이지 번호
-    
-    
+
+
 
     const [selectedTab, setSelectedTab] = useState('대회정보'); // 현재 선택된 상위 탭
     const [selectedSubTab, setSelectedSubTab] = useState('부트캠프'); // 자기개발방 하위 탭
 
     // 게시물 데이터 가져오기
-const fetchPosts = async (tab, subTab, options = {}) => {
-    let endpoint = '/scraps/competition';
+    const fetchPosts = async (tab, subTab, options = {}) => {
+        let endpoint = '/scraps/competition';
 
-    // Main tab별 엔드포인트 처리
-    if (tab === '대회정보') {
-        endpoint = '/scraps/competition';
-    } else if (tab === '코드 질문방') {
-        endpoint = '/scraps/coding';
-    } else if (tab === '자유 게시판') {
-        endpoint = '/scraps/free';
-    } else if (tab === '자기 개발방') {
-        
-        const studyIDMap = {
-            '부트캠프': 'bootcamp',
-            '스터디': 'study',
-            '산업 연계': 'industry',
-        };
-        const studyId = studyIDMap[subTab];
+        // Main tab별 엔드포인트 처리
+        if (tab === '대회정보') {
+            endpoint = '/scraps/competition';
+        } else if (tab === '코드 질문방') {
+            endpoint = '/scraps/coding';
+        } else if (tab === '자유 게시판') {
+            endpoint = '/scraps/free';
+        } else if (tab === '자기 개발방') {
+            const studyIDMap = {
+                '부트캠프': 'bootcamp',
+                '스터디': 'study',
+                '산업 연계': 'industry',
+            };
+            const studyId = studyIDMap[subTab];
 
-        if (studyId) {
-            endpoint = `/scraps/study?studyId=${studyId}`;
-            console.log('endpoint:', endpoint);
-        } else {
-            console.error('잘못된 자기개발방 하위 탭입니다.');
-            return;
-        }
-    }
-
-    // Optional query parameters 처리
-    const params = new URLSearchParams();
-    if (options.limit) params.append('limit', options.limit);
-    if (options.lastId) params.append('lastId', options.lastId);
-
-    const finalUrl = `${BASE_URL}${endpoint}${params.toString() ? `&${params.toString()}` : ''}`;
-
-    try {
-        const response = await fetch(finalUrl, {
-            method: 'GET',
-            headers: getAuthHeaders(),
-        });
-
-        if (!response.ok) {
-            throw new Error('API 요청 실패');
+            if (studyId) {
+                endpoint = `/scraps/study`;
+                options.studyId = studyId; // options 객체에 studyId 추가
+            } else {
+                console.error('잘못된 자기개발방 하위 탭입니다.');
+                return;
+            }
         }
 
-        const result = await response.json();
+        // Optional query parameters 처리
+        const params = new URLSearchParams(options); // options에 포함된 모든 키-값 쌍 추가
 
-        console.log('API 응답:', result);
+        const finalUrl = `${BASE_URL}${endpoint}${params.toString() ? `?${params.toString()}` : ''}`;
+
+        try {
+            const response = await fetch(finalUrl, {
+                method: 'GET',
+                headers: getAuthHeaders(),
+            });
+
+            if (!response.ok) {
+                throw new Error('API 요청 실패');
+            }
+
+            const result = await response.json();
+
+            console.log('API 응답:', result);
 
 
-        // 데이터 처리
-        if (result.data) {
-            setPosts(result.data); // 게시글 상태 업데이트
-            setScrapStatus(
-                result.data.reduce(
-                    (status, post) => ({ ...status, [post.id]: post.scrapped }),
-                    {}
-                )
-            ); // 스크랩 상태 초기화
-            console.log("data:", result.data);
+            // 데이터 처리
+            if ((result.studies && result.studies.length > 0) || (result.data && result.data.length > 0)) {
+                const posts = result.studies || result.data; // studies 또는 data 중 존재하는 것을 사용
+                setPosts(posts); // 게시글 상태 업데이트
+                setScrapStatus(
+                    posts.reduce(
+                        (status, item) => ({ ...status, [item.id]: item.scrap || item.scrapped }),
+                        {}
+                    )
+                ); // 스크랩 상태 초기화
+                console.log("posts:", posts);
+            } else {
+                console.warn('데이터를 찾을 수 없습니다.');
+                setPosts([]); // 게시글 상태 초기화
+            }
 
-        } else {
-            console.warn('데이터를 찾을 수 없습니다.');
-            console.log("data:", result.data);
-            setPosts([]);
+        } catch (error) {
+            console.error('API 요청 에러:', error);
+            setError(error.message);
+        } finally {
+            setLoading(false); // 로딩 상태 해제
         }
-    } catch (error) {
-        console.error('API 요청 에러:', error);
-        setError(error.message);
-    } finally {
-        setLoading(false); // 로딩 상태 해제
-    }
-};
-      
+    };
+
+
 
     // 초기 데이터 가져오기
     useEffect(() => {
-    setLoading(true); // 로딩 상태 활성화
-    if (selectedTab === '자기 개발방') {
-        fetchPosts(selectedTab, selectedSubTab);
-    } else {
-        fetchPosts(selectedTab);
-    }
-}, [selectedTab, selectedSubTab]);
+        setLoading(true); // 로딩 상태 활성화
+        if (selectedTab === '자기 개발방') {
+            fetchPosts(selectedTab, selectedSubTab);
+        } else {
+            fetchPosts(selectedTab);
+        }
+    }, [selectedTab, selectedSubTab]);
 
     const handleTabChange = (tab) => {
         setSelectedTab(tab);
@@ -134,7 +132,7 @@ const fetchPosts = async (tab, subTab, options = {}) => {
 
     const handlePostClick = (postId) => {
         let url = `/post/${postId}`; // 기본 경로
-    
+
         if (selectedTab === '대회정보') {
             url = `/InformationContestBoard/${postId}`;
         } else if (selectedTab === '코드 질문방') {
@@ -150,7 +148,7 @@ const fetchPosts = async (tab, subTab, options = {}) => {
         } else if (selectedTab === '자유 게시판') {
             url = `/freepostingPage/${postId}`;
         }
-    
+
         navigate(url);
     };
 
@@ -158,17 +156,17 @@ const fetchPosts = async (tab, subTab, options = {}) => {
         try {
             const endpoint = `/scraps/${selectedTab}/${id}`;
             const finalUrl = `${BASE_URL}${endpoint}`;
-    
+
             const response = await fetch(finalUrl, {
                 method: 'PATCH',
                 headers: getAuthHeaders(),
                 body: JSON.stringify({ scrapped: !scrapped }),
             });
-    
+
             if (!response.ok) {
                 throw new Error('스크랩 상태를 업데이트하는 데 실패했습니다.');
             }
-    
+
             setPosts((prevPosts) =>
                 prevPosts.map((post) =>
                     post.id === id ? { ...post, scrapped: !scrapped } : post
@@ -204,32 +202,30 @@ const fetchPosts = async (tab, subTab, options = {}) => {
                 <h1 className={styles['title-text2']}>스크랩</h1>
                 <img src={bar} className={styles['app-bar']} alt="bar" />
             </div>
-    
+
             <div className={styles.classroomContainer}>
                 {/* 상위 탭 */}
                 <div className={styles.floorNav}>
                     {mainTabs.map((tab) => (
                         <span
                             key={tab}
-                            className={`${styles.floor} ${
-                                selectedTab === tab ? styles.activeFloor : ''
-                            }`}
+                            className={`${styles.floor} ${selectedTab === tab ? styles.activeFloor : ''
+                                }`}
                             onClick={() => handleTabChange(tab)}
                         >
                             {tab}
                         </span>
                     ))}
                 </div>
-    
+
                 {/* "자기개발방" 하위 탭 */}
                 {selectedTab === '자기 개발방' && (
                     <div className={styles.subTabNav}>
                         {subTabs.map((subTab) => (
                             <span
                                 key={subTab}
-                                className={`${styles.subTab} ${
-                                    selectedSubTab === subTab ? styles.activeSubTab : ''
-                                }`}
+                                className={`${styles.subTab} ${selectedSubTab === subTab ? styles.activeSubTab : ''
+                                    }`}
                                 onClick={() => handleSubTabChange(subTab)}
                             >
                                 {subTab}
@@ -237,7 +233,7 @@ const fetchPosts = async (tab, subTab, options = {}) => {
                         ))}
                     </div>
                 )}
-    
+
                 {/* 게시물 목록 */}
                 <div className={styles.postList}>
                     {posts.map((post) => (
@@ -246,7 +242,7 @@ const fetchPosts = async (tab, subTab, options = {}) => {
                             {topLikedPosts.includes(post.id) && (
                                 <span className={styles.hotTag}>HOT</span>
                             )}
-    
+
                             {/* 게시물 제목 및 정보 */}
                             <div className={styles.postInfo}>
                                 <span
@@ -261,7 +257,7 @@ const fetchPosts = async (tab, subTab, options = {}) => {
                                         : '날짜 없음'}
                                 </span>
                             </div>
-    
+
                             {/* 스크랩 버튼 */}
                             <img
                                 src={scrapStatus[post.id] ? IconScrap : IconUnscrap}
@@ -272,18 +268,17 @@ const fetchPosts = async (tab, subTab, options = {}) => {
                         </div>
                     ))}
                 </div>
-    
+
                 {/* 페이지네이션 */}
                 <div className={styles.pagination}>
                     {Array.from({ length: totalPages }, (_, i) => i + 1).map(
                         (pageNumber) => (
                             <button
                                 key={pageNumber}
-                                className={`${styles.pageButton} ${
-                                    page === pageNumber - 1
+                                className={`${styles.pageButton} ${page === pageNumber - 1
                                         ? styles.activePageButton
                                         : ''
-                                }`} // 현재 페이지 강조
+                                    }`} // 현재 페이지 강조
                                 onClick={() => setPage(pageNumber - 1)} // 페이지 번호 업데이트
                             >
                                 {pageNumber}
@@ -294,7 +289,7 @@ const fetchPosts = async (tab, subTab, options = {}) => {
             </div>
         </div>
     );
-    
+
 };
 
 export default Scrap;
