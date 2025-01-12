@@ -470,7 +470,7 @@ const handleEdit = async () => {
       console.log("수정 가능한 데이터를 가져왔습니다:", data);
 
       // 데이터를 활용해 수정 화면으로 이동하거나 상태 업데이트
-      navigate(`/Study/${id}`) 
+      // 예: navigate(`/edit/${id}`) 또는 수정 데이터 상태 업데이트
     } else {
       console.error("수정 데이터를 가져오지 못했습니다:", response.status);
     }
