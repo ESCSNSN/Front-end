@@ -146,7 +146,7 @@ const Class_Room = () => {
                 src={Icon4}
                 alt="내가 속한 방"
                 className={`${styles.navIcon} ${isDesktop ? styles.desktopNavIcon : ''}`}
-                onClick={() => handleRoomClick("RoomPage")}
+                onClick={() => navigate("/RoomPage")}
               />
               <span className={`${styles.navText} ${isDesktop ? styles.desktopNavText : ''}`}>내가 속한 방</span>
             </div>
@@ -156,7 +156,7 @@ const Class_Room = () => {
                 src={Icon5}
                 alt="수업 소통 방"
                 className={`${styles.navIcon} ${isDesktop ? styles.desktopNavIcon : ''}`}
-                onClick={() => handleRoomClick("ClassRoom")}
+                onClick={() => navigate("/Class_Room")}
               />
               <span className={`${styles.navText} ${isDesktop ? styles.desktopNavText : ''}`}>수업 소통 방</span>
             </div>
@@ -166,7 +166,7 @@ const Class_Room = () => {
                 src={Icon6}
                 alt="자유 소통 방"
                 className={`${styles.navIcon} ${isDesktop ? styles.desktopNavIcon : ''}`}
-                onClick={() => handleRoomClick("FreeRoom")}
+                onClick={() => navigate("/FreeRoom")}
               />
               <span className={`${styles.navText} ${isDesktop ? styles.desktopNavText : ''}`}>자유 소통 방</span>
             </div>

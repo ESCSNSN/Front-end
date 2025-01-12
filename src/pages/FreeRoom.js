@@ -3,18 +3,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들기 위함
-import main_mascot from '../images/대학 심볼 횃불이.png';  
-import main_bell from '../images/bell.png';  
-import main_message from '../images/message.png';  
-import main_my from '../images/my.png';  
+import main_mascot from '../images/대학 심볼 횃불이.png';
+import main_bell from '../images/bell.png';
+import main_message from '../images/message.png';
+import main_my from '../images/my.png';
 
 import styles from './FreeRoom.module.css';
 import CommunicationRoom_goBack from '../images/왼쪽 나가기 버튼.png';
 import menuIcon from '../images/메뉴버튼.png';
-import Icon1 from '../images/하트이모지.png';  
-import Icon2 from '../images/눈이모지.png';   
-import Icon3 from '../images/폭죽이모지.png'; 
-import Icon4 from '../images/내가속한방 횃불이.png';  
+import Icon1 from '../images/하트이모지.png';
+import Icon2 from '../images/눈이모지.png';
+import Icon3 from '../images/폭죽이모지.png';
+import Icon4 from '../images/내가속한방 횃불이.png';
 import Icon5 from '../images/수업소통방 횃불이.png';
 import Icon6 from '../images/자유소통방 횃불이.png';
 import Icon8 from '../images/프로필.png';
@@ -30,8 +30,10 @@ const FreeRoom = () => {
   // 열린 채팅방 목록 조회
   useEffect(() => {
     fetch(`${baseUrl}/Room/RoomList`, {
-        headers: {  "ngrok-skip-browser-warning": "abc",
-            'Content-Type': 'application/json' },
+      headers: {
+        "ngrok-skip-browser-warning": "abc",
+        'Content-Type': 'application/json'
+      },
     })
       .then((response) => response.json())
       .then((data) => {
@@ -69,10 +71,10 @@ const FreeRoom = () => {
     navigate(`/ChatPreview/${roomId}`);
   };
 
-    // 프로필로 이동
-    const handleProfileClick = () => {
-      navigate('/myprofile');
-    };
+  // 프로필로 이동
+  const handleProfileClick = () => {
+    navigate('/myprofile');
+  };
 
   return (
     <div className={styles.app}>
@@ -103,11 +105,11 @@ const FreeRoom = () => {
           </div>
 
           <div className={`${styles.searchContainer} ${isDesktop ? styles.desktopSearchContainer : ''}`}>
-          <div className={styles.profileIcon} onClick={handleProfileClick}>
-  <img src={Icon8} alt="Profile Icon" />
-</div>
+            <div className={styles.profileIcon} onClick={handleProfileClick}>
+              <img src={Icon8} alt="Profile Icon" />
+            </div>
 
-            
+
             <input
               type="text"
               className={styles.searchInput}
@@ -136,6 +138,36 @@ const FreeRoom = () => {
                 </button>
               </div>
             ))}
+            {/* 하단바 */}
+            <div className={styles.bottomNav}>
+              <div className={styles.navItem}>
+                <img
+                  src={Icon4}
+                  alt="내가 속한 방"
+                  className={styles.navIcon}
+                  onClick={() => navigate("/RoomPage")}
+                />
+                <span className={styles.navText}>내가 속한 방</span>
+              </div>
+              <div className={styles.navItem}>
+                <img
+                  src={Icon5}
+                  alt="수업 소통 방"
+                  className={styles.navIcon}
+                  onClick={() => navigate('/Class_Room')}
+                />
+                <span className={styles.navText}>수업 소통 방</span>
+              </div>
+              <div className={styles.navItem}>
+                <img
+                  src={Icon6}
+                  alt="자유 소통 방"
+                  className={styles.navIcon}
+                  onClick={() => navigate("/FreeRoom")}
+                />
+                <span className={styles.navText}>자유 소통 방</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

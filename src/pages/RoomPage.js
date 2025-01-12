@@ -347,7 +347,7 @@ const RoomPage = () => {
               src={Icon4}
               alt="내가 속한 방"
               className={styles.navIcon}
-              onClick={() => handleRoomClick("내가속한방")}
+              onClick={() => navigate("/RoomPage")}
             />
             <span className={styles.navText}>내가 속한 방</span>
           </div>
@@ -356,7 +356,7 @@ const RoomPage = () => {
               src={Icon5}
               alt="수업 소통 방"
               className={styles.navIcon}
-              onClick={() => handleRoomClick("수업소통방")}
+              onClick={() => navigate('/Class_Room')}
             />
             <span className={styles.navText}>수업 소통 방</span>
           </div>
@@ -365,7 +365,7 @@ const RoomPage = () => {
               src={Icon6}
               alt="자유 소통 방"
               className={styles.navIcon}
-              onClick={() => handleRoomClick("자유소통방")}
+              onClick={() => navigate("/FreeRoom")}
             />
             <span className={styles.navText}>자유 소통 방</span>
           </div>
