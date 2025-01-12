@@ -72,7 +72,7 @@ const G_HomePage = () => {
   loadData();
   const fetchRooms = async () => {
     const userId = '202301641'; // 추후 삭제제
-    const baseUrl = 'https://a1de-61-84-64-212.ngrok-free.app';
+    const baseUrl = 'https://rmation-chat.kro.kr';
     fetch(`${baseUrl}/Room/userId/${userId}`, {
         headers: {
             contentType: 'application/json',

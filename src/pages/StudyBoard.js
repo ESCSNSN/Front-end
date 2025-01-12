@@ -13,7 +13,7 @@ import bar from '../images/bar.png';
 import Header from './_.js';  // 상단바 컴포넌트
 
 // API에서 사용할 기본 URL과 헤더 설정
-const BASE_URL = 'https://aa51-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board';
+const BASE_URL = 'https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board';
 const getAuthHeaders = () => {
   const accessToken = localStorage.getItem('accessToken');
   const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
@@ -481,7 +481,7 @@ const handleEdit = async () => {
 
 // 신청버튼 위한 로직 추가함
 const handleApply = async () => {
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem('authToken');
   console.log(id);
 
   try {
@@ -492,9 +492,6 @@ const handleApply = async () => {
         'Content-Type': 'application/json', // 요청 본문 형식 명시
         'ngrok-skip-browser-warning': 'true', // 추가 헤더
       },
-      body: JSON.stringify({
-        applyUserId: id
-      }),
     });
 
     if (response.ok) {
