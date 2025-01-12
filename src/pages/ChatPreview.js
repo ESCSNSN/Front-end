@@ -10,7 +10,7 @@ import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들�
 import axios from 'axios';
 
 // 백엔드 기본 URL 설정
-const BASE_URL = 'https://4784-61-84-64-212.ngrok-free.app';
+const BASE_URL = 'https://rmation-chat.kro.kr';
 
 function ChatPreview() {
   const navigate = useNavigate();

@@ -22,6 +22,7 @@ import S_cute from '../assets/S_cuteButton'; //스크랩
 import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들기 위함
 
 
+import Header from './_2.js'; // 상단바 컴포넌트
 
 import {  fetchFreeBoardData, fetchQuestBoardData, fetchCompetitionBoardData,fetchCodingBoardData, fetchStudyBoardData } from '../api/boardApi'; //Api
 //fetchMainPageData,
@@ -421,7 +422,8 @@ const [error, setError] = useState(null);
 
   return (
     <div className={styles.app}>
-      {/* 상단바 */}
+      {/* 상단바   */}
+      
       <header className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : ''}`}>
         <div className={`${styles["title-group"]} ${isDesktop ? styles.desktopTitleGroup : ''}`}>
           <img
@@ -465,7 +467,7 @@ const [error, setError] = useState(null);
               onClick={toggleDropdown}
             />
   
-            {/* 드롭다운 메뉴 */}
+            {/* 드롭다운 메뉴   */}
             {dropdownVisible && (
               <div className={`${styles["dropdown-menu"]} ${isDesktop ? styles.desktopDropdownMenu : ''}`}>
                 <a href="/scrap" className={styles["menu-item"]}>스크랩</a>
@@ -484,7 +486,9 @@ const [error, setError] = useState(null);
           </div>
         </div>
       </header>
-  
+
+
+        
       {/* 대회 정보 부분 */}
       <div className={`${styles.comheader} ${isDesktop ? styles.desktopComHeader : ''}`}>
             <h2 className={styles.comtext}>대회 정보</h2>
