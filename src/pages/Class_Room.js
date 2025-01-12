@@ -8,6 +8,7 @@ import main_message from '../images/message.png';
 import main_my from '../images/my.png';
 import { useMediaQuery } from 'react-responsive';
 
+import Header from './_2.js'; // 상단바 컴포넌트
 import styles from './Class_Room.module.css';
 import CommunicationRoom_goBack from '../images/왼쪽 나가기 버튼.png';
 import menuIcon from '../images/메뉴버튼.png';
@@ -34,7 +35,7 @@ const Class_Room = () => {
   const navigate = useNavigate();
 
   const isDesktop = useMediaQuery({ query: '(min-width: 769px)' });
-  const baseUrl = 'https://e757-61-84-64-212.ngrok-free.app'
+  const baseUrl = 'https://rmation-chat.kro.kr'
   useEffect(() => {
     const fetchRooms = async () => {
         fetch(`${baseUrl}/Room/RoomList`, {
@@ -88,6 +89,7 @@ const Class_Room = () => {
 
   return (
     <div className={`${styles.app} ${isDesktop ? styles.desktopApp : ''}`}>
+     
       <header className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : ''}`}>
         <div className={`${styles["title-group"]} ${isDesktop ? styles.desktopTitleGroup : ''}`}>
           <img src={main_mascot} className={`${styles["app-main_mascot"]} ${isDesktop ? styles.desktopMascot : ''}`} alt="main_mascot" />

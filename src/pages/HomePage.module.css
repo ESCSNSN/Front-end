@@ -1,49 +1,58 @@
-/* 전체 화면 스타일 */
-.app {
-    text-align: center;
-    height: 250vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff;
-  }
-  
-  /* 헤더 스타일
-    .app-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 0px; /* 헤더와 대회 정보 섹션 사이에 여백 추가 
-    margin-top: 0px;  } */
 
-    .app-header {
-      /*position: fixed;  고정 위치 */
-      top: 0; /* 페이지 상단에 위치 */
-      left: 0; /* 왼쪽 끝에 위치 */
-      right: 0; /* 오른쪽 끝까지 확장 */
-      height: 60px; /* 상단 바 높이 설정 */
-     
-      z-index: 1000; /* 다른 요소 위에 표시 */
-      display: flex; /* 플렉스 박스 사용 */
-      justify-content: space-between; /* 요소 간 간격 조정 */
-      align-items: center; /* 세로 가운데 정렬 */
-      padding: 0 20px; /* 좌우 여백 */
-  }
+/*상단바*/
+.app {
+  /*justify-content: center;*/
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  background-color: #ffffff;
+  overflow-y: auto;  /* 스크롤 가능 */
   
+  
+}
+
+/* 헤더 스타일
+  .app-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0px; /* 헤더와 대회 정보 섹션 사이에 여백 추가 
+  margin-top: 0px; 
+    margin-top: 60px; /* 상단바 높이만큼 여백 설정 */
+
+
+  .app-header {  
+
+    
+    align-items: center; /* 가운데 정렬 */
+    top: 0; /* 페이지 상단에 위치 */
+    left: 0; /* 왼쪽 끝에 위치 */
+    right: 0; /* 오른쪽 끝까지 확장 */
+    
+    z-index: 10; /* 다른 요소 위에 표시 */
+    display: flex; /* 플렉스 박스 사용 */
+    justify-content: space-between; /* 요소 간 간격 조정 */
+    align-items: center; /* 세로 가운데 정렬 */
+    padding: 0px; /* 좌우 여백 */
+
+}
+
   
   .title-group{
     display: flex;
-    justify-content: center; /* 가로 중앙 정렬 */
+    justify-content: center; 
     gap: 10px;  
     margin-bottom: 10px;
   }
 
+  
   .right-section {
     display: flex;
     align-items: center; /* 가로로 나란히 정렬 */
     margin-top: 40px; /* 아래로 30px 만큼 내림 (값은 조절 가능) */
     gap: 10px; /* 아이콘 사이의 간격 */
+    
   }
   
   .mascot-logo {
@@ -185,6 +194,7 @@
   font-weight: bold;
   cursor: pointer;
 }
+
 
 
 
@@ -664,8 +674,8 @@ width: 100%;
 }
 
 .roomIcon {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 45px;
   margin-right: 10px; /* 아이콘과 텍스트 간 간격 */
 }
 
@@ -853,32 +863,5 @@ width: 100%;
     padding: 10px;
   }
 
-    /*상단바*/
-    .app-main_mascot {
-      height: 55px;
-      margin-top: 30px;
-    }
-  
-    .app-main_bell,
-    .app-main_message,
-    .app-main_my {
-      height: 35px;
-      margin-bottom: 30px;
-    }
-  
-  
-    /* 공지사항 텍스트 */
-      .title-text {
-        font-size: 0.8rem ;
-        margin-bottom: 40px;
-      }
-      
-      
-      /* INFO 텍스트 */
-      h2 {
-        font-size: 1.8rem ;
-        
-      margin-bottom: 35px;
-      }
   
 }

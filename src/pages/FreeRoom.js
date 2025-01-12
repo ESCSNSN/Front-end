@@ -26,7 +26,7 @@ const FreeRoom = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const isDesktop = useMediaQuery({ query: '(min-width: 769px)' });
-  const baseUrl = 'https://4784-61-84-64-212.ngrok-free.app';
+  const baseUrl = 'https://rmation-chat.kro.kr';
   // 열린 채팅방 목록 조회
   useEffect(() => {
     fetch(`${baseUrl}/Room/RoomList`, {
