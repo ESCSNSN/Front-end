@@ -164,6 +164,17 @@
   margin-right: -5px;
 }
 
+.sortButton {
+  background: none;
+  border: none;
+  color: #555;
+  font-weight: bold;
+  cursor: pointer;
+  width: 60px;
+  /* 너비를 줄여 균형 잡기 */
+  margin-left: -10px;
+}
+
 .latestSortButton:hover{
   background-color: red;
 }

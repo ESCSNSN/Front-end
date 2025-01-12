@@ -79,8 +79,8 @@ const IndustryBoard = () => {
           });
 
           // 상태 업데이트
-          setContent(data.studiesContents);
-          setTitle(data.studiesTitle);
+          setContent(data.studyContents);
+          setTitle(data.studyTitle);
           setImageUrls(data.imageUrls || []); // imageUrls 상태 업데이트
           setCreatedTime(formattedDate); // 작성 시간 상태 업데이트
         } else {

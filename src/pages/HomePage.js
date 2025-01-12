@@ -29,7 +29,7 @@ const HomePage = () => {
   const navigate = useNavigate(); // useNavigate 훅 선언-> 최상단에 호출
   //Api..
 
-
+  const [rooms, setRooms] = useState([]);
   
   const [freeBoardData, setFreeBoardData] = useState([]);//자유게시판
   //const [mainPageData, setMainPageData] = useState([]);
@@ -84,7 +84,7 @@ const [error, setError] = useState(null);
   loadData();
   const fetchRooms = async () => {
     const userId = '202301641'; // 추후 삭제제
-    const baseUrl = 'https://934ef54da7b8.ngrok.app';
+    const baseUrl = 'https://rmation-chat.kro.kr';
     fetch(`${baseUrl}/Room/userId/${userId}`, {
         headers: {
             contentType: 'application/json',
@@ -93,6 +93,7 @@ const [error, setError] = useState(null);
         method: 'GET'
     }).then((res) => { return res.json() })
       .then((data) => {
+        console.log(data);
         setRooms(data.data);
       });
     const roomsData = [
@@ -119,7 +120,7 @@ const [error, setError] = useState(null);
     ];
 
 
-const [rooms, setRooms] = useState(roomsData);
+
 
 
   const [dropdownVisible, setDropdownVisible] = useState(false);  // 드롭다운 상태 관리

@@ -111,6 +111,11 @@
     margin-left: 10px;
     margin-right: 10px;
   }
+
+  .sendButton:hover{
+    background-color: initial; /* 기본 배경 유지 */
+
+  }
   
   .sendIcon {
     height: 2rem;
@@ -270,10 +275,10 @@
     .sendButton {
       width: 40px;
       height: 40px;
+
     }
   
-  
-  
+ 
   
     h2 {
       margin-bottom: 10%;

@@ -13,7 +13,7 @@ import bar from '../images/bar.png';
 import Header from './_.js';  // 상단바 컴포넌트
 
 // API에서 사용할 기본 URL과 헤더 설정
-const BASE_URL = 'https://aa51-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board';
+const BASE_URL = 'https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board';
 const getAuthHeaders = () => {
   const accessToken = localStorage.getItem('accessToken');
   const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
@@ -79,8 +79,8 @@ const StudyBoard = () => {
           });
 
           // 상태 업데이트
-          setContent(data.studiesContents);
-          setTitle(data.studiesTitle);
+          setContent(data.studyContents);
+          setTitle(data.studyTitle);
           setImageUrls(data.imageUrls || []); // imageUrls 상태 업데이트
           setCreatedTime(formattedDate); // 작성 시간 상태 업데이트
         } else {
@@ -470,7 +470,7 @@ const handleEdit = async () => {
       console.log("수정 가능한 데이터를 가져왔습니다:", data);
 
       // 데이터를 활용해 수정 화면으로 이동하거나 상태 업데이트
-      navigate(`/Study/${id}`) 
+      // 예: navigate(`/edit/${id}`) 또는 수정 데이터 상태 업데이트
     } else {
       console.error("수정 데이터를 가져오지 못했습니다:", response.status);
     }
@@ -481,7 +481,7 @@ const handleEdit = async () => {
 
 // 신청버튼 위한 로직 추가함
 const handleApply = async () => {
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem('authToken');
   console.log(id);
 
   try {
@@ -492,9 +492,6 @@ const handleApply = async () => {
         'Content-Type': 'application/json', // 요청 본문 형식 명시
         'ngrok-skip-browser-warning': 'true', // 추가 헤더
       },
-      body: JSON.stringify({
-        applyUserId: id
-      }),
     });
 
     if (response.ok) {

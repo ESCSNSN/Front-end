@@ -12,7 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 .logoSection {
@@ -24,7 +24,7 @@
   justify-content: center;
   margin-left: -270px;
   gap: 110px;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 /* 제목 스타일 */
@@ -32,7 +32,7 @@ h1 {
   font-size: 1.5rem;
   color: #000000;
   margin-bottom: 25px;
-  margin-top: -80px;
+  margin-top: 0px;
 }
 
 .loginBox {
@@ -119,23 +119,6 @@ h2 {
   box-sizing: border-box;
 }
 
-.inputBtn {
-  position: relative;
-  right: -95px;
-  top: 75%;
-  transform: translateY(-109%);
-  padding: 8px;
-  background-color: #0056A0;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.inputBtn:hover {
-  background-color: #004080;
-}
-
 .popup {
   display: flex;
   flex-direction: column;
@@ -192,8 +175,8 @@ h2 {
   font-size: 10px;
   margin-top: 9px;
   width: 35%;
-  margin-left: -108px;
-  height: 68%;
+  margin-left: 230px;
+  height: 100%;
 }
 
 .inputBtn:hover {
@@ -210,7 +193,6 @@ h2 {
   font-size: 16px;
   cursor: pointer;
   margin-top: 20px;
-  margin-left: 90px;
 }
 
 .closeButton:hover {
