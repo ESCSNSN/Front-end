@@ -400,8 +400,8 @@ const [error, setError] = useState(null);
           </div>
           <button
                       className={styles.joinButton}
-                      onClick={() => handleRoomClick(room.id)}
-                    >
+                      onClick={() => navigate(`/RoomChat/${room.id}`)} // 바로 navigate 호출
+                      >
                       참여하기
                     </button>
         </div>
@@ -469,9 +469,9 @@ const [error, setError] = useState(null);
             {dropdownVisible && (
               <div className={`${styles["dropdown-menu"]} ${isDesktop ? styles.desktopDropdownMenu : ''}`}>
                 <a href="/scrap" className={styles["menu-item"]}>스크랩</a>
-                <a href="/write-post" className={styles["menu-item"]}>작성 게시글</a>
-                <a href="/write-comment" className={styles["menu-item"]}>작성 댓글</a>
-                <a href="/User_auth" className={styles["menu-item"]}>스터디 신청 확인</a>
+                <a href="/My_board" className={styles["menu-item"]}>작성 게시글</a>
+                <a href="/My_message" className={styles["menu-item"]}>작성 댓글</a>
+                <a href="/add" className={styles["menu-item"]}>스터디 신청 확인</a>
                 <a
                   href="#"
                   onClick={handleLogoutClick}
@@ -514,7 +514,7 @@ const [error, setError] = useState(null);
           ))}
         </div>
       ) : (
-        <span className={styles.noImageText}>이미지가 없습니다</span>
+        <span className={styles.noImageText}></span>
       )}
 
                   </div>
