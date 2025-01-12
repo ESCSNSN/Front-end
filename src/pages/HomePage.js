@@ -336,8 +336,8 @@ const [error, setError] = useState(null);
              <div
                key={post.id}
                className={styles.postItem}
-               onClick={() => handleQuestionClick(post.id)} // 클릭 시 상세 페이지로 이동
-             >
+               onClick={() => navigate(`/FreepostingPage/${post.id}`)} // 바로 navigate 호출
+               >
                <span className={styles.index2}>HOT</span>
                <span className={styles.question}>{post.freeTitle}</span>
                <span className={styles.date}>{new Date(post.freeCreatedTime).toLocaleDateString()}</span>
@@ -361,8 +361,8 @@ const [error, setError] = useState(null);
              <div
                key={post.id}
                className={styles.postItem}
-               onClick={() => handleQuestionClick(post.id)} // 클릭 시 상세 페이지로 이동
-             >
+               onClick={() => navigate(`/QuestionpostingPage/${post.id}`)} // 바로 navigate 호출
+               >
                <span className={styles.index2}>HOT</span>
                <span className={styles.question}>{post.questTitle}</span>
                <span className={styles.date}>{new Date(post.questCreatedTime).toLocaleDateString()}</span>
@@ -386,7 +386,7 @@ const [error, setError] = useState(null);
  
     {/* 방 목록 */}
     <div className={styles.roomsList}>
-    <a href="/Chat_" className={styles.plusButtonLink}>
+    <a href="/RoomPage" className={styles.plusButtonLink}>
       <PlusButton className={styles.plusButton3} />
     </a>
       {rooms.map((room) => (

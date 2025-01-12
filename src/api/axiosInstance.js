@@ -1,5 +1,5 @@
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 const getAuthHeaders = () => {
     const accessToken = localStorage.getItem('authToken'); // 로컬 스토리지에서 'authToken'을 가져옴
   
