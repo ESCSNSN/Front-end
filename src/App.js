@@ -42,6 +42,9 @@ import BootBoardPage from './pages/BootBoardPage'; // 부트갬프 게시판 목
 import BoardCode from './pages/BoardCode';
 import InformationCodeBoard from './pages/InformationCodeBoard'
 import InformationContestBoard from './pages/InformationContestBoard';
+import MyStudy from './pages/MyStudy';
+import MyApplyStudy from './pages/MyApplyStudy';
+import StudyApplicantList from './pages/StudyApplicantList';
 
 
 // 석진이형 페이지
@@ -141,6 +144,12 @@ function App() {
           <Route path="/BoardCode/:id" element={<BoardCode />} />
           <Route path="/InformationCodeBoard/:id" element={<InformationCodeBoard />} />
           <Route path="/InformationContestBoard/:id" element={<InformationContestBoard />} />
+          <Route path="/MyStudy" element={<MyStudy />} />
+          <Route path="/MyApplyStudy" element={<MyApplyStudy />} />
+          <Route path="/StudyApplicantList/:studyId" element={<StudyApplicantList />} />
+
+
+
 
 
 

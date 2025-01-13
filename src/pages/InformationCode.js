@@ -39,11 +39,14 @@ const InformationCode = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
+      const accessToken = localStorage.getItem('authToken');
+      console.log(accessToken);
       setIsLoading(true); // 로딩 시작
       try {
         const response = await axiosInstance.get('https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board/coding', {
           params: { page, size }, // 페이지와 사이즈를 쿼리 파라미터로 추가
           headers: {
+            'Authorization': `Bearer ${accessToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });
@@ -165,9 +168,12 @@ const InformationCode = () => {
 
 
   const toggleScrap = async (id) => {
+    const accessToken = localStorage.getItem('authToken');
+    console.log(accessToken);
     try {
       const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/coding/${id}/scrap`, {
         headers: {
+          'Authorization': `Bearer ${accessToken}`,
           'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
         },
 
@@ -389,7 +395,11 @@ const InformationCode = () => {
 
               {/* 스크랩 상태 아이콘 */}
               <img
-                src={scrapStatus[post.id] ? IconScrap : IconUnscrap}
+                src={scrapStatus[post.id] !== undefined ? (
+                  scrapStatus[post.id] ? IconScrap : IconUnscrap
+                ) : (
+                  post.scrapped ? IconScrap : IconUnscrap
+                )} // scrapStatus 또는 post.scrapped 값에 따라 이미지 변경
                 alt={scrapStatus[post.id] ? '스크랩됨' : '스크랩안됨'}
                 className={styles.scrapIcon}
                 onClick={() => toggleScrap(post.id)} // 스크랩 상태 변경 및 백엔드 전송
