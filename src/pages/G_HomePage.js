@@ -278,7 +278,65 @@ const G_HomePage = () => {
 
   return (
     <div className={styles.app}>
+<<<<<<< HEAD
         <Header />
+=======
+      {/* 상단바 */}
+      <header className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : ''}`}>
+        <div className={`${styles["title-group"]} ${isDesktop ? styles.desktopTitleGroup : ''}`}>
+          <img
+            src={main_mascot}
+            className={styles["app-main_mascot"]}
+            alt="main_mascot"
+            onClick={() => navigate("/G_homePage")}
+          />
+          <h2 onClick={() => navigate("/G_homePage")} style={{ cursor: "pointer" }}>
+            INFO!
+          </h2>
+
+          {/* 오른쪽 섹션 */}
+          <div className={`${styles["right-section"]} ${isDesktop ? styles.desktopRightSection : ''}`}>
+            <h2
+              className={styles["title-text"]}
+              onClick={() => navigate("/Announcement")}
+              style={{ cursor: "pointer" }}
+            >
+              공지사항
+            </h2>
+            <img
+              src={main_bell}
+              className={styles["app-main_bell"]}
+              alt="main_bell"
+              onClick={() => navigate("/AlarmPage")}
+            />
+            <img
+              src={main_message}
+              className={styles["app-main_message"]}
+              alt="main_message"
+              onClick={() => navigate("/message")}
+            />
+            <img
+              src={main_my}
+              className={styles["app-main_my"]}
+              alt="main_my"
+              onClick={toggleDropdown}
+            />
+          </div>
+          {/* 드롭다운 메뉴 */}
+          {dropdownVisible && (
+            <div className={styles["dropdown-menu"]}>
+              <a href="/scrap" className={styles["menu-item"]}>스크랩</a>
+              <a href="/My_board" className={styles["menu-item"]}>작성 게시글</a>
+              <a href="/My_message" className={styles["menu-item"]}>작성 댓글</a>
+              <a href="/add" className={styles["menu-item"]}>스터디 신청 확인</a>
+              
+            </div>
+          )}
+
+        </div>
+      </header>
+
+>>>>>>> c826625ff0aa65cab9337251ca9880a763e92905
       {/* 탭 네비게이션 */}
       <div className={`${styles.tabContainer} ${isDesktop ? styles.desktopTabContainer : ''}`}>
         <button
@@ -314,7 +372,7 @@ const G_HomePage = () => {
                 <p className={styles.postDescription}>{post.freeContents || '내용 없음'}</p>
                 <button
                   className={styles.commentButton}
-                  onClick={() => navigate(`/G_freepostingPage/${post.id}`)} // boardID와 함께 전달
+                  onClick={() => navigate(`/FreepostingPage/${post.id}`)} // boardID와 함께 전달
                 >
                   댓글 달기
                 </button>
@@ -333,7 +391,7 @@ const G_HomePage = () => {
                 <p className={styles.postDescription}>{post.questContents || '내용 없음'}</p>
                 <button
                   className={styles.commentButton}
-                  onClick={() => navigate(`/G_questionpostingPage/${post.id}`)} // boardID와 함께 전달
+                  onClick={() => navigate(`/QuestionpostingPage/${post.id}`)} // boardID와 함께 전달
                 >
                   댓글 달기
                 </button>

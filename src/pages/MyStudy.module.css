@@ -1,0 +1,389 @@
+.container {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .content {
+    margin-top: 20px;
+    /* 상단바도 하나의 그룹이라 내가 원하는 항목 만들면 아래로 밀림.*/
+    padding: 20px;
+    background-color: white;
+    /* 배경색 설정 */
+    height: 100vh;
+    overflow-y: auto;
+    /* 스크롤 가능 */
+  }
+  
+  .titleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 중앙 정렬 */
+    width: 100%;
+    position: relative;
+  }
+  
+  .pageTitle {
+    margin-top: 0px;
+    font-size: 1.2rem;
+    text-align: center;
+    flex-grow: 1;
+    /* 제목이 가능한 넓은 공간을 차지하도록 설정 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* 제목을 정확히 중앙으로 이동 */
+  
+  }
+  
+  .goBackButton {
+    cursor: pointer;
+    height: 2rem;
+    position: absolute;
+    left: 10px;
+    /* 화면 왼쪽에 고정 */
+  }
+  
+  .downMenuButton {
+    cursor: pointer;
+    height: 1rem;
+    position: absolute;
+    right: 60px;
+    /* 화면 오른쪽에 고정 */
+    margin-left: 5px;
+    /* 제목과 메뉴 버튼 간격 */
+  }
+  
+  .dropdownMenu {
+    position: absolute;
+    top: 7rem;
+    /* 버튼 아래에 위치 */
+    margin-right: 2rem;
+    right: 60px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    /* 다른 요소 위에 보이게 */
+  }
+  
+  .dropdownMenu li:hover {
+    background-color: #f5f5f5;
+    /* 마우스 오버 시 배경색 */
+  }
+  
+  .menuItem { 
+    padding: 10px 20px;
+    /* 각 항목의 크기를 적절히 조정 */
+    cursor: pointer;
+    list-style: none;
+    font-size: 1.1rem;
+    /* 텍스트 크기를 살짝 줄임 */
+    font-weight: bold;
+    /* 텍스트를 더 두껍게 표시 */
+  }
+  
+  .controlPanel {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    /* 간격을 조금 줄여 공간 확보 */
+    margin-top: 30px;
+    /* 상단과의 간격 줄이기 */
+  }
+  
+  .writeButton {
+    background-color: #244A95;
+    color: white;
+    padding: 8px 16px; /* 픽셀 단위로 설정하여 높이와 너비 조절 */
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem; /* 글씨 크기 유지 */
+    width: auto; /* 버튼 크기를 텍스트 내용에 맞춤 */
+    text-align: center; /* 텍스트를 중앙에 정렬 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    margin-right: -10px;
+    margin-left: -10px;
+  }
+  
+  .writeButton:hover {
+    background-color: #1a3571;
+  }
+  
+  .searchBar {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    padding: 3px 10px;
+    /* 패딩을 조정해 전체 크기를 줄임 */
+    margin-left: 15px;
+    /* 검색창을 살짝 오른쪽으로 이동 */
+  }
+  
+  .searchInput {
+    border: none;
+    background: none;
+    outline: none;
+    width: 100px;
+    /* 너비를 줄여 공간 확보 */
+    /* padding-left: 0px; */
+  }
+  
+  .searchIcon {
+    height: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .sortButtons {
+    border: black;
+    display: flex;
+    gap: 5px;
+    /* 간격을 줄여 정렬 버튼 간의 공간 줄이기 */
+    margin-left: 0px;
+    /* 왼쪽 여백을 주어 오른쪽으로 더 옮김 */
+  }
+  
+  /* 최신순 버튼 전용 스타일 */
+  .latestSortButton, .recommendsortButton {
+  
+    background-color: #244A95;
+    color: white;
+    padding: 4px 12px; /* 픽셀 단위로 설정하여 높이와 너비 조절 */
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem; /* 글씨 크기 유지 */
+    width: auto; /* 버튼 크기를 텍스트 내용에 맞춤 */
+    text-align: center; /* 텍스트를 중앙에 정렬 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    margin-left: 5px;
+    margin-right: -5px;
+  }
+  
+  .sortButton {
+    background: none;
+    border: none;
+    color: #555;
+    font-weight: bold;
+    cursor: pointer;
+    width: 60px;
+    /* 너비를 줄여 균형 잡기 */
+    margin-left: -10px;
+  }
+  
+  .latestSortButton:hover{
+    background-color: red;
+  }
+  
+  /* 게시물 목록 */
+  .postList {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* 각 게시물 사이 간격 */
+  }
+  
+  /* 개별 게시물 항목 */
+  .postItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #ffffff;
+    /* 게시물의 배경색 */
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* 약간의 그림자 */
+  }
+  
+  /* HOT 태그 */
+  .hotTag {
+    color: red;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  /* 게시물 정보 */
+  .postInfo {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  /* 게시물 제목 */
+  .postTitle {
+    cursor: pointer;
+    /* 마우스를 올리면 손가락 커서로 변경 */
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .postTitle:hover {
+    color: black;
+    text-decoration: underline;
+    font-weight: 1000;
+  }
+  
+  /* 게시물 날짜 */
+  .postDate {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  /* 스크랩 아이콘 */
+  .scrapIcon {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+  }
+  
+  /* 페이지네이션 */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+    /* 각 페이지 번호 사이 간격 */
+  }
+  
+  /* 페이지 번호 버튼 */
+  .pageButton {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pageButton:hover {
+    background-color: #f0f0f0;
+  }
+  
+  
+  /* 모달 팝업창 스타일 */
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modalButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .reportTextarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .cancelButton {
+    background-color: #ccc;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .cancelButton:hover {
+    background-color: #aaa;
+  }
+  
+  /* 데스크탑 전용 CSS 설정 */
+  @media (min-width: 769px) {
+    .desktopTitleContainer {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  
+    .desktopGoBackButton {
+      height: 3rem;
+      margin-left: 40px;
+      margin-top: 15px;
+    }
+  
+    /* 큰 화면용 메뉴 버튼 */
+    .desktopDownMenuButton {
+      height: 3rem;
+      right: 50px;
+      margin-top: 50px;
+    }
+  
+    .desktopDropdownMenu {
+      position: absolute;
+      margin-top: 3rem;
+      right: 80px;
+      width: 180px;
+      z-index: 150;
+      /* 다른 요소 위에 보이도록 설정 */
+    }
+  
+    .desktopControlPanel {
+      display: flex;
+      justify-content: center; /* 컨트롤 패널 내의 요소들을 중앙에 정렬 */
+      align-items: center;
+      gap: 20px; /* 컨트롤 패널 내부의 간격을 넓혀 여유로운 디자인 */
+      margin-top: 20px; /* 상단과의 간격 조정 */
+    }
+  
+    .desktopSearchBar {
+      display: flex;
+      align-items: center;
+      width: 300px;
+      /* 검색창을 라인에서 정중앙에 배치하도록 설정 */
+    }
+  
+    .desktopSearchInput {
+      width: 200px; /* 검색 입력 필드의 너비를 넓힘 */
+    }
+  
+    .desktopSearchIcon {
+      height: 2rem; /* 돋보기 아이콘의 크기를 더 크게 조정 */
+      margin-left: 150px; /* 입력 필드와 아이콘 사이의 간격을 조정 */
+    }
+    
+    /* 두 버튼의 공통 속성 */
+  .desktopSortButtons {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row; /* 정렬 버튼들을 가로 방향으로 배치 */
+    gap: 20px; /* 정렬 버튼 사이 간격 조정 */
+    margin-left: 20px; /* 정렬 버튼 그룹을 오른쪽으로 이동 */
+  }
+  
+    .desktopLatestSortButton {
+      color: #244A95; /* 데스크탑에서 최신순 버튼의 색상 */
+    }
+    
+    .desktopRecommendSortButton {
+      color: #FF6347; /* 데스크탑에서 추천순 버튼의 색상 */
+    }
+  }

@@ -18,7 +18,7 @@ const FreeboardPage = () => {
   const [posts, setPosts] = useState([]); // 게시물 목록 상태 관리
   const [sortType, setSortType] = useState('latest'); // 초기 정렬 상태는 'latest'
   const [initialPosts, setInitialPosts] = useState([]); // 최초 데이터 로드한 거 저장시키기
-  
+
 
   // 페이징 및 추가 필터링 상태
   const [page, setPage] = useState(0); // 현재 페이지 번호
@@ -36,11 +36,15 @@ const FreeboardPage = () => {
   // 게시물 목록을 가져오는 함수
   useEffect(() => {
     const fetchPosts = async () => {
+      const accessToken = localStorage.getItem('authToken');
+      console.log(accessToken);
+
       setIsLoading(true); // 로딩 시작
       try {
-        const response = await axiosInstance.get('https://3e319465b029.ngrok.app/api/board/free', {
+        const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/free', {
           params: { page, size }, // 페이지와 사이즈를 쿼리 파라미터로 추가
           headers: {
+            'Authorization': `Bearer ${accessToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });
@@ -67,7 +71,7 @@ const FreeboardPage = () => {
     // 좋아요 10개 이상 게시물 가져오기
     const fetchTopLikedPosts = async () => {
       try {
-        const response = await axiosInstance.get('https://3e319465b029.ngrok.app/api/board/free/top-liked', {
+        const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/free/top-liked', {
           headers: {
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
@@ -88,9 +92,13 @@ const FreeboardPage = () => {
 
   // 스크랩 토글 함수
   const toggleScrap = async (id) => {
+    const accessToken = localStorage.getItem('authToken');
+      console.log(accessToken);
+
     try {
-      const response = await axiosInstance.post(`https://bcefb2d9d162.ngrok.app/api/board/free/${id}/scrap`, {
+      const response = await axiosInstance.post(`https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/free/${id}/scrap`, {
         headers: {
+          'Authorization': `Bearer ${accessToken}`,
           'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
         },
 
@@ -116,7 +124,7 @@ const FreeboardPage = () => {
     if (searchTerm.trim() !== '') {
       try {
         console.log(`검색어: ${searchTerm}`);
-        const response = await axiosInstance.get('https://3e319465b029.ngrok.app/api/board/free', {
+        const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/free', {
           params: {
             searchKeyword: searchTerm, // 검색어 전달
             page: 0,
@@ -166,7 +174,7 @@ const FreeboardPage = () => {
         typeKeyword: '', // 필요 시 값 설정
       };
 
-      const response = await axiosInstance.get('https://3e319465b029.ngrok.app/api/board/free/sort-by-likes', {
+      const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/free/sort-by-likes', {
         params,
         headers: {
           'ngrok-skip-browser-warning': 'true', // 필요 시 유지
@@ -223,7 +231,7 @@ const FreeboardPage = () => {
           {/* 드롭다운 버튼 */}
           <img
             src={DownMenu}
-            className={`${styles.downMenuButton} ${isDesktop ? styles["desktopDownMenuButton"]: ''}`}
+            className={`${styles.downMenuButton} ${isDesktop ? styles["desktopDownMenuButton"] : ''}`}
             alt="게시판 선택"
             onClick={toggleMenu}
           />
@@ -245,7 +253,7 @@ const FreeboardPage = () => {
         <div className={`${styles.controlPanel} ${isDesktop ? styles["desktopControlPanel"] : ''}`}>
           {/* 글쓰기 버튼 */}
           <button
-            className={`${styles.writeButton} ${isDesktop ? styles["desktopWriteButton"]: ''}`}
+            className={`${styles.writeButton} ${isDesktop ? styles["desktopWriteButton"] : ''}`}
             onClick={() => navigate('/freewritePage')} // 글쓰기 페이지로 이동
           >
             글쓰기
@@ -289,7 +297,7 @@ const FreeboardPage = () => {
 
         {/* 게시물 목록 */}
         <div className={styles.postList}>
-        {posts.map((post) => (
+          {posts.map((post) => (
             <div key={post.id} className={styles.postItem}>
               {/* HOT 표시 (좋아요 10개 이상 게시물) */}
               {topLikedPosts.includes(post.id) && (
@@ -313,7 +321,11 @@ const FreeboardPage = () => {
 
               {/* 스크랩 상태 아이콘 */}
               <img
-                src={scrapStatus[post.id] ? IconScrap : IconUnscrap}
+                src={scrapStatus[post.id] !== undefined ? (
+                  scrapStatus[post.id] ? IconScrap : IconUnscrap
+                ) : (
+                  post.scrapped ? IconScrap : IconUnscrap
+                )} // scrapStatus 또는 post.scrapped 값에 따라 이미지 변경
                 alt={scrapStatus[post.id] ? '스크랩됨' : '스크랩안됨'}
                 className={styles.scrapIcon}
                 onClick={() => toggleScrap(post.id)} // 스크랩 상태 변경 및 백엔드 전송
