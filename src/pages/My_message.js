@@ -147,7 +147,7 @@ const My_message = () => {
                     <div
                         key={message.id}
                         className={styles.messageItem}
-                        onClick={() => handleRoomClick(message.id)} // 방 클릭 시 이동하도록 수정
+                        onClick={() => handleRoomClick(message.targetId, message.targetType)} // 방 클릭 시 이동하도록 수정
                     >
                         <div className={styles.messageInfo}>
                             <div className={styles.headerInfo}>

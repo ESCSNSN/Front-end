@@ -49,6 +49,7 @@ const My_board = () => {
                 path = `/QuestionpostingPage/${id}`;
                 break;
             default:
+                console.log(type);
                 console.error(`알 수 없는 type: ${type}`); // 예외 처리
                 return;
         }
@@ -139,7 +140,7 @@ const My_board = () => {
                     <div
                         key={message.id}
                         className={styles.messageItem}
-                        onClick={() => handleRoomClick(message.id)} // 방 클릭 시 이동하도록 수정
+                        onClick={() => handleRoomClick(message.id, message.type)} // 방 클릭 시 이동하도록 수정
                     >
                         <div className={styles.messageInfo}>
                             <div className={styles.headerInfo}>
