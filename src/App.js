@@ -178,6 +178,7 @@ function App() {
           <Route path="/Otherprofile" element={<Otherprofile />} />
 
           <Route path="/Otherprofile/:roomId/:userId" element={<Otherprofile />} />
+          
           <Route path="/User_auth" element={<User_auth />} />
           <Route path="/G_HomePage" element={<G_HomePage />} />
 
