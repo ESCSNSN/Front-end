@@ -6,12 +6,24 @@ import styles from './LoginPage.module.css';
 import telecom_logo from '../images/정보통신공학과 횃불이.png';
 import back_logo from '../images/뒷모습 횃불이.png';
 import Q_logo from '../images/물음표.png';
+import axiosInstance from '../utils/api.js';
+
+const fetchData = async () => {
+    try {
+        const response = await axiosInstance.get('https://fd5ca3755e85.ngrok.app/api/auth/refresh');
+        console.log('Data:', response.data);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+};
+
+fetchData();
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const BASE_URL = "http://info-rmation.kro.kr"; // 실제 URL로 변경
+  const BASE_URL = "https://fd5ca3755e85.ngrok.app"; // 실제 URL로 변경
 
   // 페이지 이동을 위한 navigate 선언
   const navigate = useNavigate();

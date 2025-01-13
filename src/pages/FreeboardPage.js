@@ -9,6 +9,16 @@ import DownMenu from '../images/아래방향메뉴선택.png';
 import SearchIcon from '../images/돋보기아이콘.png'; // 돋보기 아이콘
 import IconScrap from '../images/횃불이스크랩.png';
 import IconUnscrap from '../images/횃불이스크랩X.png';
+const fetchData = async () => {
+  try {
+      const response = await axiosInstance.get('https://fd5ca3755e85.ngrok.app/api/data');
+      console.log('Data:', response.data);
+  } catch (error) {
+      console.error('Error fetching data:', error);
+  }
+};
+
+fetchData();
 
 const FreeboardPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);  // 드롭다운 상태 관리
