@@ -4,7 +4,7 @@ const getAuthHeaders = () => {
     const accessToken = localStorage.getItem('authToken'); // 로컬 스토리지에서 'authToken'을 가져옴
   
     console.log('Access Token:', accessToken); // 토큰이 잘 저장되어 있는지 확인
-  
+    
     if (!accessToken) {
       console.warn('Access token is missing');
       return {}; // 토큰이 없으면 빈 객체 반환
@@ -27,11 +27,12 @@ const getAuthHeaders = () => {
 
 // axios 인스턴스 설정
 const axiosInstance = axios.create({
-    baseURL: 'https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app',
+    baseURL: 'https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app',
     withCredentials: true,
     headers: {
         ...getAuthHeaders(),
         'ngrok-skip-browser-warning': 1, // 헤더 추가
+        
     },
 });
 

@@ -57,7 +57,8 @@ function ChatPreview() {
 
   const handleJoinClick = () => {
     // 참여하기 버튼 클릭 로직 추가 가능
-    alert('채팅방에 참여합니다!');
+    //alert('채팅방에 참여합니다!');
+    navigate(`/FreeChat/${roomId}`);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -66,19 +67,6 @@ function ChatPreview() {
   return (
     <div className={styles.app}>
        <Header />
-      {/* 상단바 
-        <header className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : styles.mobileHeader}`}>
-        <div className={styles["title-group"]}>
-          <img src={main_mascot} className={styles["app-main_mascot"]} alt="main_mascot" />
-          <h2>INFO!</h2>
-          <div className={styles["right-section"]}>
-            <h2 className={styles["title-text"]}>공지사항</h2>
-            <img src={main_bell} className={styles["app-main_bell"]} alt="main_bell" />
-            <img src={main_message} className={styles["app-main_message"]} alt="main_message" />
-            <img src={main_my} className={styles["app-main_my"]} alt="main_my" />
-          </div>
-        </div>
-      </header>*/}
     
 
       {/* 메인 컨텐츠 */}

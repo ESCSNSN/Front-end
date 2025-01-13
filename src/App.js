@@ -192,7 +192,11 @@ function App() {
           <Route path="/QuestionpostingPage/:id" element={<QuestionpostingPage />} />
           <Route path="/FreepostingPage/:id" element={<FreepostingPage />} />
           <Route path="/FreeChat/" element={<FreeChat />} />
+          <Route path="/FreeChat/:id" element={<FreeChat />} />
           <Route path="/RoomChat/" element={<RoomChat />} />
+          <Route path="/RoomChat/:id" element={<RoomChat />} />
+          
+          <Route path="/ClassChatRoom/:id" element={<ClassChatRoom />} />
           <Route path="/G_Chat/" element={<G_Chat />} />
         </Routes>
       </BrowserRouter>
