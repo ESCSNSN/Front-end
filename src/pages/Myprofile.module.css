@@ -25,7 +25,7 @@
     
     border-bottom: 2px solid #000000; /* 선택된 탭 아래에 선 추가 */
     margin-top: 40px;
-    
+    margin-left: 1%;
     padding: 10px 45px;
   }
   
@@ -36,14 +36,19 @@
     border: 2px solid transparent; /* 전체 경계를 투명하게 설정 */
     border-bottom: 2px solid #000000; /* 하단 경계만 검은색으로 설정 */
     font-weight: bold;
-    padding: 10px 15px;
+    width: 16%;
+    border-radius: 0%;
+    color: #000000;
     cursor: pointer;
     background: none;
   }
   
   
 
+.editButton:hover{
+  background-color: transparent;
 
+}
 
 
   
@@ -52,109 +57,12 @@
 
 /*상단바*/
 .app {
-  /*justify-content: center;*/
   display: flex;
   flex-direction: column;
-  text-align: center;
-  align-items: center;
-  background-color: #ffffff;
   overflow-y: auto;  /* 스크롤 가능 */
-  
-  
-}
-
-/* 헤더 스타일
-  .app-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 0px; /* 헤더와 대회 정보 섹션 사이에 여백 추가 
-  margin-top: 0px; 
-    margin-top: 60px; /* 상단바 높이만큼 여백 설정 */
-
-
-  .app-header {  
-    top: 0; /* 페이지 상단에 위치 */
-    left: 0; /* 왼쪽 끝에 위치 */
-    right: 0; /* 오른쪽 끝까지 확장 */
-    
-    z-index: 10; /* 다른 요소 위에 표시 */
-    display: flex; /* 플렉스 박스 사용 */
-    justify-content: space-between; /* 요소 간 간격 조정 */
-    align-items: center; /* 세로 가운데 정렬 */
-    padding: 0px; /* 좌우 여백 */
-
-}
-
-
-.title-group{
  
-  display: flex;
-  justify-content: center; /* 가로 중앙 정렬 */
-  gap: 10px;  
-  margin-bottom: 10px;
+  
 }
-
-.right-section {
- 
-  display: flex;
-  align-items: center; /* 가로로 나란히 정렬 */
-  margin-top: 40px; /* 아래로 30px 만큼 내림 (값은 조절 가능) */
-  gap: 10px; /* 아이콘 사이의 간격 */
-}
-
-.mascot-logo {
-  width: 0px;
-  margin-right: 40px; /* 로고와 문구 사이의 간격 */
-}
-
-/* 로고 이미지 크기 조절 */
-.app-main_mascot {
-  height: 60px;
-  margin-bottom: 10px;
-  margin-top: 30px;
-}
-
-.app-main_bell {
-  height: 35px;
-  margin-bottom: 10px;
-}
-
-.app-main_message {
-  height: 35px;
-  margin-bottom:10px;
-}
-
-
-.app-main_my {
-  height: 35px;
-  margin-bottom: 10px;
-  margin-left: 6px;
-
-}
-
-/* 공지사항 텍스트  width: 100%;
-  height: 30%;*/
-.title-text {
-  font-size: 0.9rem ;
-
-  color: #000000;
-  margin-bottom: 20px;  /* 텍스트 아래에 여백 */
-  margin-top: 10px;  /* 텍스트 위에 여백 */
-}
-
-
-/* INFO 텍스트 */
-h2 {
-  font-size: 2.0rem ;
-  color: #0056A0;
-  margin-bottom: 0px;
-  margin-top: 43px;
-  margin-right: 5px;  /* 텍스트 오른쪽에 여백 */
-
-}
-
-
 
 
 
@@ -238,26 +146,26 @@ h2 {
 
 /* 반응형 PC 스타일 (769px 이상) */
 @media (min-width: 769px) {
-  .desktopHeader {
-    flex-direction: row; /* PC에서는 가로 배치 */
-    justify-content: space-between; /* 양쪽으로 여백 설정 */
-    padding: 20px 40px; /* 헤더 패딩 설정 */
-  }
+  
 
   .desktopTitleContainer {
     flex-direction: row; /* 타이틀과 뒤로가기 버튼 가로 배치 */
-    padding: 10px 50px; /* 타이틀 상하 여백 조정 */
+    margin-top: -1%;
+    margin-bottom: -5%;
+    margin-left: 4%;
   }
 
   .desktopProfilePictureContainer {
-    margin-top: 30px; 
+    margin-top: 0%; 
     margin-bottom: 30px; /* 프로필 사진 아래 여백 더 넓게 */
   }
 
   .desktopProfilePicture {
-  
-    width: 150px; /* PC에서 더 큰 프로필 사진 */
-    height: 150px;
+    width: 180px;
+    height: 180px;
+    
+    margin-top: 0%;
+    margin-bottom: -2%;
   }
 
   .desktopProfileInfo {
@@ -265,8 +173,19 @@ h2 {
   }
 
   .desktopGoBackButton {
-    margin-left: 34%; /* 뒤로가기 버튼 왼쪽 여백 조정 */
+    margin-left: 34%;
+    margin-right: 10.7%; /* 뒤로가기 버튼 왼쪽 여백 조정 */
   }
+
+  
+  .desktopprofilePicture {
+    width: 180px;
+    height: 180px;
+    margin-left: 42.5%;
+    margin-top: -5%;
+    margin-bottom: -5%;
+  }
+
 }
 
 /* 반응형 모바일 스타일 (768px 이하) */
@@ -299,7 +218,12 @@ h2 {
     margin-right: 27%;
   }
 
-    /*상단바*/
+  .mobileEditButton {
+    
+    width: 48%;
+    margin-right: 3%;
+  }
+    /*상단바
     .app-main_mascot {
       height: 55px;
       margin-top: 30px;
@@ -313,20 +237,18 @@ h2 {
     }
   
   
-    /* 공지사항 텍스트 */
       .title-text {
         font-size: 0.8rem ;
         margin-bottom: 40px;
       }
       
       
-      /* INFO 텍스트 */
       h2 {
         font-size: 1.8rem ;
         
       margin-bottom: 35px;
       }
   
-  
+  */
 
 }

@@ -70,7 +70,7 @@ label {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  margin-left: 34.7%;
+  margin-left: 30%;
   align-items: center;
   cursor: pointer;
 }
@@ -97,41 +97,34 @@ label {
 
 
 
-
-
-/*상단바*/
 .app {
-/*justify-content: center;*/
+  text-align: center;
+  
+  }
+
+/*상단바
+.app {
 display: flex;
 flex-direction: column;
 text-align: center;
 align-items: center;
 background-color: #ffffff;
-overflow-y: auto;  /* 스크롤 가능 */
+overflow-y: auto;  
 
 
 }
 
-/* 헤더 스타일
-.app-header {
-display: flex;
-flex-direction: column;
-align-items: center;
-margin-bottom: 0px; /* 헤더와 대회 정보 섹션 사이에 여백 추가 
-margin-top: 0px; 
-  margin-top: 60px; /* 상단바 높이만큼 여백 설정 */
-
 
 .app-header {  
-  top: 0; /* 페이지 상단에 위치 */
-  left: 0; /* 왼쪽 끝에 위치 */
-  right: 0; /* 오른쪽 끝까지 확장 */
+  top: 0;
+  left: 0; 
+  right: 0; 
   
-  z-index: 10; /* 다른 요소 위에 표시 */
-  display: flex; /* 플렉스 박스 사용 */
-  justify-content: space-between; /* 요소 간 간격 조정 */
-  align-items: center; /* 세로 가운데 정렬 */
-  padding: 0px; /* 좌우 여백 */
+  z-index: 10; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 0px; 
 
 }
 
@@ -139,7 +132,7 @@ margin-top: 0px;
 .title-group{
 
 display: flex;
-justify-content: center; /* 가로 중앙 정렬 */
+justify-content: center; 
 gap: 10px;  
 margin-bottom: 10px;
 }
@@ -147,17 +140,16 @@ margin-bottom: 10px;
 .right-section {
 
 display: flex;
-align-items: center; /* 가로로 나란히 정렬 */
-margin-top: 40px; /* 아래로 30px 만큼 내림 (값은 조절 가능) */
-gap: 10px; /* 아이콘 사이의 간격 */
+align-items: center; 
+margin-top: 40px; 
+gap: 10px; 
 }
 
 .mascot-logo {
 width: 0px;
-margin-right: 40px; /* 로고와 문구 사이의 간격 */
+margin-right: 40px; 
 }
 
-/* 로고 이미지 크기 조절 */
 .app-main_mascot {
 height: 60px;
 margin-bottom: 10px;
@@ -182,30 +174,27 @@ margin-left: 6px;
 
 }
 
-/* 공지사항 텍스트  width: 100%;
-height: 30%;*/
 .title-text {
 font-size: 0.9rem ;
 
 color: #000000;
-margin-bottom: 20px;  /* 텍스트 아래에 여백 */
-margin-top: 10px;  /* 텍스트 위에 여백 */
+margin-bottom: 20px;  
+margin-top: 10px; 
 }
 
 
-/* INFO 텍스트 */
 h2 {
 font-size: 2.0rem ;
 color: #0056A0;
 margin-bottom: 0px;
 margin-top: 43px;
-margin-right: 5px;  /* 텍스트 오른쪽에 여백 */
+margin-right: 5px; 
 
 }
 
 
 
-
+*/
 
 
 
@@ -271,9 +260,7 @@ padding-top: 5%;
 }
 .goBackButton {
 cursor: pointer;
-margin-left: 45px;
-
-margin-right: 115px;
+margin-right: 7.5%;
 /*margin-top: -40px;*/
 height: 1.5rem;
 }
@@ -314,9 +301,9 @@ display: block;
 
   
   .goBackButton {
-    margin-bottom: 10px;
-    margin-left: 2%;
-    margin-right: 28%;
+    margin-top: 2%;
+    margin-left: 4%;
+    margin-right: 26%;
     
   }
 
@@ -326,8 +313,8 @@ display: block;
   }
 
   .formGroup {
-    width: 100%;
-    
+    width: 96%;
+    margin-left: 2%;
     flex-direction: row;
     margin-bottom: 15px;
   }
@@ -349,7 +336,8 @@ display: block;
   
   }
   .input {
-    width: 50%;
+    width: 48%;
+    margin-left: 4%;
     flex-direction: row;
   }
 
@@ -369,7 +357,7 @@ display: block;
     padding: 12px;
     font-size: 1.1rem;
   }
-  /*상단바*/
+  /*상단바
   .app-main_mascot {
     height: 55px;
     margin-top: 30px;
@@ -383,14 +371,12 @@ display: block;
   }
 
 
-  /* 공지사항 텍스트 */
     .title-text {
       font-size: 0.8rem ;
       margin-bottom: 40px;
     }
     
     
-    /* INFO 텍스트 */
     h2 {
       font-size: 1.8rem ;
       
@@ -399,8 +385,9 @@ display: block;
 
     .right-section {
 
-      gap: 1px; /* 아이콘 사이의 간격 */
+      gap: 1px;
     }
+      */
 }
 
 /* 태블릿 버전 (768px ~ 1024px) */
@@ -451,6 +438,8 @@ display: block;
     font-size: 1.2rem;
   }
 
+  /*
+
   .right-section {
     margin-top: 25px;
   }
@@ -468,6 +457,7 @@ display: block;
   .app-main_bell, .app-main_message, .app-main_my {
     height: 30px;
   }
+    */
 }
 
 /* PC 버전 (1024px 이상) */
@@ -477,16 +467,25 @@ display: block;
     height: 100vh;
   }
 
+  .titleContainer {
+    margin-top: -1.5%;
+   
+  }
+
   .header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
   }
-
+  .profilePicture {
+    
+    margin-left: 23%;
+  }
   .goBackButton {
     padding: 14px 28px;
-    margin-left: 31%;
+    margin-left: 32%;
+    margin-right: 8%;
   }
 
   h1 {
@@ -495,7 +494,8 @@ display: block;
 
   .formGroup {
     width: 100%;
-    margin-bottom: 20px;
+    margin-left: 1%;
+    margin-bottom: 0%;
   }
 
   label {
@@ -505,24 +505,27 @@ display: block;
   }
 
   .input {
-    width: 25%;
+    width: 23%;
   }
 
   .profilePicture {
     width: 180px;
     height: 180px;
-    margin-left: 43.5%;
+    margin-left: 42.5%;
     margin-top: -5%;
     margin-bottom: -5%;
   }
 
   .saveButton {
-    width: 35%;
+    width: 34%;
     padding: 15px;
     font-size: 1.3rem;
     margin-bottom: 20%;
+    margin-left: 2%;
   }
 
+
+  /*
   .right-section {
     margin-top: 40px;
   }
@@ -540,4 +543,5 @@ display: block;
   .app-main_bell, .app-main_message, .app-main_my {
     height: 35px;
   }
+    */
 }

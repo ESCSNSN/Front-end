@@ -10,6 +10,8 @@ import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들�
 import CommunicationRoom_goBack from '../images/왼쪽 나가기 버튼.png';
 import UserContext from './UserContext'; // 유저 프로필
 
+import Header from './_2.js'; // 상단바 컴포넌트
+
 const Myprofile = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
@@ -23,7 +25,7 @@ const Myprofile = () => {
       //  if (!userId) return;
 
         // 사용자 채팅방 목록 조회
-        const response = await fetch(`https://ed75-61-84-64-212.ngrok-free.app/Room/userId/${userId}`, {
+        const response = await fetch(`https://rmation-chat.kro.kr/Room/userId/${userId}`, {
           headers: {
               contentType: 'application/json',
               'ngrok-skip-browser-warning': 'abc',
@@ -65,7 +67,8 @@ const Myprofile = () => {
 
   return (
     <div className={styles.app}>
-      {/* 상단바 */}
+       <Header />
+      {/* 상단바 
       <header
         className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : styles.mobileHeader}`}
       >
@@ -105,6 +108,7 @@ const Myprofile = () => {
           </div>
         </div>
       </header>
+      */}
 
       <div className={styles.container}>
         {/* 제목 영역 */}
