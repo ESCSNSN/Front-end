@@ -84,7 +84,7 @@ const [error, setError] = useState(null);
   loadData();
   const fetchRooms = async () => {
     const userId = '202301641'; // 추후 삭제제
-    const baseUrl = 'https://934ef54da7b8.ngrok.app';
+    const baseUrl = 'https://rmation-chat.kro.kr';
     fetch(`${baseUrl}/Room/userId/${userId}`, {
         headers: {
             contentType: 'application/json',
