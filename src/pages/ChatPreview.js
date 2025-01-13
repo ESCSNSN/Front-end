@@ -9,6 +9,10 @@ import CommunicationRoom_goBack from '../images/왼쪽 나가기 버튼.png';
 import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들기 위함
 import axios from 'axios';
 
+
+import Header from './_2.js'; // 상단바 컴포넌트
+
+
 // 백엔드 기본 URL 설정
 const BASE_URL = 'https://rmation-chat.kro.kr';
 
@@ -43,6 +47,7 @@ function ChatPreview() {
     } finally {
       setLoading(false);
     }
+    console.log(roomData);
   };
 
   // 컴포넌트 마운트 시 API 호출
@@ -60,8 +65,9 @@ function ChatPreview() {
 
   return (
     <div className={styles.app}>
-      {/* 상단바 */}
-      <header className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : styles.mobileHeader}`}>
+       <Header />
+      {/* 상단바 
+        <header className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : styles.mobileHeader}`}>
         <div className={styles["title-group"]}>
           <img src={main_mascot} className={styles["app-main_mascot"]} alt="main_mascot" />
           <h2>INFO!</h2>
@@ -72,7 +78,8 @@ function ChatPreview() {
             <img src={main_my} className={styles["app-main_my"]} alt="main_my" />
           </div>
         </div>
-      </header>
+      </header>*/}
+    
 
       {/* 메인 컨텐츠 */}
       <div className={`${styles.container} ${isDesktop ? styles.desktopContainer : styles.mobileContainer}`}>

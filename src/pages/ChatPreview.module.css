@@ -52,6 +52,7 @@
     z-index: 10; /* 다른 요소보다 높은 값 설정 */
     height: 100%;
     width: 100%;
+    
 
   }
   
@@ -109,112 +110,16 @@
   }
   
 
-/*상단바*/
 .app {
     /*justify-content: center;*/
     display: flex;
     flex-direction: column;
     text-align: center;
-    align-items: center;
     background-color: #ffffff;
     overflow-y: auto;  /* 스크롤 가능 */
     
     
   }
-  
-  /* 헤더 스타일
-    .app-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 0px; /* 헤더와 대회 정보 섹션 사이에 여백 추가 
-    margin-top: 0px; 
-      margin-top: 60px; /* 상단바 높이만큼 여백 설정 */
-  
-  
-    .app-header {  
-      top: 0; /* 페이지 상단에 위치 */
-      left: 0; /* 왼쪽 끝에 위치 */
-      right: 0; /* 오른쪽 끝까지 확장 */
-      
-      z-index: 10; /* 다른 요소 위에 표시 */
-      display: flex; /* 플렉스 박스 사용 */
-      justify-content: space-between; /* 요소 간 간격 조정 */
-      align-items: center; /* 세로 가운데 정렬 */
-      padding: 0px; /* 좌우 여백 */
-  
-  }
-  
-  
-  .title-group{
-   
-    display: flex;
-    justify-content: center; /* 가로 중앙 정렬 */
-    gap: 10px;  
-    margin-bottom: 10px;
-  }
-  
-  .right-section {
-   
-    display: flex;
-    align-items: center; /* 가로로 나란히 정렬 */
-    margin-top: 40px; /* 아래로 30px 만큼 내림 (값은 조절 가능) */
-    gap: 10px; /* 아이콘 사이의 간격 */
-  }
-  
-  .mascot-logo {
-    width: 0px;
-    margin-right: 40px; /* 로고와 문구 사이의 간격 */
-  }
-  
-  /* 로고 이미지 크기 조절 */
-  .app-main_mascot {
-    height: 60px;
-    margin-bottom: 10px;
-    margin-top: 30px;
-  }
-  
-  .app-main_bell {
-    height: 35px;
-    margin-bottom: 10px;
-  }
-  
-  .app-main_message {
-    height: 35px;
-    margin-bottom:10px;
-  }
-  
-  
-  .app-main_my {
-    height: 35px;
-    margin-bottom: 10px;
-    margin-left: 6px;
-  
-  }
-  
-  /* 공지사항 텍스트  width: 100%;
-    height: 30%;*/
-  .title-text {
-    font-size: 0.9rem ;
-  
-    color: #000000;
-    margin-bottom: 20px;  /* 텍스트 아래에 여백 */
-    margin-top: 10px;  /* 텍스트 위에 여백 */
-  }
-  
-  
-  /* INFO 텍스트 */
-  h2 {
-    font-size: 2.0rem ;
-    color: #0056A0;
-    margin-bottom: 0px;
-    margin-top: 43px;
-    margin-right: 5px;  /* 텍스트 오른쪽에 여백 */
-  
-  }
-  
-
-
 
 
 
@@ -224,6 +129,22 @@
 @media (min-width: 769px) {
   .titleContainer {
     padding: 20px 0;
+  }
+
+  .participants {
+    font-size: 15px;
+    color: #000000;
+    margin-left: 20%;
+    margin-top: 1%;
+
+  }
+
+  .date {
+    font-size: 15px;
+    color: #ffffff;
+    margin-top: 1%;
+    margin-left: 3%;
+    margin-right: 5%;
   }
 
   .pageTitle {
@@ -241,18 +162,21 @@
   }
 
   .roomCard {
-    width: 90%;
+    width: 28%;
     padding: 20px;
-    margin-top: 5%;
+    margin-top: 2%;
+    margin-left: 35%;
+    align-items: center;
   }
 
-/*  .roomTitle {
-    font-size: 1.5rem;
+ .roomTitle {
+    font-size: 1.4rem;
+    margin-top: 1%;
   }
 
   .roomDescription {
-    font-size: 1.1em;
-  }*/
+    font-size: 1.2em;
+  }
 
   .Joinbutton {
     font-size: 1.2em;
@@ -265,26 +189,55 @@
 
 /* 작은 화면용 스타일 (모바일) */
 @media (max-width: 768px) {
+
+
+
+  .participants {
+    font-size: 15px;
+    color: #000000;
+    margin-left: 20%;
+    margin-top: 1%;
+
+  }
+
+  .date {
+    font-size: 15px;
+    color: #ffffff;
+    margin-top: 1%;
+    margin-left: 3%;
+    margin-right: 5%;
+  }
+
+
+
+
+
   .titleContainer {
     padding: 10px 0;
   }
 
   .pageTitle {
     font-size: 1.6rem;
+    margin-top: 13%;
+    margin-left: 25%;
+    
   }
 
   .goBackButton {
     height: 1.5rem;
-    margin-left: 20px;
+    margin-top: 9%;
+    margin-left: 3%;
   }
 
   .roomCard {
-    width: 90%;
-    padding: 10px;
+    width: 75%;
+    margin-left: 7%;
+
   }
 
   .roomTitle {
     font-size: 1.2rem;
+    margin-top: 0%;
   }
 
   .roomDescription {
@@ -297,7 +250,7 @@
   }
 
 
-  /*상단바*/
+  /*상단바
   .app-main_mascot {
     height: 55px;
     margin-top: 30px;
@@ -311,19 +264,19 @@
   }
 
 
-  /* 공지사항 텍스트 */
+  /* 공지사항 텍스트 
     .title-text {
       font-size: 0.8rem ;
       margin-bottom: 40px;
     }
     
     
-    /* INFO 텍스트 */
+    /* INFO 텍스트 
     h2 {
       font-size: 1.8rem ;
       
     }
 
-
+*/
 
 }
