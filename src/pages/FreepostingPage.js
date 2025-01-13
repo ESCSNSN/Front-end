@@ -12,19 +12,6 @@ import filledHeart from '../images/filledheart.png';
 import bar from '../images/bar.png';
 import Header from './_.js';  // 상단바 컴포넌트
 
-import axiosInstance from '../api/axiosInstance';
-
-const fetchData = async () => {
-    try {
-        const response = await axiosInstance.get('https://fd5ca3755e85.ngrok.app/api/auth/refresh');
-        console.log('Data:', response.data);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-};
-
-fetchData();
-
 // API에서 사용할 기본 URL과 헤더 설정
 const BASE_URL = 'https://3e319465b029.ngrok.app/api/board';
 const getAuthHeaders = () => {

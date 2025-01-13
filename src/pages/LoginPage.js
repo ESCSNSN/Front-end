@@ -8,16 +8,6 @@ import back_logo from '../images/뒷모습 횃불이.png';
 import Q_logo from '../images/물음표.png';
 import axiosInstance from '../utils/api.js';
 
-const fetchData = async () => {
-    try {
-        const response = await axiosInstance.get('https://fd5ca3755e85.ngrok.app/api/auth/refresh');
-        console.log('Data:', response.data);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-};
-
-fetchData();
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
