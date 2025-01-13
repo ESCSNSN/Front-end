@@ -21,6 +21,7 @@ import Icon4 from '../images/내가속한방 횃불이.png';
 import Icon5 from '../images/수업소통방 횃불이.png';
 import Icon6 from '../images/자유소통방 횃불이.png';
 
+
 const roomsData = [];
 
 const Class_Room = () => {
@@ -89,7 +90,8 @@ const Class_Room = () => {
 
   return (
     <div className={`${styles.app} ${isDesktop ? styles.desktopApp : ''}`}>
-     
+       <Header />
+       {/*
       <header className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : ''}`}>
         <div className={`${styles["title-group"]} ${isDesktop ? styles.desktopTitleGroup : ''}`}>
           <img src={main_mascot} className={`${styles["app-main_mascot"]} ${isDesktop ? styles.desktopMascot : ''}`} alt="main_mascot" />
@@ -103,7 +105,7 @@ const Class_Room = () => {
           </div>
         </div>
       </header>
-
+ */}
       <div className={`${styles.container} ${isDesktop ? styles.desktopContainer : ''}`}>
         <div className={`${styles.content} ${isDesktop ? styles.desktopContent : ''}`}>
           <div className={`${styles.titleContainer} ${isDesktop ? styles.desktopTitleContainer : ''}`}>
@@ -124,11 +126,15 @@ const Class_Room = () => {
                   isDesktop ? styles.desktopRoomItem : ''
                 }`}
               >
-                <img src={room.icon} alt={`방 아이콘 ${room.roomId}`} className={`${styles.roomIcon} ${isDesktop ? styles.desktopRoomIcon : ''}`} />
+                <img src={room.icon} alt={`방 아이콘 ${room.id}`} className={`${styles.roomIcon} ${isDesktop ? styles.desktopRoomIcon : ''}`} 
+                 onError={(e) => (e.target.src = '../images/하트이모지.png')}/>
                 <div className={`${styles.roomInfo} ${isDesktop ? styles.desktopRoomInfo : ''}`}>
                   <div className={`${styles.roomTitle} ${isDesktop ? styles.desktopRoomTitle : ''}`}>{room.roomName}</div>
                   <div className={`${styles.roomMessage} ${isDesktop ? styles.desktopRoomMessage : ''}`}>{room.lastMessage}</div>
+               
                 </div>
+
+                
 
                 <button
                   className={`${styles.joinButton} ${isDesktop ? styles.desktopJoinButton : ''}`}

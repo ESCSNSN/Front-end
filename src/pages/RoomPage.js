@@ -8,7 +8,7 @@ import main_message from '../images/message.png';  // 로고 이미지 불러오
 import main_my from '../images/my.png';  // 로고 이미지 불러오기
 
 import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들기 위함
-import Header from './_.js';  // 상단바 컴포넌트
+import Header from './_2.js';  // 상단바 컴포넌트
 import axiosInstance from '../utils/api'; // Axios 인스턴스
 import { jwtDecode } from 'jwt-decode'; // default가 아닌 named import 사용. authToken에서 사용자 ID 추출하기. npm install jwt-decode
 import styles from './RoomPage.module.css';

@@ -20,6 +20,9 @@ import Icon6 from '../images/자유소통방 횃불이.png';
 import Icon8 from '../images/프로필.png';
 import Icon9 from '../images/검색.png';
 
+
+import Header from './_2.js'; // 상단바 컴포넌트
+
 const FreeRoom = () => {
   const [rooms, setRooms] = useState([]);
   const [filteredRooms, setFilteredRooms] = useState([]); // 필터된 방 목록
@@ -78,17 +81,7 @@ const FreeRoom = () => {
 
   return (
     <div className={styles.app}>
-      <header className={styles["app-header"]}>
-        <div className={`${styles["title-group"]} ${isDesktop ? styles["desktop-title-group"] : ''}`}>
-          <img src={main_mascot} className={styles["app-main_mascot"]} alt="main_mascot" />
-          <h2>INFO!</h2>
-          <div className={styles["right-section"]}>
-            <img src={main_bell} className={styles["app-main_bell"]} alt="main_bell" />
-            <img src={main_message} className={styles["app-main_message"]} alt="main_message" />
-            <img src={main_my} className={styles["app-main_my"]} alt="main_my" />
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <div className={styles.container}>
         <div className={styles.content}>
