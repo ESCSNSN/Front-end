@@ -24,13 +24,15 @@ import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들�
 
 import Header from './_2.js'; // 상단바 컴포넌트
 
+
+
 import {  fetchFreeBoardData, fetchQuestBoardData, fetchCompetitionBoardData,fetchCodingBoardData, fetchStudyBoardData } from '../api/boardApi'; //Api
 //fetchMainPageData,
 const HomePage = () => {
   const navigate = useNavigate(); // useNavigate 훅 선언-> 최상단에 호출
   //Api..
 
-  const [rooms, setRooms] = useState([]);
+
   
   const [freeBoardData, setFreeBoardData] = useState([]);//자유게시판
   //const [mainPageData, setMainPageData] = useState([]);
@@ -94,7 +96,6 @@ const [error, setError] = useState(null);
         method: 'GET'
     }).then((res) => { return res.json() })
       .then((data) => {
-        console.log(data);
         setRooms(data.data);
       });
     const roomsData = [
@@ -121,7 +122,7 @@ const [error, setError] = useState(null);
     ];
 
 
-
+const [rooms, setRooms] = useState(roomsData);
 
 
   const [dropdownVisible, setDropdownVisible] = useState(false);  // 드롭다운 상태 관리
@@ -206,7 +207,7 @@ const [error, setError] = useState(null);
           <div className={styles.container}>
           <div className={styles.infoheader}>
                <h2 className={styles.comtext}>코드 질문</h2>
-               <a href="/InformationCode" className={styles.plusButtonLink}>
+               <a href="/new-link" className={styles.plusButtonLink}>
                     <PlusButton className={styles.plusButton} />
                </a>
           </div>
@@ -217,8 +218,8 @@ const [error, setError] = useState(null);
     <div
       key={post.id}
       className={styles.postItem}
-      onClick={() => navigate(`/BoardCode/${post.id}`)} // 바로 navigate 호출
-      >
+      onClick={() => handleQuestionClick(post.id)} // 게시물 클릭 시 상세 페이지로 이동
+    >
       <span className={styles.index}>{codingBoardData.indexOf(post) + 1}</span>
       <span className={styles.question}>{post.codingTitle || '제목 없음'}</span>
       <span className={styles.date}>
@@ -237,20 +238,20 @@ const [error, setError] = useState(null);
     <div className={styles.container}>
       <div className={styles.infoheader}>
       <h2 className={styles.comtext}>빈 강의실 현황</h2>
-        <a href="ClassRoom" className={styles.plusButtonLink}>
+        <a href="/room-status" className={styles.plusButtonLink}>
           <PlusButton className={styles.plusButton} />
         </a>
       </div>
       
 
       <div className={styles.postList}>
-        <div className={styles.postItem}onClick={() => navigate(`/ClassRoom`)} >
+        <div className={styles.postItem} onClick={() => handleQuestionClick(1)}>
           <span className={styles.index}>1</span>
           <span className={styles.question}>A동 210호</span>
           <S_cute className={styles.S_cute} />
         </div>
 
-        <div className={styles.postItem} onClick={() => navigate(`/ClassRoom`)} >
+        <div className={styles.postItem} onClick={() => handleQuestionClick(2)}>
           <span className={styles.index}>2</span>
           <span className={styles.question}>B동 530호</span>
           
@@ -266,14 +267,14 @@ const [error, setError] = useState(null);
     <div className={styles.container}>
           <div className={styles.infoheader}>
                <h2 className={styles.comtext}>자기 개발</h2>
-               <a href="/BootBoardPage" className={styles.plusButtonLink}>
+               <a href="/self-development" className={styles.plusButtonLink}>
                     <PlusButton className={styles.plusButton} />
                </a>
           </div>
 
           {/* 스터디 게시판 각 카테고리별 상위 1개 게시물 */}
           <div className={styles.postList}>
-               <div className={styles.postItem} onClick={() => navigate((`/BootBoard/${studyBoardData.bootcampStudies[0]?.id}`))}>
+               <div className={styles.postItem} onClick={() => handleQuestionClick(studyBoardData.bootcampStudies[0]?.id)}>
                     <span className={styles.index}>1</span>
                     <span className={styles.question}>
                          {studyBoardData.bootcampStudies[0]?.studyTitle || '제목 없음'}
@@ -286,7 +287,7 @@ const [error, setError] = useState(null);
                     <S_cute className={styles.S_cute} />
                </div>
 
-               <div className={styles.postItem} onClick={() => navigate(`/IndustryBoard/${studyBoardData.industryStudies[0]?.id}`)}>
+               <div className={styles.postItem} onClick={() => handleQuestionClick(studyBoardData.industryStudies[0]?.id)}>
                     <span className={styles.index}>2</span>
                     <span className={styles.question}>
                          {studyBoardData.industryStudies[0]?.studyTitle || '제목 없음'}
@@ -299,7 +300,7 @@ const [error, setError] = useState(null);
                     <S_cute className={styles.S_cute} />
                </div>
 
-               <div className={styles.postItem} onClick={() => navigate(`/StudyBoard/${studyBoardData.regularStudies[0]?.id}`)}>
+               <div className={styles.postItem} onClick={() => handleQuestionClick(studyBoardData.regularStudies[0]?.id)}>
                     <span className={styles.index}>3</span>
                     <span className={styles.question}>
                          {studyBoardData.regularStudies[0]?.studyTitle || '제목 없음'}
@@ -324,7 +325,7 @@ const [error, setError] = useState(null);
          {/* 자유 게시판 */}
          <div className={styles.infoheader}>
            <h2 className={styles.comtext}>자유 게시판</h2>
-           <a href="/FreeboardPage" className={styles.plusButtonLink}>
+           <a href="/self-development" className={styles.plusButtonLink}>
              <PlusButton className={styles.plusButton} />
            </a>
          </div>
@@ -336,8 +337,8 @@ const [error, setError] = useState(null);
              <div
                key={post.id}
                className={styles.postItem}
-               onClick={() => navigate(`/FreepostingPage/${post.id}`)} // 바로 navigate 호출
-               >
+               onClick={() => handleQuestionClick(post.id)} // 클릭 시 상세 페이지로 이동
+             >
                <span className={styles.index2}>HOT</span>
                <span className={styles.question}>{post.freeTitle}</span>
                <span className={styles.date}>{new Date(post.freeCreatedTime).toLocaleDateString()}</span>
@@ -349,7 +350,7 @@ const [error, setError] = useState(null);
          {/* 질문 게시판 */}
          <div className={styles.infoheader}>
            <h2 className={styles.comtext}>질문 게시판</h2>
-           <a href="/QuestionboardPage" className={styles.plusButtonLink}>
+           <a href="/self-development" className={styles.plusButtonLink}>
              <PlusButton className={styles.plusButton} />
            </a>
          </div>
@@ -361,8 +362,8 @@ const [error, setError] = useState(null);
              <div
                key={post.id}
                className={styles.postItem}
-               onClick={() => navigate(`/QuestionpostingPage/${post.id}`)} // 바로 navigate 호출
-               >
+               onClick={() => handleQuestionClick(post.id)} // 클릭 시 상세 페이지로 이동
+             >
                <span className={styles.index2}>HOT</span>
                <span className={styles.question}>{post.questTitle}</span>
                <span className={styles.date}>{new Date(post.questCreatedTime).toLocaleDateString()}</span>
@@ -381,14 +382,10 @@ const [error, setError] = useState(null);
  
                   
  <>
-
   <div className={styles.Roomcontainer}>
- 
+
     {/* 방 목록 */}
     <div className={styles.roomsList}>
-    <a href="/RoomPage" className={styles.plusButtonLink}>
-      <PlusButton className={styles.plusButton3} />
-    </a>
       {rooms.map((room) => (
         <div
           key={room.roomId}
@@ -401,8 +398,8 @@ const [error, setError] = useState(null);
           </div>
           <button
                       className={styles.joinButton}
-                      onClick={() => navigate(`/RoomChat/${room.id}`)} // 바로 navigate 호출
-                      >
+                      onClick={() => handleRoomClick(room.id)}
+                    >
                       참여하기
                     </button>
         </div>
@@ -422,8 +419,8 @@ const [error, setError] = useState(null);
 
   return (
     <div className={styles.app}>
-      {/* 상단바   */}
-      
+        <Header />
+      {/* 상단바 
       <header className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : ''}`}>
         <div className={`${styles["title-group"]} ${isDesktop ? styles.desktopTitleGroup : ''}`}>
           <img
@@ -442,7 +439,7 @@ const [error, setError] = useState(null);
           <div className={`${styles["right-section"]} ${isDesktop ? styles.desktopRightSection : ''}`}>
             <h2
               className={styles["title-text"]}
-              onClick={() => navigate("/Announcement")}
+              onClick={() => navigate("/notice")}
               style={{ cursor: "pointer" }}
             >
               공지사항
@@ -452,7 +449,7 @@ const [error, setError] = useState(null);
               src={main_bell}
               className={`${styles["app-main_bell"]} ${isDesktop ? styles.desktopMainBell : ''}`}
               alt="main_bell"
-              onClick={() => navigate("/AlarmPage")}
+              onClick={() => navigate("/notification")}
             />
             <img
               src={main_message}
@@ -467,13 +464,12 @@ const [error, setError] = useState(null);
               onClick={toggleDropdown}
             />
   
-            {/* 드롭다운 메뉴   */}
             {dropdownVisible && (
               <div className={`${styles["dropdown-menu"]} ${isDesktop ? styles.desktopDropdownMenu : ''}`}>
                 <a href="/scrap" className={styles["menu-item"]}>스크랩</a>
-                <a href="/My_board" className={styles["menu-item"]}>작성 게시글</a>
-                <a href="/My_message" className={styles["menu-item"]}>작성 댓글</a>
-                <a href="/add" className={styles["menu-item"]}>스터디 신청 확인</a>
+                <a href="/write-post" className={styles["menu-item"]}>작성 게시글</a>
+                <a href="/write-comment" className={styles["menu-item"]}>작성 댓글</a>
+                <a href="/User_auth" className={styles["menu-item"]}>스터디 신청 확인</a>
                 <a
                   href="#"
                   onClick={handleLogoutClick}
@@ -486,13 +482,12 @@ const [error, setError] = useState(null);
           </div>
         </div>
       </header>
-
-
-        
+      */}
+  
       {/* 대회 정보 부분 */}
       <div className={`${styles.comheader} ${isDesktop ? styles.desktopComHeader : ''}`}>
             <h2 className={styles.comtext}>대회 정보</h2>
-            <a href="/InformationContest" className={styles.plusButtonLink}>
+            <a href="/com" className={styles.plusButtonLink}>
                   <PlusButton className={styles.plusButton} />
             </a>
       </div>
@@ -518,7 +513,7 @@ const [error, setError] = useState(null);
           ))}
         </div>
       ) : (
-        <span className={styles.noImageText}></span>
+        <span className={styles.noImageText}>이미지가 없습니다</span>
       )}
 
                   </div>

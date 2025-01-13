@@ -5,204 +5,11 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  align-items: center;
   background-color: #ffffff;
-  overflow-y: auto;  /* 스크롤 가능 */
+  overflow-x: hidden;  /* 스크롤 가능 */
   
   
 }
-
-/* 헤더 스타일
-  .app-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 0px; /* 헤더와 대회 정보 섹션 사이에 여백 추가 
-  margin-top: 0px; 
-    margin-top: 60px; /* 상단바 높이만큼 여백 설정 */
-
-
-  .app-header {  
-
-    
-    align-items: center; /* 가운데 정렬 */
-    top: 0; /* 페이지 상단에 위치 */
-    left: 0; /* 왼쪽 끝에 위치 */
-    right: 0; /* 오른쪽 끝까지 확장 */
-    
-    z-index: 10; /* 다른 요소 위에 표시 */
-    display: flex; /* 플렉스 박스 사용 */
-    justify-content: space-between; /* 요소 간 간격 조정 */
-    align-items: center; /* 세로 가운데 정렬 */
-    padding: 0px; /* 좌우 여백 */
-
-}
-
-  
-  .title-group{
-    display: flex;
-    justify-content: center; 
-    gap: 10px;  
-    margin-bottom: 10px;
-  }
-
-  
-  .right-section {
-    display: flex;
-    align-items: center; /* 가로로 나란히 정렬 */
-    margin-top: 40px; /* 아래로 30px 만큼 내림 (값은 조절 가능) */
-    gap: 10px; /* 아이콘 사이의 간격 */
-    
-  }
-  
-  .mascot-logo {
-    width: 0px;
-    margin-right: 40px; /* 로고와 문구 사이의 간격 */
-  }
-  
-  /* 로고 이미지 크기 조절 */
-  .app-main_mascot {
-    height: 60px;
-    margin-bottom: 10px;
-    margin-top: 30px;
-    cursor: pointer;
-  }
-  
-  .app-main_bell {
-    height: 35px;
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
-  
-  .app-main_message {
-    height: 35px;
-    margin-bottom:10px;
-    cursor: pointer;
-  }
-  
-
-  .app-main_my {
-    height: 35px;
-    margin-bottom: 10px;
-    margin-left: 6px;
-
-  }
-
-  /* 공지사항 텍스트  width: 100%;
-    height: 30%;*/
-  .title-text {
-    font-size: 0.9rem ;
-  
-    color: #000000;
-    margin-bottom: 20px;  /* 텍스트 아래에 여백 */
-    margin-top: 10px;  /* 텍스트 위에 여백 */
-  }
-  
-  
-  /* INFO 텍스트 */
-  h2 {
-    font-size: 2.0rem ;
-    color: #0056A0;
-    margin-bottom: 0px;
-    margin-top: 43px;
-    margin-right: 5px;  /* 텍스트 오른쪽에 여백 */
-
-  }
-  
-
-
-
-
-  .app-main_my {
-    cursor: pointer;
-  
-  }
-
-  
-  .dropdown-menu {
-    position: absolute;
-    margin-top: 6%;
-    margin-right: 4%;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    overflow: hidden;
-  }
-  
-  .menu-item {
-    display: block;
-    padding: 12px 20px;
-    color: black;
-    text-decoration: none;
-    text-align: center;
-    font-size: 1.0rem;
-    font-weight: bold;
-  }
-  
-  .menu-item:not(:last-child) {
-    border-bottom: 1px solid #e0e0e0; /* 항목 구분선 */
-  }
-  /*
-  .menu-item:hover {
-    background-color: #f0f0f0;
-  }*/
-  
-/* "스크랩" 항목에 파란색 텍스트 적용 */
-.scrap {
-  color: #007bff;
-}
-
-/* "로그아웃" 항목에 노란색 텍스트 적용 */
-.logout {
-  color: #ff8c00;
-}
-  
-
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modalContent {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  max-width: 400px;
-  width: 90%;
-}
-
-.modalButtons button {
-  margin: 10px;
-  
-  border: 10px;
-  
-  color: black;
-  text-decoration: none;
-  text-align: center;
-  font-size: 1.0rem;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-
-
-
-
-
-
-
-
 
 
 
@@ -423,23 +230,6 @@
 
 }
 
-.postList {
-  width: 100%;
-  display: flex;
-  flex-direction: column; /* 세로로 정렬 */
-  align-items: center; /* 가운데 정렬 */
-}
-
-.postItem {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0;
-  border: none;
-  /*border-bottom: 2px solid black;
-  */
-  cursor: pointer;  /* 클릭 가능임을 나타내기 위해 커서 변경 */
-}
 
 .postItem span:nth-child(2) {
   text-align: left; /* 텍스트 왼쪽 정렬 */
@@ -556,15 +346,21 @@
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* 세로로 정렬 */
+  align-items: center; /* 가운데 정렬 */
 }
 
 .postItem {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  align-items: center;
   background-color: #fff;
   padding: 10px;
   border-radius: 8px;
+  border: none;
   margin-bottom: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -787,6 +583,13 @@ width: 100%;
     height: auto;
     padding: 10px;
   }
+  .postList {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* 세로로 정렬 */
+    align-items: center; /* 가운데 정렬 */
+    
+  }
 
   .competitions {
     flex-wrap: wrap; /* 여러 줄로 표시 */
@@ -824,6 +627,14 @@ width: 100%;
 @media screen and (max-width: 480px) {
   .app {
     padding: 5px;
+  }
+
+  .postList {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* 세로로 정렬 */
+    align-items: center; /* 가운데 정렬 */
+    
   }
 
   

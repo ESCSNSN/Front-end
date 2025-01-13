@@ -1,58 +1,90 @@
 import axios from 'axios';
-import {jwtDecode} from 'jwt-decode';
-const getAuthHeaders = () => {
-    const accessToken = localStorage.getItem('authToken'); // 로컬 스토리지에서 'authToken'을 가져옴
-  
-    console.log('Access Token:', accessToken); // 토큰이 잘 저장되어 있는지 확인
-    
-    if (!accessToken) {
-      console.warn('Access token is missing');
-      return {}; // 토큰이 없으면 빈 객체 반환
-    }
-  
-    try {
-      const decodedToken = jwtDecode(accessToken); // jwt 토큰 디코딩
-      const userId = decodedToken.userId;
-      return {
-        'Authorization': `Bearer ${accessToken}`,  // Authorization 헤더에 Bearer 토큰 추가
-        'X-USER-ID': userId,  // userId 추가
-        'ngrok-skip-browser-warning': 1,
-      };
-    } catch (error) {
-      console.error('Token decoding error:', error);  // 디코딩 오류 처리
-      return {};  // 오류 발생 시 빈 객체 반환
-    }
-  };
-  
+import jwtDecode from 'jwt-decode';
 
-// axios 인스턴스 설정
+const BASE_URL = 'https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app';
+
+// 인증 헤더 가져오기 함수
+const getAuthHeaders = () => {
+  const accessToken = localStorage.getItem('authToken'); // 로컬 스토리지에서 토큰 가져오기
+
+  if (!accessToken) {
+    console.warn('Access token is missing');
+    return {};
+  }
+
+  try {
+    const decodedToken = jwtDecode(accessToken); // JWT 토큰 디코딩
+    const userId = decodedToken?.userId || ''; // 디코딩된 토큰에서 userId 추출
+    console.log('Decoded Token:', decodedToken);
+
+    return {
+      Authorization: `Bearer ${accessToken}`, // Authorization 헤더 추가
+      'X-USER-ID': userId, // 사용자 ID 추가 (필요시)
+    };
+  } catch (error) {
+    console.error('Token decoding error:', error);
+    return {};
+  }
+};
+
+// axios 인스턴스 생성
 const axiosInstance = axios.create({
-    baseURL: 'https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app',
-    withCredentials: true,
-    headers: {
-        ...getAuthHeaders(),
-        'ngrok-skip-browser-warning': 1, // 헤더 추가
-        
-    },
+  baseURL: BASE_URL,
+  withCredentials: true, // 인증 쿠키 포함
 });
 
-
-console.log('Headers:', axiosInstance.defaults.headers); 
-
-// 요청 인터셉터에 인증 헤더 추가
+// 요청 인터셉터 설정
 axiosInstance.interceptors.request.use(
-    (config) => {
-        const authHeaders = getAuthHeaders(); // 인증 헤더 가져오기
-        config.headers = { 
-            ...config.headers, 
-            ...authHeaders  // 기존 헤더에 인증 헤더 추가
-        };
-        return config;
-    },
-    (error) => {
-        console.error('Axios Request Error:', error);
-        return Promise.reject(error);
+  (config) => {
+    const authHeaders = getAuthHeaders();
+    config.headers = {
+      ...config.headers,
+      ...authHeaders,
+      'ngrok-skip-browser-warning': 1, // ngrok 관련 헤더 추가
+    };
+    console.log('Request Config:', config);
+    return config;
+  },
+  (error) => {
+    console.error('Axios Request Error:', error);
+    return Promise.reject(error);
+  }
+);
+
+// 응답 인터셉터 설정 (401 처리)
+axiosInstance.interceptors.response.use(
+  (response) => response, // 응답 성공 시 그대로 반환
+  async (error) => {
+    if (error.response?.status === 401) {
+      console.warn('401 Unauthorized - Attempting to refresh token');
+
+      // 액세스 토큰 갱신 로직
+      try {
+        const refreshToken = localStorage.getItem('refreshToken'); // 갱신 토큰 가져오기
+        if (!refreshToken) {
+          throw new Error('No refresh token available');
+        }
+
+        const refreshResponse = await axios.post(`${BASE_URL}/auth/refresh`, {
+          refreshToken,
+        });
+
+        const newAccessToken = refreshResponse.data?.accessToken;
+        if (newAccessToken) {
+          localStorage.setItem('authToken', newAccessToken); // 새로운 토큰 저장
+          error.config.headers.Authorization = `Bearer ${newAccessToken}`; // 요청에 새 토큰 추가
+          return axiosInstance.request(error.config); // 원래 요청 재전송
+        }
+      } catch (refreshError) {
+        console.error('Token refresh failed:', refreshError);
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('refreshToken');
+        // 로그아웃 또는 로그인 페이지로 이동
+        window.location.href = '/login';
+      }
     }
+    return Promise.reject(error);
+  }
 );
 
 export default axiosInstance;
