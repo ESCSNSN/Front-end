@@ -13,6 +13,9 @@ import Icon1 from '../images/하트이모지.png';
 import Icon2 from '../images/눈이모지.png';
 import Icon3 from '../images/폭죽이모지.png';
 
+
+import Header from './G_.js'; // 상단바 컴포넌트
+
 import S_cute from '../assets/S_cuteButton'; //스크랩
 
 import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들기 위함
@@ -175,7 +178,9 @@ const G_HomePage = () => {
                   <a href="/G_freeboardPage" className={styles.plusButtonLink}>
                     <PlusButton className={styles.plusButton} />
                   </a>
-                  <h1>자유 게시판</h1>
+
+
+                  <h1  className={styles["notetext"]}>자유 게시판</h1>
                   {G_freeBoardData.map((item, index) => (
                     <div
                       key={`free-${item.id}`}
@@ -195,7 +200,7 @@ const G_HomePage = () => {
                   <a href="/G_questionboardPage" className={styles.plusButtonLink}>
                     <PlusButton className={styles.plusButton} />
                   </a>
-                  <h1>질문 게시판</h1>
+                  <h1 className={styles["notetext"]}>질문 게시판</h1>
                   {G_questBoardData.map((item, index) => (
                     <div
                       key={`quest-${item.id}`}
@@ -222,11 +227,11 @@ const G_HomePage = () => {
 
 
           <>
-            <div className={styles.Roomcontainer}>
+            <div className={styles.Roomcontainer2}>
 
               {/* 방 목록 */}
               <div className={styles.roomsList}>
-                <a href="/RoomPage" className={styles.plusButtonLink}>
+                <a href="/RoomPage" className={styles.plusButtonLink2}>
                   <PlusButton className={styles.plusButton3} />
                 </a>
                 {rooms.map((room) => (
@@ -273,67 +278,7 @@ const G_HomePage = () => {
 
   return (
     <div className={styles.app}>
-      {/* 상단바 */}
-      <header className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : ''}`}>
-        <div className={`${styles["title-group"]} ${isDesktop ? styles.desktopTitleGroup : ''}`}>
-          <img
-            src={main_mascot}
-            className={styles["app-main_mascot"]}
-            alt="main_mascot"
-            onClick={() => navigate("/G_homePage")}
-          />
-          <h2 onClick={() => navigate("/G_homePage")} style={{ cursor: "pointer" }}>
-            INFO!
-          </h2>
-
-          {/* 오른쪽 섹션 */}
-          <div className={`${styles["right-section"]} ${isDesktop ? styles.desktopRightSection : ''}`}>
-            <h2
-              className={styles["title-text"]}
-              onClick={() => navigate("/Announcement")}
-              style={{ cursor: "pointer" }}
-            >
-              공지사항
-            </h2>
-            <img
-              src={main_bell}
-              className={styles["app-main_bell"]}
-              alt="main_bell"
-              onClick={() => navigate("/AlarmPage")}
-            />
-            <img
-              src={main_message}
-              className={styles["app-main_message"]}
-              alt="main_message"
-              onClick={() => navigate("/message")}
-            />
-            <img
-              src={main_my}
-              className={styles["app-main_my"]}
-              alt="main_my"
-              onClick={toggleDropdown}
-            />
-          </div>
-          {/* 드롭다운 메뉴 */}
-          {dropdownVisible && (
-            <div className={styles["dropdown-menu"]}>
-              <a href="/scrap" className={styles["menu-item"]}>스크랩</a>
-              <a href="/My_board" className={styles["menu-item"]}>작성 게시글</a>
-              <a href="/My_message" className={styles["menu-item"]}>작성 댓글</a>
-              <a href="/add" className={styles["menu-item"]}>스터디 신청 확인</a>
-              <a
-                href="#"
-                onClick={handleLogoutClick}
-                className={`${styles["menu-item"]} ${styles["logout"]}`}
-              >
-                로그아웃
-              </a>
-            </div>
-          )}
-
-        </div>
-      </header>
-
+        <Header />
       {/* 탭 네비게이션 */}
       <div className={`${styles.tabContainer} ${isDesktop ? styles.desktopTabContainer : ''}`}>
         <button
