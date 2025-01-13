@@ -19,10 +19,9 @@
       .app{
         margin-top: 0px;
           /* 상단바도 하나의 그룹이라 내가 원하는 항목 만들면 아래로 밀림.*/
-          padding: 20px;
+          
           background-color: white;
           /* 배경색 설정 */
-          height: 100vh;
           overflow-y: auto;
           /* 스크롤 가능 */
       }
@@ -37,16 +36,10 @@
         }
         
         .title-text2 {
-          margin-top: -40px;
           font-size: 1.5rem;
           color: #000000;
-          text-align: center;
-          flex-grow: 1;
-          /* 제목이 가능한 넓은 공간을 차지하도록 설정 */
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-          /* 제목을 정확히 중앙으로 이동 */
+          margin-top: 0%;
+          margin-left: 30%;
         }
         
         .title-text3 {
@@ -69,25 +62,6 @@
           margin-right: 260px;
         }
       
-        .title-text5 {
-          font-size: 1.2rem ;
-          color: #000000;
-          margin-bottom: 5px;
-          /* 텍스트를 아래로 살짝 내림 */
-          margin-right: 5px;
-          margin-top: 10px;
-      
-        }
-      
-        .title-text6 {
-          font-size: 1.2rem ;
-          color: #000000;
-          margin-bottom: 10px;
-          /* 텍스트를 아래로 살짝 내림 */
-          margin-top: 10px;
-          margin-right: 300px;
-        }
-        
         .app-main_message2 {
           height: 25px;
           margin-top: -25px;
@@ -222,3 +196,103 @@
         border: 1px solid #ddd;
         border-radius: 4px;
       }
+
+
+
+
+
+      
+/* 작은 화면용 스타일 (모바일) */
+@media (max-width: 768px) {
+
+    
+  .app-arrow {
+    height: 35px;
+    margin-top: 9%;
+    margin-left: 3%;
+  }
+
+
+  .title-text2 {
+    margin-left: 30%;
+    margin-top: -9%;
+    margin-bottom: 0%;
+  }
+  
+  .app-bar {
+    height: 2px;
+    width: 100%;
+    margin-left: 0%;      /* 세로 가운데 정렬 및 여백 */
+    background-color: #000;   /* (예시) 배경 색 지정 */
+  }
+
+  .title-text3 {
+    margin-left: 5%;
+  }
+
+    /* 기본 입력 필드 */
+    .input, .textarea {
+      width: 90%; /* 너비 기본값 */
+      margin-left: 3%;
+    }
+    
+}
+
+
+
+
+
+
+  /* 큰 화면용 스타일 (데스크탑) */
+  @media (min-width: 769px) {
+
+
+    .title-text2 {
+      font-size: 1.5rem;
+      color: #000000;
+      margin-left: 43%;
+      margin-top: -3%;
+      margin-bottom: 0%;
+    }
+    
+    .app-arrow {
+      height: 35px;
+      margin-top: 3%;
+      margin-left: 34%;
+    }
+
+    .app-bar {
+      height: 2px;
+      width: 31%;
+      margin-left: 35%;      /* 세로 가운데 정렬 및 여백 */
+      background-color: #000;   /* (예시) 배경 색 지정 */
+    }
+
+    .title-text3 {
+      margin-left: 35%;
+    }
+
+      /* 기본 입력 필드 */
+      .input, .textarea {
+        width: 29.5%; /* 너비 기본값 */
+        margin-left: 35%;
+      }
+      
+      
+      
+      /* 작성 버튼 스타일 */
+      .submit-group {
+        width: 97%; /* 반응형 너비 */
+        
+      }
+      
+      .submit-button {
+        margin-right: 31.5%;
+        margin-bottom: 3%;
+        
+      }
+      
+      .submit-button:hover {
+        background-color: #0056b3;
+      }
+  }

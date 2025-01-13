@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import styles from "./FreewritePage.module.css";
+import styles from "./Makechat.module.css";
 import main_mascot from '../images/대학 심볼 횃불이.png';
 import main_bell from '../images/bell.png';
 import main_message from '../images/message.png';
 import main_my from '../images/my.png';
 import arrow from '../images/arrow.png';
 import bar from '../images/bar.png';
-import Header from './_.js'; // 상단바 컴포넌트
+import Header from './_2.js'; // 상단바 컴포넌트
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
@@ -137,7 +137,7 @@ const Makechat = () => {
       </div>
 
       <div className={styles["input-group"]}>
-        <h2 className={styles["title-text5"]}>해시태그</h2>
+        <h2 className={styles["title-text3"]}>해시태그</h2>
         <input
           className={styles["input"]}
           type="text"
@@ -148,7 +148,7 @@ const Makechat = () => {
       </div>
 
       <div className={styles["input-group"]}>
-        <h2 className={styles["title-text6"]}>채팅방 설명</h2>
+        <h2 className={styles["title-text3"]}>채팅방 설명</h2>
         <textarea
           className={styles["textarea"]}
           value={content}
