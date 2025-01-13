@@ -321,13 +321,7 @@ const G_HomePage = () => {
               <a href="/My_board" className={styles["menu-item"]}>작성 게시글</a>
               <a href="/My_message" className={styles["menu-item"]}>작성 댓글</a>
               <a href="/add" className={styles["menu-item"]}>스터디 신청 확인</a>
-              <a
-                href="#"
-                onClick={handleLogoutClick}
-                className={`${styles["menu-item"]} ${styles["logout"]}`}
-              >
-                로그아웃
-              </a>
+              
             </div>
           )}
 
@@ -369,7 +363,7 @@ const G_HomePage = () => {
                 <p className={styles.postDescription}>{post.freeContents || '내용 없음'}</p>
                 <button
                   className={styles.commentButton}
-                  onClick={() => navigate(`/G_freepostingPage/${post.id}`)} // boardID와 함께 전달
+                  onClick={() => navigate(`/FreepostingPage/${post.id}`)} // boardID와 함께 전달
                 >
                   댓글 달기
                 </button>
@@ -388,7 +382,7 @@ const G_HomePage = () => {
                 <p className={styles.postDescription}>{post.questContents || '내용 없음'}</p>
                 <button
                   className={styles.commentButton}
-                  onClick={() => navigate(`/G_questionpostingPage/${post.id}`)} // boardID와 함께 전달
+                  onClick={() => navigate(`/QuestionpostingPage/${post.id}`)} // boardID와 함께 전달
                 >
                   댓글 달기
                 </button>

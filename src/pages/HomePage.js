@@ -22,7 +22,7 @@ import S_cute from '../assets/S_cuteButton'; //스크랩
 import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들기 위함
 
 
-import Header from './_2.js'; // 상단바 컴포넌트
+import Header from './_.js'; // 상단바 컴포넌트
 
 
 
