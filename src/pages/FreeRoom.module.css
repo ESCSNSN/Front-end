@@ -54,6 +54,7 @@
   padding: 0; /* 내부 여백 제거 */
   overflow-y: auto;
   
+  overflow-x: none; 
   padding-bottom: 20%; /* 필요하면 여백 추가 */
 
 }
@@ -396,6 +397,7 @@
     width: 100%; 
   }
 
+  
 
   .searchContainer { 
     width: 70%;
@@ -434,13 +436,15 @@
   }
 
   .roomsList {
-    left: 0;
-    right: 0;
-    margin-right: 10%;
-    margin: 0 auto; /* 가운데 정렬 */
-    width: 32%; /* 목록 너비 제한 */
+    margin-left: 30%;
+    width: 33%; /* 목록 너비 제한 */
     
-  overflow-x: none; 
+  overflow-x: hidden; 
+  }
+
+  
+  .roomItem {
+    width: 87%;
   }
 
   .bottomNav {

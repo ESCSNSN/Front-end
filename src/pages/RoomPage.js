@@ -264,8 +264,7 @@ const RoomPage = () => {
         <div className={`${styles.roomsList} ${isDesktop ? styles.desktopRoomsList : ''}`}>
           {rooms.map((room) => (
             <div
-              key={room.roomId}
-              className={`${styles.roomItem} ${isDesktop ? styles.desktopRoomItem : ''} ${room.selected ? styles.selected : ''
+              key={room.roomId} className={`${styles.roomItem} ${isDesktop ? styles.desktopRoomItem : ''} ${room.selected ? styles.selected : ''
                 }`}
             >
               <img src={room.icon} alt={`방 아이콘 ${room.roomId}`} className={styles.roomIcon} />
