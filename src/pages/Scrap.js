@@ -9,7 +9,7 @@ import IconUnscrap from '../images/횃불이스크랩X.png';
 
 
 // API에서 사용할 기본 URL과 헤더 설정
-const BASE_URL = 'http://info-rmation.kro.kr/api/board';
+const BASE_URL = 'https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board';
 const getAuthHeaders = () => {
     const accessToken = localStorage.getItem('accessToken');
     const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
@@ -32,9 +32,6 @@ const Scrap = () => {
     const [scrapStatus, setScrapStatus] = useState({}); // 각 게시물의 스크랩 상태 관리
     const [totalPages, setTotalPages] = useState(0); // 전체 페이지 수
     const [page, setPage] = useState(0); // 현재 페이지 번호
-
-
-
     const [selectedTab, setSelectedTab] = useState('대회정보'); // 현재 선택된 상위 탭
     const [selectedSubTab, setSelectedSubTab] = useState('부트캠프'); // 자기개발방 하위 탭
 
@@ -88,19 +85,57 @@ const Scrap = () => {
 
             // 데이터 처리
             if ((result.studies && result.studies.length > 0) || (result.data && result.data.length > 0)) {
-                const posts = result.studies || result.data; // studies 또는 data 중 존재하는 것을 사용
+                const posts = (result.studies || result.data).map(item => {
+                    let title = '';
+                    let createdTime = '';
+
+                    // 탭에 따라 제목과 생성 시간 필드 매핑
+                    switch (tab) {
+                        case '대회정보':
+                            title = item.competitionTitle;
+                            createdTime = item.competitionCreatedTime;
+                            break;
+                        case '코드 질문방':
+                            title = item.codingTitle;
+                            createdTime = item.codingCreatedTime;
+                            break;
+                        case '자기 개발방':
+                            title = item.studyTitle;
+                            createdTime = item.studyCreatedTime;
+                            break;
+                        case '자유 게시판':
+                            title = item.freeTitle;
+                            createdTime = item.freeCreatedTime;
+                            break;
+                        default:
+                            console.error('알 수 없는 탭입니다:', tab);
+                            break;
+                    }
+
+                    return {
+                        id: item.id,
+                        title, // 매핑된 제목
+                        createdTime, // 매핑된 생성 시간
+                        scrap: item.scrap || item.scrapped, // 스크랩 상태
+                        originalData: item, // 원본 데이터 저장 (선택 사항)
+                    };
+                });
+
                 setPosts(posts); // 게시글 상태 업데이트
+
                 setScrapStatus(
                     posts.reduce(
-                        (status, item) => ({ ...status, [item.id]: item.scrap || item.scrapped }),
+                        (status, item) => ({ ...status, [item.id]: item.scrap }),
                         {}
                     )
                 ); // 스크랩 상태 초기화
-                console.log("posts:", posts);
+
+                console.log("posts:", posts); // 변환된 데이터 확인용
             } else {
                 console.warn('데이터를 찾을 수 없습니다.');
                 setPosts([]); // 게시글 상태 초기화
             }
+
 
         } catch (error) {
             console.error('API 요청 에러:', error);
@@ -249,11 +284,11 @@ const Scrap = () => {
                                     className={styles.postTitle}
                                     onClick={() => handlePostClick(post.id)} // 게시물 제목 클릭 시 상세 페이지로 이동
                                 >
-                                    {post.questTitle || '제목 없음'} {/* 제목 없을 경우 기본값 */}
+                                    {post.title || '제목 없음'} {/* 제목 없을 경우 기본값 */}
                                 </span>
                                 <span className={styles.postDate}>
-                                    {post.questCreatedTime
-                                        ? new Date(post.questCreatedTime).toLocaleDateString() // 작성 날짜 표시
+                                    {post.createdTime
+                                        ? new Date(post.createdTime).toLocaleDateString() // 작성 날짜 표시
                                         : '날짜 없음'}
                                 </span>
                             </div>
@@ -276,8 +311,8 @@ const Scrap = () => {
                             <button
                                 key={pageNumber}
                                 className={`${styles.pageButton} ${page === pageNumber - 1
-                                        ? styles.activePageButton
-                                        : ''
+                                    ? styles.activePageButton
+                                    : ''
                                     }`} // 현재 페이지 강조
                                 onClick={() => setPage(pageNumber - 1)} // 페이지 번호 업데이트
                             >
