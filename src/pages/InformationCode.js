@@ -39,11 +39,14 @@ const InformationCode = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
+      const accessToken = localStorage.getItem('authToken');
+      console.log(accessToken);
       setIsLoading(true); // 로딩 시작
       try {
-        const response = await axiosInstance.get('https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board/coding', {
+        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/coding', {
           params: { page, size }, // 페이지와 사이즈를 쿼리 파라미터로 추가
           headers: {
+            'Authorization': `Bearer ${accessToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });
@@ -70,7 +73,7 @@ const InformationCode = () => {
     // 좋아요 10개 이상 게시물 가져오기
     const fetchTopLikedPosts = async () => {
       try {
-        const response = await axiosInstance.get('https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board/coding/top-liked', {
+        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/coding/top-liked', {
           headers: {
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
@@ -95,7 +98,7 @@ const InformationCode = () => {
     setPage(pageNumber); // 페이지 번호 업데이트
 
     try {
-      const response = await axiosInstance.get('https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board/coding', {
+      const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/coding', {
         params: {
           page: pageNumber,
           size: 10,
@@ -123,7 +126,7 @@ const InformationCode = () => {
     setMenuOpen(false); // 메뉴 닫기
 
     try {
-      const response = await axiosInstance.get('https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board/coding', {
+      const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/coding', {
         params: {
           typeKeyword: language, // 선택된 언어 전달
           page: 0,
@@ -146,7 +149,7 @@ const InformationCode = () => {
     setMenuOpen(false); // 메뉴 닫기
 
     try {
-      const response = await axiosInstance.get('https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board/coding', {
+      const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/coding', {
         params: {
           page: 0,
           size: 10,
@@ -165,9 +168,12 @@ const InformationCode = () => {
 
 
   const toggleScrap = async (id) => {
+    const accessToken = localStorage.getItem('authToken');
+    console.log(accessToken);
     try {
       const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/coding/${id}/scrap`, {
         headers: {
+          'Authorization': `Bearer ${accessToken}`,
           'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
         },
 
@@ -194,7 +200,7 @@ const InformationCode = () => {
     if (searchTerm.trim() !== '') {
       try {
         console.log(`검색어: ${searchTerm}`);
-        const response = await axiosInstance.get('https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board/coding', {
+        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/coding', {
           params: {
             searchKeyword: searchTerm, // 검색어 전달
             page: 0,
@@ -248,7 +254,7 @@ const InformationCode = () => {
         typeKeyword: '', // 필요 시 값 설정
       };
 
-      const response = await axiosInstance.get('https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board/coding/sort-by-likes', {
+      const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/coding/sort-by-likes', {
         params,
         headers: {
           'ngrok-skip-browser-warning': 'true', // 필요 시 유지
@@ -389,7 +395,11 @@ const InformationCode = () => {
 
               {/* 스크랩 상태 아이콘 */}
               <img
-                src={scrapStatus[post.id] ? IconScrap : IconUnscrap}
+                src={scrapStatus[post.id] !== undefined ? (
+                  scrapStatus[post.id] ? IconScrap : IconUnscrap
+                ) : (
+                  post.scrapped ? IconScrap : IconUnscrap
+                )} // scrapStatus 또는 post.scrapped 값에 따라 이미지 변경
                 alt={scrapStatus[post.id] ? '스크랩됨' : '스크랩안됨'}
                 className={styles.scrapIcon}
                 onClick={() => toggleScrap(post.id)} // 스크랩 상태 변경 및 백엔드 전송

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import axios from 'axios';
 // import { jwtDecode } from 'jwt-decode';
 
@@ -7,6 +8,12 @@
 //         console.warn('Access token is missing');
 //         return {};
 //     }
+=======
+import axios from 'axios';
+import {jwtDecode} from 'jwt-decode';
+
+const BASE_URL = 'https://3e319465b029.ngrok.app';
+>>>>>>> 4603fa8640add6945a2f9d1548b926bde6dc11ef
 
 //     try {
 //         const decodedToken = jwtDecode(accessToken); // 올바른 디코딩
