@@ -27,16 +27,14 @@
     }
     
     .title-text2 {
-      margin-top: -40px;
-      font-size: 1.3rem;
+      /*게시판*/
+      font-size: 1.6rem;
       color: #000000;
-      text-align: center;
-      flex-grow: 1;
-      /* 제목이 가능한 넓은 공간을 차지하도록 설정 */
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      /* 제목을 정확히 중앙으로 이동 */
+      margin-bottom: 0px;
+      /* 텍스트를 아래로 살짝 내림 */
+      margin-top: -40px;
+      margin-left: 10px;
+      /* 텍스트를 아래로 살짝 내림 */
     }
       
       .title-text3 {
@@ -128,12 +126,11 @@
           /* 스크롤 가능 */
       }
     
-    .content {
-      margin-top: 20px;
-      padding: 20px;
-      background-color: white;
-      height: 100vh;
-      overflow-y: auto;
+      .content {
+        font-size: 1rem;
+        color: #555555;
+        margin-top: 5px;
+        line-height: 0px;
     }
     
     .messageList {

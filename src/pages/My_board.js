@@ -6,27 +6,63 @@ import arrow from '../images/arrow.png';
 import bar from '../images/bar.png';
 import menuIcon from '../images/메뉴버튼.png';
 
+// API에서 사용할 기본 URL과 헤더 설정
+const BASE_URL = 'https://3e319465b029.ngrok.app/api';
+const getAuthHeaders = () => {
+  const accessToken = localStorage.getItem('accessToken');
+  const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
+  console.log(localStorage.getItem('userId'));
+
+  return {
+    'Authorization': `Bearer ${accessToken}`,
+    'X-USER-ID': userId, // 사용자 ID를 X-USER-ID로 추가
+    'Content-Type': 'application/json',
+    'ngrok-skip-browser-warning': 1
+  };
+};
+
 const My_board = () => {
 
     const navigate = useNavigate();
-    const [visibleMessages, setVisibleMessages] = useState(4); // 처음에는 4개의 메시지만 표시
+    const [visibleMessages, setVisibleMessages] = useState(8); // 처음에는 4개의 메시지만 표시
     const [messages, setMessages] = useState([]); // 메시지 목록 상태 관리 
 
     // 방 클릭 시 해당 채팅방으로 이동하는 함수
-    const handleRoomClick = (id) => {
-        navigate(`/chatroom/${id}`); // 방 ID를 기반으로 동적 경로로 이동
+    const handleRoomClick = (id, type) => {
+        let path = ""; // 기본 경로 변수
+    
+        // 게시글 type에 따라 경로를 설정
+        switch (type) {
+            case "coding":
+                path = `/BoardCode/${id}`;
+                break;
+            case "competition":
+                path = `/InformationContestBoard/${id}`;
+                break;
+            case "free":
+                path = `/freepostingPage/${id}`;
+                break;
+            case "study":
+                path = `/BootBoard/${id}`;
+                break;
+            case "quest":
+                path = `/QuestionpostingPage/${id}`;
+                break;
+            default:
+                console.error(`알 수 없는 type: ${type}`); // 예외 처리
+                return;
+        }
+    
+        navigate(path); // 동적으로 생성된 경로로 이동
     };
 
     // 백엔드에서 메시지 목록을 받아오는 함수
     useEffect(() => {
         const fetchMessages = async () => {
             try {
-                const response = await fetch('https://bcefb2d9d162.ngrok.app/api/mypage/my-posts', {
+                const response = await fetch(`${BASE_URL}/mypage/my-posts`, {
                     method: 'GET',
-                    headers: {
-                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IjIwMjIwMTY1OSIsInJvbGUiOiJTVFVERU5UIiwiaWF0IjoxNzM1MTk1MjU3LCJleHAiOjE3Mzg0MzUyNTd9.swBkh1kaXDEzW04G04llXKt-hB2B8c1XvuXpjuQbv3o', // 실제 토큰으로 변경
-                        'Content-Type': 'application/json',
-                    },
+                    headers: getAuthHeaders(), // getAuthHeaders를 호출하여 헤더 설정
                 });
     
                 if (response.ok) {
@@ -34,15 +70,16 @@ const My_board = () => {
     
                     // 기존 데이터 구조 변경
                     const reformattedData = {
-                        posts: data.codings.map(item => ({
+                        posts: data.posts.map(item => ({
                             id: item.id,
                             title: item.title, // title로 매핑
                             createTime: item.createTime, // createTime으로 매핑
-                            type: item.type, 
+                            type: item.type,
                         })),
                     };
     
                     setMessages(reformattedData.posts); // 상태에 posts를 저장
+                    console.log(data);
                 } else {
                     console.error('메시지 목록을 가져오는 데 실패했습니다.');
                 }
@@ -53,6 +90,7 @@ const My_board = () => {
     
         fetchMessages();
     }, []);
+    
 
     // 더보기 버튼 클릭 시 화면에 보이는 메시지 수를 증가시키는 함수
     const handleLoadMore = () => {
