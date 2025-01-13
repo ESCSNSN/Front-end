@@ -82,13 +82,7 @@ const _2 = () => {
                 <a href="/My_board" className={styles["menu-item"]}>작성 게시글</a>
                 <a href="/My_message" className={styles["menu-item"]}>작성 댓글</a>
                 <a href="/add" className={styles["menu-item"]}>스터디 신청 확인</a>
-              <a 
-                href="#" 
-                onClick={handleLogoutClick} 
-                className={`${styles["menu-item"]} ${styles["logout"]}`} 
-              >
-                로그아웃
-              </a>
+             
             </div>
           )}
 
