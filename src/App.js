@@ -101,7 +101,7 @@ function App() {
           <Route path="FreepostingPage/:id" element={<FreepostingPage />} />
           <Route path="QuestionpostingPage" element={<QuestionpostingPage />} />
           <Route path="FreewritePage" element={<FreewritePage />} />
-          <Route path="/FreewritePage/:id" element={<FreewritePage />} />
+          <Route path="FreewritePage/:id" element={<FreewritePage />} />
           <Route path="QuestionwritePage" element={<QuestionwritePage />} />
           <Route path="QuestionwritePage/:id" element={<QuestionwritePage />} />
           <Route path="FreeboardPage" element={<FreeboardPage />} />
@@ -139,7 +139,7 @@ function App() {
           <Route path="/ClassChat" element={<ClassChat />} />
           <Route path="/BootBoardPage" element={<BootBoardPage />} />
           <Route path="/BoardCode/:id" element={<BoardCode />} />
-          <Route path="/InformationCodeBoard" element={<InformationCodeBoard />} />
+          <Route path="/InformationCodeBoard/:id" element={<InformationCodeBoard />} />
           <Route path="/InformationContestBoard/:id" element={<InformationContestBoard />} />
 
 
