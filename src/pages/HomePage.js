@@ -206,7 +206,7 @@ const [rooms, setRooms] = useState(roomsData);
 
           <div className={styles.container}>
           <div className={styles.infoheader}>
-               <h2 className={styles.comtext}>코드 질문</h2>
+               <h2 className={styles.notetext}>코드 질문</h2>
                <a href="/new-link" className={styles.plusButtonLink}>
                     <PlusButton className={styles.plusButton} />
                </a>
@@ -237,7 +237,7 @@ const [rooms, setRooms] = useState(roomsData);
 
     <div className={styles.container}>
       <div className={styles.infoheader}>
-      <h2 className={styles.comtext}>빈 강의실 현황</h2>
+      <h2 className={styles.notetext}>빈 강의실 현황</h2>
         <a href="/room-status" className={styles.plusButtonLink}>
           <PlusButton className={styles.plusButton} />
         </a>
@@ -266,7 +266,7 @@ const [rooms, setRooms] = useState(roomsData);
 
     <div className={styles.container}>
           <div className={styles.infoheader}>
-               <h2 className={styles.comtext}>자기 개발</h2>
+               <h2 className={styles.notetext}>자기 개발</h2>
                <a href="/self-development" className={styles.plusButtonLink}>
                     <PlusButton className={styles.plusButton} />
                </a>
@@ -324,7 +324,7 @@ const [rooms, setRooms] = useState(roomsData);
        <div className={styles.container}>
          {/* 자유 게시판 */}
          <div className={styles.infoheader}>
-           <h2 className={styles.comtext}>자유 게시판</h2>
+           <h2 className={styles.notetext}>자유 게시판</h2>
            <a href="/self-development" className={styles.plusButtonLink}>
              <PlusButton className={styles.plusButton} />
            </a>
@@ -349,7 +349,7 @@ const [rooms, setRooms] = useState(roomsData);
 
          {/* 질문 게시판 */}
          <div className={styles.infoheader}>
-           <h2 className={styles.comtext}>질문 게시판</h2>
+           <h2 className={styles.notetext}>질문 게시판</h2>
            <a href="/self-development" className={styles.plusButtonLink}>
              <PlusButton className={styles.plusButton} />
            </a>

@@ -12,6 +12,16 @@
 }
 
 
+.notetext {
+  font-size: 1.6rem; /* 텍스트 크기 */
+  color: #000000; /* 텍스트 색상 */
+  margin-bottom: 3px; 
+  margin-left: 16%;
+  cursor: default;
+  text-align: center;
+
+}
+
 
 /* 대회 정보 섹션 스타일 */
   .competitions {
@@ -62,7 +72,7 @@
     font-size: 1.6rem; /* 텍스트 크기 */
     color: #000000; /* 텍스트 색상 */
     margin-bottom: 3px; 
-    margin-left: 18%;
+    margin-left: 33.5%;
     cursor: default;
 }
 
@@ -105,8 +115,9 @@
 
  /* Tab Container Styles */
 .tabContainer {
-  width: 100%;
+  width: 39%;
   height: 2%;
+  margin-left: 31%;
   display: flex;
   justify-content: space-evenly;
   
@@ -208,8 +219,8 @@
   align-items: flex-end; 
   
   justify-content: center; /* 왼쪽 정렬 */
-  width: 100%; 
-
+  width: 35%; 
+margin-left: 33%;
   margin-bottom: 3px; 
   margin-top: 30px; 
   height: 6%;
@@ -333,7 +344,7 @@
 /* 정보 게시판 섹션 */
 .infoSection {
   width: 90%;
-  max-width: 1200px;
+  /*max-width: 1200px;*/
   background-color: #f0f8ff;
   padding: 20px;
   border-radius: 10px;
@@ -343,10 +354,12 @@
 /* 정보 게시판 포스트 리스트 스타일 */
 .postList {
   display: flex;
+  
+  margin-left: 33.5%;
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 20px;
-  width: 100%;
+  width: 34%;
   display: flex;
   flex-direction: column; /* 세로로 정렬 */
   align-items: center; /* 가운데 정렬 */
@@ -630,7 +643,8 @@ width: 100%;
   }
 
   .postList {
-    width: 100%;
+    width: 50%;
+    
     display: flex;
     flex-direction: column; /* 세로로 정렬 */
     align-items: center; /* 가운데 정렬 */
