@@ -48,7 +48,7 @@ const BootBoardPage = () => {
             setIsLoading(true); // 로딩 시작
 
             try {
-                const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/studies', {
+                const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/studies', {
                     params: {
                         page,
                         size,
@@ -101,7 +101,7 @@ const BootBoardPage = () => {
                     ? 'industry'
                     : 'study';
 
-            const response = await axiosInstance.post(`https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/studies/${id}/scrap`, {
+            const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/studies/${id}/scrap`, {
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
                     'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
@@ -139,7 +139,7 @@ const BootBoardPage = () => {
                         ? 'industry'
                         : 'study';
 
-                const response = await axiosInstance.get(`https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/studies/${categoryPath}`, {
+                const response = await axiosInstance.get(`http://info-rmation.kro.kr/api/board/studies/${categoryPath}`, {
                     params: {
                         searchKeyword: searchTerm, // 검색어 전달
                         page: 0,
@@ -202,7 +202,7 @@ const BootBoardPage = () => {
                     ? 'industry'
                     : 'study';
 
-            const response = await axiosInstance.get(`https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/studies/sort-by-deadline`, {
+            const response = await axiosInstance.get(`http://info-rmation.kro.kr/api/board/studies/sort-by-deadline`, {
                 params: {
                     page: 0,
                     size: 10,

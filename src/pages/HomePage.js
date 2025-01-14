@@ -1,5 +1,4 @@
 /*import React from 'react';*/
-
 import React, { useState, useEffect } from 'react'; // 이 라인이 빠져 있을 수 있습니다.
 
 import { Link, useNavigate } from 'react-router-dom';
@@ -360,13 +359,13 @@ const HomePage = () => {
 
 
               <div className={styles.postList}>
-                <div className={styles.postItem} onClick={() => handleQuestionClick(1)}>
+                <div className={styles.postItem} onClick={() =>navigate(`/ClassRoom`)}>
                   <span className={styles.index}>1</span>
                   <span className={styles.question}>A동 210호</span>
                   <S_cute className={styles.S_cute} />
                 </div>
 
-                <div className={styles.postItem} onClick={() => handleQuestionClick(2)}>
+                <div className={styles.postItem} onClick={() => navigate(`/ClassRoom`)}>
                   <span className={styles.index}>2</span>
                   <span className={styles.question}>B동 530호</span>
 
@@ -516,7 +515,7 @@ const HomePage = () => {
                       </div>
                       <button
                         className={styles.joinButton}
-                        onClick={() => navigate(`/RoomChat/${room.id}`)} // 바로 navigate 호출
+                        onClick={() => navigate(`/FreeChat/${room.roomId}`)} // 바로 navigate 호출
                         >
                         참여하기
                       </button>
@@ -672,12 +671,17 @@ const HomePage = () => {
       {/* 하단바 */}
       <div className={`${styles.footer} ${isDesktop ? styles.desktopFooter : ''}`}>
         <div className={styles.footerItem}>
-          <span>문의하기 </span>
-          <a href="mailto:abcd@gmail.com">abcd@gmail.com</a>
+          <h8 className={styles.footertext}>문의하기 information@inu.ac.kr</h8>
+          <a className={styles.footertext} href="mailto:information@inu.ac.kr"></a>
         </div>
-        <div className={styles.footerItem}>
-          <span>개인정보처리방침</span>
-        </div>
+        <a
+    href="https://www.inu.ac.kr/inu/600/subview.do"
+    target="_blank" // 새 탭에서 열기
+    rel="noopener noreferrer" // 보안 설정
+    className={styles.footerLink} // 필요하면 스타일 추가
+  >
+    개인정보처리방침
+  </a>
       </div>
     </div>
   );

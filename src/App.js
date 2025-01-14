@@ -86,6 +86,9 @@ import ClassChatRoom from './pages/ClassChatRoom'
 import ClassChat from './pages/ClassChat'
 
 
+Object.defineProperty(console, '_commandLineAPI', { get : function() { throw '콘솔을 사용할 수 없습니다.' } });
+
+
 function App() {
   return (
     <UserProvider>
