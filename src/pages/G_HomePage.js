@@ -20,10 +20,120 @@ import S_cute from '../assets/S_cuteButton'; //스크랩
 
 import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들기 위함
 
-import {
-  G_fetchFreeBoardData
-  , G_fetchQuestBoardData, TopfetchFreeBoardData, TopfetchQuestBoardData
-} from '../api/GraduateBoardApi.js'; //Api
+//import {  G_fetchFreeBoardData  , G_fetchQuestBoardData, TopfetchFreeBoardData, TopfetchQuestBoardData
+//} from '../api/GraduateBoardApi.js'; //Api
+
+
+import axios from 'axios';
+import {jwtDecode} from 'jwt-decode';
+
+
+const BASE_URL = 'https://3e319465b029.ngrok.app/';
+
+
+//import {  fetchFreeBoardData, fetchQuestBoardData, fetchCompetitionBoardData,fetchCodingBoardData, fetchStudyBoardData } from '../api/boardApi'; //Api
+//fetchMainPageData,
+
+
+// 인증 헤더 가져오기 함수
+const getAuthHeaders = () => {
+  const accessToken = localStorage.getItem('authToken');
+
+  if (!accessToken) {
+    console.warn('Access token is missing');
+    return {};
+  }
+
+  try {
+    const decodedToken = jwtDecode(accessToken);
+    const userId = decodedToken?.userId || '';
+    console.log('Decoded Token:', decodedToken);
+
+    return {
+      Authorization: `Bearer ${accessToken}`,
+      'X-USER-ID': userId,
+    };
+  } catch (error) {
+    console.error('Token decoding error:', error);
+    return {};
+  }
+};
+
+// axios 인스턴스 설정
+const axiosInstance = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true,
+});
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const authHeaders = getAuthHeaders();
+    console.log('Auth Headers:', authHeaders);
+    config.headers = {
+      ...config.headers,
+      ...authHeaders,
+      'ngrok-skip-browser-warning': 1,
+    };
+    return config;
+  },
+  (error) => {
+    console.error('Request Error:', error);
+    return Promise.reject(error);
+  }
+);
+
+
+
+
+
+
+
+
+// 1. 퀘스트 게시글 상위 3개 조회
+export const G_fetchQuestBoardData = async () => {
+  try {
+      const response = await axiosInstance.get('/api/board/graduate/top-quest'); // 퀘스트 게시글 상위 3개 조회 엔드포인트 호출
+      return response.data; // 응답 데이터를 반환
+  } catch (error) {
+      console.error('Error fetching G_top quest board data:', error);
+      throw error; // 에러 발생 시 throw
+  }
+};
+
+
+
+// 2. 프리 게시글 상위 3개 조회
+export const G_fetchFreeBoardData = async () => {
+  try {
+      const response = await axiosInstance.get('/api/board/graduate/top-free'); // 프리 게시글 상위 3개 조회 엔드포인트 호출
+      return response.data; // 응답 데이터를 반환
+  } catch (error) {
+      console.error('Error fetching G_top free board data:', error);
+      throw error; // 에러 발생 시 throw
+  }
+};
+
+// 3. 프리 졸업생 상위 3개 조회
+export const TopfetchFreeBoardData = async () => {
+  try {
+      const response = await axiosInstance.get('/api/board/graduate/main/free'); // 프리 졸업생 상위 3개 조회 엔드포인트 호출
+      return response.data; // 응답 데이터를 반환
+  } catch (error) {
+      console.error('Error fetching top free data:', error);
+      throw error; // 에러 발생 시 throw
+  }
+};
+
+// 4. 퀘스트 졸업생 상위 3개 조회
+export const TopfetchQuestBoardData = async () => {
+  try {
+      const response = await axiosInstance.get('/api/board/graduate/main/quest'); // 퀘스트 졸업생 상위 3개 조회 엔드포인트 호출
+      return response.data; // 응답 데이터를 반환
+  } catch (error) {
+      console.error('Error fetching top quest data:', error);
+      throw error; // 에러 발생 시 throw
+  }
+};
 
 
 const G_HomePage = () => {

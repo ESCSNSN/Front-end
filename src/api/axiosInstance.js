@@ -1,7 +1,7 @@
-import axios from 'axios';
-import {jwtDecode} from 'jwt-decode';
+/*import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
-const BASE_URL = 'https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app';
+const BASE_URL = 'https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app';
 
 // 인증 헤더 가져오기 함수
 const getAuthHeaders = () => {
@@ -88,3 +88,4 @@ axiosInstance.interceptors.response.use(
 );
 
 export default axiosInstance;
+*/
