@@ -515,7 +515,7 @@ const HomePage = () => {
                       </div>
                       <button
                         className={styles.joinButton}
-                        onClick={() => navigate(`/RoomChat/${room.id}`)} // 바로 navigate 호출
+                        onClick={() => navigate(`/FreeChat/${room.roomId}`)} // 바로 navigate 호출
                         >
                         참여하기
                       </button>
