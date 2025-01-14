@@ -17,7 +17,7 @@ import axios from 'axios'; // API 요청을 위한 axios
 const FreeChat = () => {
     const websocketRef = useRef(null); // 웹소켓 참조
     const reconnectIntervalRef = useRef(null); // 재연결 타이머
-    const { classId } = useParams();
+    const { roomId } = useParams();
     const navigate = useNavigate();
 
     const [messages, setMessages] = useState([]);
@@ -28,7 +28,6 @@ const FreeChat = () => {
     const [room, setRoom] = useState([]); // 채팅방 정보
     //const token = localStorage.getItem('token'); // 로컬 스토리지에서 JWT 토큰 가져오기
     const token = 'abc';
-    const roomId = '91f3411b-1433-4fdd-b3ac-c0a594b5f407'; // 채팅방 ID는 classId로 설정
     const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
     const baseUrl = 'https://rmation-chat.kro.kr'; // 백엔드 서버 URL
     // 웹소켓 초기화 함수

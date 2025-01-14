@@ -25,12 +25,15 @@ import Icon10 from '../images/plusIcon.png'
 import Header from './_.js'; // 상단바 컴포넌트
 
 const FreeRoom = () => {
-  
-const [roomData, setRoomData] = useState({ type: 'free' }); 
+  const navigate = useNavigate();
+
+
+  const [roomData, setRoomData] = useState({ type: 'free' }); 
+
   const [rooms, setRooms] = useState([]);
   const [filteredRooms, setFilteredRooms] = useState([]); // 필터된 방 목록
   const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate();
+  
   const isDesktop = useMediaQuery({ query: '(min-width: 769px)' });
   const baseUrl = 'https://rmation-chat.kro.kr';
   const roomType = 'free'; 
@@ -76,7 +79,7 @@ const [roomData, setRoomData] = useState({ type: 'free' });
 
   // 방 ID에 맞는 ChatPreview 페이지로 이동하기
   const handleRoomClick = (roomId) => {
-    navigate(`/ChatPreview/${roomId}`);
+    navigate(`/ChatPreview/${roomId}/${roomType}`);
   };
 
   // 프로필로 이동

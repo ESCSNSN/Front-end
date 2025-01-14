@@ -20,6 +20,7 @@ function ChatPreview() {
   const navigate = useNavigate();
   const { roomId } = useParams(); // roomId를 URL에서 가져옴
 
+ // console.log(roomId)
   const [roomData, setRoomData] = useState(null); // 채팅방 정보 상태
   const [loading, setLoading] = useState(true); // 로딩 상태
   const [error, setError] = useState(null); // 에러 상태
@@ -31,8 +32,8 @@ function ChatPreview() {
   const fetchRoomData = async () => {
     try {
       // roomType에 따라 요청할 URL 생성
-      const roomType = roomData?.type; // 기본값으로 'free' 설정
-      const response = await axios.get(`${BASE_URL}/Room/RoomList/${roomType}`, {
+     // const roomType = roomData?.type; // 기본값으로 'free' 설정
+      const response = await axios.get(`${BASE_URL}/Room/${roomId}`, {
         headers: {
           'ngrok-skip-browser-warning': 'abc',
           'Content-Type': 'application/json',
@@ -50,15 +51,12 @@ function ChatPreview() {
     } finally {
       setLoading(false);
     }
-    console.log(roomData);
   };
   
   // 컴포넌트 마운트 시 API 호출
   React.useEffect(() => {
     fetchRoomData();
   }, [roomId]);
-
-  console.log(roomData);
 
   const handleJoinClick = () => {
     navigate(`/FreeChat/${roomId}`);

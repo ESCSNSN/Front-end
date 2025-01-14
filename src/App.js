@@ -182,7 +182,8 @@ function App() {
           <Route path="/Profileedit" element={<Profileedit />} />
           <Route path="/Myprofile" element={<Myprofile />} />
           <Route path="/ChatPreview" element={<ChatPreview />} />
-          <Route path="/ChatPreview/:roomId" element={<ChatPreview />} />
+          <Route path="/ChatPreview/:id" element={<ChatPreview />} />
+          <Route path="/ChatPreview/:roomId/:roomType" element={<ChatPreview />} />
           
          <Route path="/Otherprofile" element={<Otherprofile />} />
 
@@ -201,11 +202,11 @@ function App() {
           <Route path="/QuestionpostingPage/:id" element={<QuestionpostingPage />} />
           <Route path="/FreepostingPage/:id" element={<FreepostingPage />} />
           <Route path="/FreeChat/" element={<FreeChat />} />
-          <Route path="/FreeChat/:id" element={<FreeChat />} />
+          <Route path="/FreeChat/:roomId" element={<FreeChat />} />
           <Route path="/RoomChat/" element={<RoomChat />} />
-          <Route path="/RoomChat/:id" element={<RoomChat />} />
+          <Route path="/RoomChat/:roomId" element={<RoomChat />} />
           
-          <Route path="/ClassChatRoom/:id" element={<ClassChatRoom />} />
+          <Route path="/ClassChatRoom/:roomId" element={<ClassChatRoom />} />
           <Route path="/G_Chat/" element={<G_Chat />} />
         </Routes>
       </BrowserRouter>
