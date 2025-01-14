@@ -11,7 +11,7 @@ import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들�
 import Header from './_.js';  // 상단바 컴포넌트
 import axiosInstance from '../utils/api'; // Axios 인스턴스
 import { jwtDecode } from 'jwt-decode'; // default가 아닌 named import 사용. authToken에서 사용자 ID 추출하기. npm install jwt-decode
-import styles from './RoomPage.module.css';
+import styles from './Class_Room.module.css';
 import CommunicationRoom_goBack from '../images/왼쪽 나가기 버튼.png';
 import menuIcon from '../images/메뉴버튼.png';
 import Icon1 from '../images/하트이모지.png';  // 방 1의 아이콘
@@ -29,7 +29,7 @@ const RoomPage = () => {
   const [selectedRooms, setSelectedRooms] = useState([]); // 신고 및 편집을 위해 선택된 방 목록
   const [isModalOpen, setIsModalOpen] = useState(false); // 신고 모달 열림/닫힘 상태
   const [reportReason, setReportReason] = useState(''); // 신고 사유 상태
-  const [UserId, setUserId] = useState(); // 토큰에서 userid 추출하기
+  const [UserId, setUserId] = useState(''); // 토큰에서 userid 추출하기
 
   const navigate = useNavigate();
 
@@ -40,37 +40,44 @@ const RoomPage = () => {
   // 방 목록을 백엔드에서 가져오기 위한 useEffect
   useEffect(() => {
     const fetchRooms = async () => {
-      const userResponse = await axiosInstance.get('http://info-rmation.kro.kr/api/auth/get-username');
-      setUserId(userResponse.data.userId); // 올바른 데이터 추출
+      const token = localStorage.getItem('authToken');
+      fetch('https://fd5ca3755e85.ngrok.app/api/auth/get-username', {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'ngrok-skip-browser-warning': 'true'
+            },
+        method: 'GET',
+      }).then((res) => {return res.json();})
+      .then((data) => {
+           // setUserId(data.userId); // 올바른 데이터 추출
+            try {
+  
+                if (!token) {
+                  throw new Error('로그인 토큰이 없습니다.'); // 로그인되지 않은 상태 
+                }
+        
+                fetch(`https://rmation-chat.kro.kr/Tel/${data.userId}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'ngrok-skip-browser-warning': 'true',
+                    },
+                    method: 'GET',
+                }).then((res2) => {return res2.json();})
+                .then((data2) => {
+                    setRooms(data2.data);
+                });
+        
+                // 응답 데이터 상태에 저장
+                
+              } catch (error) {
+                console.error('메시지 목록 불러오는 중 오류가 발생했습니다:', error);
+              }
+      });
+      
 
       console.log(UserId);
-
-      try {
-        // 로컬 스토리지에서 JWT 토큰 가져오기
-        const token = localStorage.getItem('authToken');
-        if (!token) {
-          throw new Error('로그인 토큰이 없습니다.'); // 로그인되지 않은 상태 
-        }
-
-        // 백엔드 API 호출
-        const response = await axiosInstance.get(`https://rmation-chat.kro.kr/Tel/${UserId}`, {
-
-          headers: {
-            'ngrok-skip-browser-warning': 'true', // 필요 시 유지
-          },
-        });
-        if (response.data.code !== 200) {
-          throw new Error('메시지 목록을 불러오는데 실패했습니다.');
-        }
-        console.log(response);
-
-        // 응답 데이터 상태에 저장
-        setRooms(response.data.data);
-      } catch (error) {
-        console.error('메시지 목록 불러오는 중 오류가 발생했습니다:', error);
-      }
+      
     };
-
     fetchRooms();
   }, []);
 
@@ -78,11 +85,8 @@ const RoomPage = () => {
   // 방 ID에 맞는 페이지로 이동하기
   const handleRoomClick = async (id) => {
     try {
-        // 사용자 정보 가져오기 (JWT 토큰에서 디코딩하거나 상태에서 가져오기)
-        const token = localStorage.getItem('authToken');
-        const decodedToken = jwtDecode(token); // JWT 디코딩
-        const userId = UserId;
-        const userName = '신상윤';
+      const accessToken = localStorage.getItem('accessToken');
+      console.log(accessToken);
 
         // 방 입장 API 호출
         await axiosInstance.post('https://rmation-chat.kro.kr/JoinRoom', {
@@ -90,8 +94,8 @@ const RoomPage = () => {
                 'ngrok-skip-browser-warning': 'true', // 필요 시 유지
             },
             roomId: id,
-            userId: userId,
-            userName: userName,
+            userId: UserId,
+            userName: "익명",
         });
 
         // 성공 시 채팅방으로 이동
@@ -246,20 +250,6 @@ const RoomPage = () => {
           </h1>
         </div>
 
-        {/* 메뉴 버튼 */}
-        <img
-          src={menuIcon}
-          className={`${styles.menuButton} ${isDesktop ? styles.desktopMenuButton : ''}`}
-          alt="메뉴"
-          onClick={toggleMenu}
-        />
-        {menuOpenId && (
-          <div className={`${styles.dropdownMenu} ${isDesktop ? styles["desktopDropDownMenu"] : ''}`}>
-            <div className={styles.menuItem} onClick={handleEditClick}>편집하기</div>
-            <div className={styles.menuItem} onClick={handleReportClick}>신고하기</div>
-          </div>
-        )}
-
         {/* 방 목록 추가 */}
         <div className={`${styles.roomsList} ${isDesktop ? styles.desktopRoomsList : ''}`}>
           {rooms.map((room) => (
@@ -292,7 +282,7 @@ const RoomPage = () => {
           ))}
         </div>
 
-        {/* 방 신고 및 취소 버튼 */}
+        {/* 방 신고 및 취소 버튼
         {isSelectingForReport && (
           <div className={styles.reportActions}>
             <button className={`${styles.reportButton} ${isDesktop ? styles["desktopReportButton"] : ''}`} onClick={handleOpenReportModal}>
@@ -302,9 +292,9 @@ const RoomPage = () => {
               신고 모드 취소
             </button>
           </div>
-        )}
+        )} */}
 
-        {/* 방 삭제 및 취소 버튼 */}
+        {/* 방 삭제 및 취소 버튼
         {isSelectingForEdit && (
           <div className={styles.reportActions}>
             <button className={`${styles.reportButton} ${isDesktop ? styles.desktopReportButton : ''}`} onClick={handleDeleteRooms}>
@@ -314,9 +304,9 @@ const RoomPage = () => {
               편집 모드 취소
             </button>
           </div>
-        )}
+        )} */}
 
-        {/* 신고 모달 */}
+        {/* 신고 모달
         {isModalOpen && (
           <div className={styles.modalOverlay}>
             <div className={styles.modalContent}>
@@ -337,38 +327,40 @@ const RoomPage = () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
 
         {/* 하단바 */}
-        <div className={styles.bottomNav}>
-          <div className={styles.navItem}>
-            <img
-              src={Icon4}
-              alt="내가 속한 방"
-              className={styles.navIcon}
-              onClick={() => navigate("/RoomPage")}
-            />
-            <span className={styles.navText}>내가 속한 방</span>
+        <div className={`${styles.bottomNav} ${isDesktop ? styles.desktopBottomNav : ''}`}>
+            <div className={`${styles.navItem} ${isDesktop ? styles.desktopNavItem : ''}`}>
+              <img
+                src={Icon4}
+                alt="내가 속한 방"
+                className={`${styles.navIcon} ${isDesktop ? styles.desktopNavIcon : ''}`}
+                onClick={() => navigate("/RoomPage")}
+              />
+              <span className={`${styles.navText} ${isDesktop ? styles.desktopNavText : ''}`}>내가 속한 방</span>
+            </div>
+
+            <div className={`${styles.navItem} ${isDesktop ? styles.desktopNavItem : ''}`}>
+              <img
+                src={Icon5}
+                alt="수업 소통 방"
+                className={`${styles.navIcon} ${isDesktop ? styles.desktopNavIcon : ''}`}
+                onClick={() => navigate("/Class_Room")}
+              />
+              <span className={`${styles.navText} ${isDesktop ? styles.desktopNavText : ''}`}>수업 소통 방</span>
+            </div>
+
+            <div className={`${styles.navItem} ${isDesktop ? styles.desktopNavItem : ''}`}>
+              <img
+                src={Icon6}
+                alt="자유 소통 방"
+                className={`${styles.navIcon} ${isDesktop ? styles.desktopNavIcon : ''}`}
+                onClick={() => navigate("/FreeRoom")}
+              />
+              <span className={`${styles.navText} ${isDesktop ? styles.desktopNavText : ''}`}>자유 소통 방</span>
+            </div>
           </div>
-          <div className={styles.navItem}>
-            <img
-              src={Icon5}
-              alt="수업 소통 방"
-              className={styles.navIcon}
-              onClick={() => navigate('/Class_Room')}
-            />
-            <span className={styles.navText}>수업 소통 방</span>
-          </div>
-          <div className={styles.navItem}>
-            <img
-              src={Icon6}
-              alt="자유 소통 방"
-              className={styles.navIcon}
-              onClick={() => navigate("/FreeRoom")}
-            />
-            <span className={styles.navText}>자유 소통 방</span>
-          </div>
-        </div>
       </div>
     </div>
   );

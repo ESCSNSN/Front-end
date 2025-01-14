@@ -16,8 +16,8 @@
 }
 
 .pageTitle {
-  margin-top: -200px;
-  font-size: 1.3rem;
+  margin-top: 0px;
+  font-size: 1.2rem;
   text-align: center;
   flex-grow: 1;
   /* 제목이 가능한 넓은 공간을 차지하도록 설정 */
@@ -25,15 +25,15 @@
   left: 50%;
   transform: translateX(-50%);
   /* 제목을 정확히 중앙으로 이동 */
+
 }
 
 
 .roomsList {
   
-  margin-bottom: 10px;
+  margin-top: 20px;
   position: absolute;
-  left: 50px;
-  right : 40px;
+  left: -10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -116,23 +116,19 @@
 
 .titleContainer {
   display: flex;
-  justify-content: space-between;
-  /* 화살표는 왼쪽, 제목은 중앙 */
   align-items: center;
-  width: 10%;
+  justify-content: center;
+  /* 중앙 정렬 */
+  width: 100%;
   position: relative;
-
-  /* 위 아래 공백 추가 */
-  padding-bottom: 10%;
-  padding-top:10%;
 }
 
 .goBackButton {
   cursor: pointer;
-  margin-left: 34%;
-  margin-top: 0%;
   height: 2rem;
-  width:auto;
+  position: absolute;
+  left: 10px;
+  /* 화면 왼쪽에 고정 */
 }
 
 .menuButton {
@@ -205,51 +201,38 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  
   background-color: #73b3e3;
   border-top: 1px solid #ddd;
   display: flex;
-  justify-content: space-around;
-  /* 아이콘들을 균등하게 배치 */
-  padding: 10px;
+  justify-content: space-around;  /* 아이콘들을 균등하게 배치 */
+  padding: 5px;
+
+  margin-top: 10%;
+  
 }
 
 .navItem {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  /* 세로 중앙 정렬 */
+  justify-content: center;  /* 세로 중앙 정렬 */
 }
 
 .navIcon {
-  width: 57px;
+  width: 65px;
   height: 50px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  
 }
 
 .navText {
   margin-bottom: 5px;
   font-size: 1rem;
-  color: black;
-  /* 기본 텍스트 색상 */
-  font-weight: normal;
-  /* 기본 상태에서는 normal */
-  transition: color 0.3s ease, font-weight 0.3s ease;
-  /* 색상 및 굵기 전환 효과 */
-}
-
-/* 호버 효과: 아이콘에 마우스를 올리면 텍스트도 굵어짐 */
-.navItem:hover .navIcon {
-  transform: scale(1.2);
-  /* 마우스 올렸을 때 아이콘 확대 */
-}
-
-.navItem:hover .navText {
-  color: black;
-  /* 마우스 올렸을 때 텍스트 색상 변경 */
-  font-weight: bold;
-  /* 마우스 올렸을 때 텍스트 굵기 변경 */
+  color: black;  /* 기본 텍스트 색상 */
+  font-weight: normal;  /* 기본 상태에서는 normal */
+   /* transition: color 0.3s ease, font-weight 0.3s ease; 색상 및 굵기 전환 효과 */
 }
 
 /* 신고 모드에서 사용하는 체크박스 스타일 */
