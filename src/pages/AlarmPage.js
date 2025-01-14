@@ -16,7 +16,7 @@ const AlarmPage = () => {
     const navigate = useNavigate();
     useEffect(() => {
         const fetchNoti = async () => {
-            const userId = 200204263//localStorage.getItem('authToken');
+            const userId = 200204263//localStorage.getItem('authToken'); // 로그인 url 고치고 나면 authToken 받아오는 코드로
             console.log(userId);
             fetch(`https://rmation-chat.kro.kr/notification/${userId}`, {
                 method : 'get'
@@ -52,6 +52,14 @@ const AlarmPage = () => {
 
     // 삭제 확인 모달 열기
     const handleDeleteClick = (id, event) => {
+       
+        fetch(`https://rmation-chat.kro.kr/notification/${id}`,{
+            method : 'delete'
+        }).then((res) => {
+            return res.json();
+        }).then((data) => {
+            
+        });
         event.stopPropagation(); // 삭제하기 버튼 클릭 시 이벤트 전파 방지
         setSelectedMessageId(id);
         setShowDeleteModal(true);
@@ -59,6 +67,7 @@ const AlarmPage = () => {
 
     // 삭제 확인 모달에서 삭제 버튼 클릭 시
     const handleConfirmDelete = () => {
+       
         setMessages((prevMessages) => prevMessages.filter((message) => message.id !== selectedMessageId));
         setShowDeleteModal(false);
         setSelectedMessageId(null);
