@@ -359,13 +359,13 @@ const HomePage = () => {
 
 
               <div className={styles.postList}>
-                <div className={styles.postItem} onClick={() => handleQuestionClick(1)}>
+                <div className={styles.postItem} onClick={() =>navigate(`/ClassRoom`)}>
                   <span className={styles.index}>1</span>
                   <span className={styles.question}>A동 210호</span>
                   <S_cute className={styles.S_cute} />
                 </div>
 
-                <div className={styles.postItem} onClick={() => handleQuestionClick(2)}>
+                <div className={styles.postItem} onClick={() => navigate(`/ClassRoom`)}>
                   <span className={styles.index}>2</span>
                   <span className={styles.question}>B동 530호</span>
 

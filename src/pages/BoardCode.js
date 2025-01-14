@@ -489,7 +489,7 @@ const handleEdit = async () => {
           alt="back_arrow"
           onClick={handleBackClick}
         />
-        <h1 className={styles["title-text2"]}>정보 게시판</h1>
+        <h1 className={styles["title-text2"]}>코드질문 게시판</h1>
         <img src={bar} className={styles["app-bar"]} alt="bar" />
 
         <h1 className={styles["title-text3"]}>{title || "게시판 제목"}</h1>
