@@ -153,11 +153,6 @@ function App() {
 
 
 
-
-
-
-
-
           <Route path="/ChatRoom/:id" element={<ChatRoom />} /> {/* 동적 라우팅을 통한 채팅방 페이지 */}
 
           {/* 석진님 페이지*/}
