@@ -23,9 +23,9 @@ const Myprofile = () => {
       try {
         const userId = '202301641'; // 현재 로그인된 사용자 ID user?.userId
       //  if (!userId) return;
-
+      const roomType = roomData?.type;
         // 사용자 채팅방 목록 조회
-        const response = await fetch(`https://rmation-chat.kro.kr/Room/userId/${userId}`, {
+        const response = await fetch(`https://rmation-chat.kro.kr/Room/userId/${userId}/${roomType}`, {
           headers: {
               contentType: 'application/json',
               'ngrok-skip-browser-warning': 'abc',
