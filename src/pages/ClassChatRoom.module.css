@@ -207,12 +207,16 @@
     .headerRow {
       width: 100%;
       margin-bottom: 20px;
+      
+    cursor: pointer;
+    z-index: 9999;
     }
   
     .sectionTitle {
       font-size: 1.4rem;
       margin-top: -3%;
       margin-left: 37%;
+      cursor: default;
     }
   
     .classInfo {

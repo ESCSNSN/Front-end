@@ -139,6 +139,7 @@
 
   .goBackButton {
     margin-top: 7%;
+    cursor: pointer;
   }
 
   .sectionTitle {
@@ -200,20 +201,25 @@
   }
 
   .goBackButton{
-
-
-    margin-left: 34%;
+    cursor: pointer;
+    margin-left: 0%;
+    
   }
 
   .headerRow {
-    width: 100%;
-    margin-bottom: 20px;
+    width: 30%;
+    height: 0%;
+    margin-left: 34%;
+    margin-bottom: 1%;
+    cursor: pointer;
+    z-index: 9999;
   }
 
   .sectionTitle {
     font-size: 1.4rem;
-    margin-top: -3%;
-    margin-left: 37%;
+    margin-top: -10%;
+    margin-left: 10%;
+    cursor: default;
   }
 
   .classInfo {
@@ -221,7 +227,7 @@
     font-size: 1rem;
     border-bottom: 2px solid #000000;
     margin-left: 34%;
-    margin-top: -14%;
+    margin-top: -1%;
   }
 
   .messageList {

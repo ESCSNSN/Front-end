@@ -25,10 +25,10 @@ import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들�
 
 
 import axios from 'axios';
-import {jwtDecode} from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 
-const BASE_URL = 'https://3e319465b029.ngrok.app/';
+const BASE_URL = 'http://info-rmation.kro.kr';
 
 
 //import {  fetchFreeBoardData, fetchQuestBoardData, fetchCompetitionBoardData,fetchCodingBoardData, fetchStudyBoardData } from '../api/boardApi'; //Api
@@ -185,25 +185,36 @@ const G_HomePage = () => {
     };
 
     loadData();
+
+
+
+
     const fetchRooms = async () => {
-      const userId = '202301641'; // 추후 삭제제
+      const userId = '202301641'; // 추후 삭제 예정
+      const roomType = roomData?.type || 'room'; // roomData에서 type을 가져오되, 없으면 'room'으로 기본값 설정
       const baseUrl = 'https://rmation-chat.kro.kr';
-      fetch(`${baseUrl}/Room/userId/${userId}`, {
-        headers: {
-          contentType: 'application/json',
-          'ngrok-skip-browser-warning': 'abc',
-        },
-        method: 'GET'
-      }).then((res) => { return res.json() })
-        .then((data) => {
-          setRooms(data.data);
+  
+      try {
+        const response = await fetch(`${baseUrl}/Room/RoomList/${roomType}`, {
+          headers: {
+            'Content-Type': 'application/json', // 'contentType'을 'Content-Type'으로 변경
+            'ngrok-skip-browser-warning': 'abc',
+          },
+          method: 'GET',
         });
-      const roomsData = [
-        { roomId: 1, roomName: '내가 속한 방 제목 1', lastMessage: '마지막 내용', icon: Icon1, selected: false },
-      ];
+        const data = await response.json();
+        setRooms(data.data);
+      } catch (error) {
+        console.error('Error fetching rooms:', error);
+      }
     };
+  
     fetchRooms();
   }, []);
+  
+  
+    const [roomData, setRoomData] = useState({ type: 'room' });  // 기본값 설정
+  
 
   const [rooms, setRooms] = useState([]);
   //소통방
@@ -356,7 +367,7 @@ const G_HomePage = () => {
                     </div>
                     <button
                       className={styles.joinButton}
-                      onClick={() => navigate(`/RoomChat/${room.id}`)}
+                      onClick={() => navigate(`/FreeChat/${room.roomId}`)}
                     >
                       참여하기
                     </button>

@@ -195,7 +195,7 @@ const FreeChat = () => {
                     <img
                         src={CommunicationRoom_goBack}
                         alt="뒤로가기"
-                        className={`${styles.goBackButton} ${isDesktop ? styles.desktopGoBackButton : styles.mobileGoBackButton}`}
+                        className={styles.goBackButton}
                         onClick={() => navigate(-1)}
                     />
                     <h2 className={`${styles.sectionTitle} ${isDesktop ? styles.desktopSectionTitle : styles.mobileSectionTitle}`}>{room.roomName}</h2>
