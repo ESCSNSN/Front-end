@@ -8,7 +8,7 @@ import main_message from '../images/message.png';
 import main_my from '../images/my.png';
 import { useMediaQuery } from 'react-responsive';
 
-import Header from './_2.js'; // 상단바 컴포넌트
+import Header from './_.js'; // 상단바 컴포넌트
 import styles from './Class_Room.module.css';
 import CommunicationRoom_goBack from '../images/왼쪽 나가기 버튼.png';
 import menuIcon from '../images/메뉴버튼.png';

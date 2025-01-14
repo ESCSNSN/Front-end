@@ -22,7 +22,7 @@ import Icon9 from '../images/검색.png';
 import Icon10 from '../images/Make.png'
 
 
-import Header from './_2.js'; // 상단바 컴포넌트
+import Header from './_.js'; // 상단바 컴포넌트
 
 const FreeRoom = () => {
   const [rooms, setRooms] = useState([]);
