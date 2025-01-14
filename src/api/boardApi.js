@@ -1,4 +1,4 @@
-import axiosInstance from './axiosInstance';
+import axiosInstance from '../utils/api.js'; // 미리 설정된 axios 인스턴스
 
 {/*// 메인 페이지 데이터 가져오기
 export const fetchMainPageData = async () => {
