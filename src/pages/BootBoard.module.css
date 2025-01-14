@@ -178,7 +178,7 @@
     height: 2rem;
     position: absolute;
     left: 10px;
-    margin-bottom: 100px;
+    margin-bottom: 140px;
     /* 화면 왼쪽에 고정 */
 }
 
@@ -458,7 +458,7 @@
 }
 
 /* 버튼 스타일 */
-/* button {
+button {
   cursor: pointer;
   background-color: #007BFF;
   color: white;
@@ -471,7 +471,7 @@
 
 button:hover {
   background-color: #0056b3;
-} */
+}
 
 .textarea_reply {
   width: 100%;

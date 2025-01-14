@@ -10,11 +10,12 @@ import main_message from '../images/message.png';
 import main_my from '../images/my.png';
 import CommunicationRoom_goBack from '../images/왼쪽 나가기 버튼.png';
 
+import Header from './_2.js'; // 상단바 컴포넌트
 import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들기 위함
 import axios from 'axios';
 
 // 백엔드 기본 URL 설정
-const BASE_URL = 'https://4784-61-84-64-212.ngrok-free.app';
+const BASE_URL = 'https://rmation-chat.kro.kr';
 
 const Otherprofile = () => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const Otherprofile = () => {
             method: 'GET',
         });
         response = await response.json();
+        console.log(response.data.roomId);
         if (response.code === 200) {
           setRoomName(response.data.roomName);
         } else {
@@ -50,7 +52,6 @@ const Otherprofile = () => {
         setError('방 정보를 가져오는 데 실패했습니다.');
       }
     };
-
     // 사용자 정보 가져오기
     const fetchUserInfo = async () => {
       try {
@@ -63,6 +64,7 @@ const Otherprofile = () => {
         });
         response = await response.json();   
         console.log(response.data);
+       
         if (response.code === 200) {
           const user = response.data.find((user) => user.userId === userId);
           console.log(user);
@@ -130,8 +132,8 @@ const Otherprofile = () => {
 
   return (
     <div className={styles.app}>
-      {/* 상단바 */}
-      <header className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : styles.mobileHeader}`}>
+       <Header />
+      {/* 상단바       <header className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : styles.mobileHeader}`}>
         <div className={styles["title-group"]}>
           <img src={main_mascot} className={styles["app-main_mascot"]} alt="main_mascot" />
           <h2>INFO!</h2>
@@ -142,7 +144,8 @@ const Otherprofile = () => {
             <img src={main_my} className={styles["app-main_my"]} alt="main_my" />
           </div>
         </div>
-      </header>
+      </header>*/}
+
 
       <div className={styles.container}>
         <div className={styles.content}>

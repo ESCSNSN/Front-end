@@ -9,8 +9,12 @@ import CommunicationRoom_goBack from '../images/왼쪽 나가기 버튼.png';
 import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들기 위함
 import axios from 'axios';
 
+
+import Header from './_2.js'; // 상단바 컴포넌트
+
+
 // 백엔드 기본 URL 설정
-const BASE_URL = 'https://4784-61-84-64-212.ngrok-free.app';
+const BASE_URL = 'https://rmation-chat.kro.kr';
 
 function ChatPreview() {
   const navigate = useNavigate();
@@ -43,6 +47,7 @@ function ChatPreview() {
     } finally {
       setLoading(false);
     }
+    console.log(roomData);
   };
 
   // 컴포넌트 마운트 시 API 호출
@@ -52,7 +57,8 @@ function ChatPreview() {
 
   const handleJoinClick = () => {
     // 참여하기 버튼 클릭 로직 추가 가능
-    alert('채팅방에 참여합니다!');
+    //alert('채팅방에 참여합니다!');
+    navigate(`/FreeChat/${roomId}`);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -60,19 +66,8 @@ function ChatPreview() {
 
   return (
     <div className={styles.app}>
-      {/* 상단바 */}
-      <header className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : styles.mobileHeader}`}>
-        <div className={styles["title-group"]}>
-          <img src={main_mascot} className={styles["app-main_mascot"]} alt="main_mascot" />
-          <h2>INFO!</h2>
-          <div className={styles["right-section"]}>
-            <h2 className={styles["title-text"]}>공지사항</h2>
-            <img src={main_bell} className={styles["app-main_bell"]} alt="main_bell" />
-            <img src={main_message} className={styles["app-main_message"]} alt="main_message" />
-            <img src={main_my} className={styles["app-main_my"]} alt="main_my" />
-          </div>
-        </div>
-      </header>
+       <Header />
+    
 
       {/* 메인 컨텐츠 */}
       <div className={`${styles.container} ${isDesktop ? styles.desktopContainer : styles.mobileContainer}`}>

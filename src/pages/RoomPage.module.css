@@ -29,13 +29,20 @@
 
 
 .roomsList {
-  margin-top: -20px;
+  
+  margin-bottom: 10px;
   position: absolute;
   left: 50px;
-  right: 40px;
+  right : 40px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding: 0; /* 내부 여백 제거 */
+  overflow-y: auto;
+  
+  overflow-x: none; 
+  padding-bottom: 20%; /* 필요하면 여백 추가 */
+
 }
 
 .roomItem {
@@ -43,10 +50,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px;
-  background-color: #B5DFFF;
+  background-color: #B5DFFF; 
   border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  overflow-y: auto;
+  margin-left: 4%;
+  
+  width: 94%;
 }
 
 /*
@@ -109,7 +119,7 @@
   justify-content: space-between;
   /* 화살표는 왼쪽, 제목은 중앙 */
   align-items: center;
-  width: 100%;
+  width: 10%;
   position: relative;
 
   /* 위 아래 공백 추가 */
@@ -119,8 +129,8 @@
 
 .goBackButton {
   cursor: pointer;
-  margin-left: 10px;
-  margin-top: -40px;
+  margin-left: 34%;
+  margin-top: 0%;
   height: 2rem;
   width:auto;
 }
@@ -130,8 +140,8 @@
   height: 2rem;
   position: absolute;
   /* 절대 위치 지정 */
-  margin-top: -20px;
-  right: 30px;
+  margin-top: 2%;
+  right: 34%;
   /* 오른쪽에서 30px 떨어진 위치로 설정 */
   transform: translateY(-120%);
   /* 버튼을 상단바 중앙에 수직 정렬 */
@@ -185,7 +195,7 @@
 
 .roomIcon {
   width: 38px;
-  height: 35px;
+  height: 50px;
   margin-right: 15px;
 }
 
@@ -349,26 +359,31 @@
   /* 사용자가 크기 조절 불가능하게 설정 */
 }
 
+
+
+
+
+
+
 /* 큰 화면용 스타일 */
 @media (min-width: 1024px) {
   .desktopTitleContainer {
     padding-top: 20px;
     padding-bottom: 20px;
+    width: 100%;
   }
 
   .desktopPageTitle {
-    margin-top: -150px;
+    margin-top: 2%;
+    width: 100%;
     font-size: 1.5rem;
   }
 
   .desktopRoomsList {
-    margin-top:10px;
-    position: absolute;
-    left: 100px;
-    right: 100px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    margin-left: 21%;
+    width: 52%; /* 목록 너비 제한 */
+    height: 20%;
+  overflow-x: hidden;
   }
 
   .desktopRoomItem {
@@ -418,8 +433,9 @@
   }
 
   .roomsList {
-    margin-left: 00px;
-    margin-right: 00px;
+    gap: 8px; /* 방 간격 축소 */
+    width: 80%;
+    margin-left: 10%;
   
   }
 
@@ -447,14 +463,13 @@
 
   .desktopRoomTitle {
     font-size: 1.2rem;
+    margin-bottom: 1%;
   }
 
   /* 큰 화면용 뒤로가기 버튼 */
   .desktopGoBackButton {
     height: 3rem;
     width:auto;
-    margin-left: 280px;
-    margin-top: 15px;
   }
 
   /* 큰 화면용 메뉴 버튼 */

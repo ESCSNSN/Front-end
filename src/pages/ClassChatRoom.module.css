@@ -2,113 +2,294 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-.content {
-    margin-top: 20px; /* 기존 스타일 유지 */
-    padding: 20px;
-    background-color: white;  /* 기존 배경색 */
-    height: 100vh;
-    overflow-y: auto;  /* 스크롤 가능 */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* 입력창이 항상 하단에 위치하도록 설정 */
-}
-
-.goBackButton {
+    height: 100vh; /* 전체 화면 높이 */
+  }
+  
+  .content {
+    margin-top: 0;
+    padding: 20px;
+    background-color: #ffffff;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto; /* 스크롤 활성화 */
+  }
+  
+  .goBackButton {
     margin-right: 10px;
     cursor: pointer;
-}
-
-.sectionTitle {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #FCA400;
-    margin-top: -10px;
-    margin-left: 20px;
-    text-decoration: underline;
-    text-underline-offset: 10px;
-}
-
-.classInfo {
+    width: 30px;
+  }
+  
+  .sectionTitle {
+    font-size: 1.2rem;
+    color: #000000;
+    
+  }
+  
+  .classInfo {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     font-size: 1rem;
     border-bottom: 1px solid #ddd;
-    margin-top: -10px;
-    /* 여백을 줄여서 타이트하게 조정 */
-}
-
-.messageList {
+  }
+  
+  .messageList {
     flex: 1;
     overflow-y: auto;
     padding: 15px;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
-}
-
-/* 메시지 스타일 */
-.receivedMessage,
-.sentMessage {
+  }
+  
+  .receivedMessage,
+  .sentMessage {
     max-width: 60%;
     padding: 10px;
     margin: 8px 0;
     border-radius: 15px;
     font-size: 0.9rem;
-    display: block;
-}
-
-.receivedMessage {
+  }
+  
+  .receivedMessage {
     background-color: #cce7ff;
     color: #333;
     align-self: flex-start;
-}
-
-.sentMessage {
+  }
+  
+  .sentMessage {
     background-color: #ffe6b3;
     color: #333;
     align-self: flex-end;
-}
-
-.messageText {
-    display: block;
+  }
+  
+  .messageText {
     margin-bottom: 5px;
-}
-
-.messageTime {
+  }
+  
+  .messageTime {
     font-size: 0.7rem;
     color: #888;
     text-align: right;
-}
-
-.inputContainer {
+  }
+  
+  .inputContainer {
     display: flex;
     align-items: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
     padding: 10px;
+    background-color: #d9d9d9;
     border-top: 1px solid #ddd;
-    background-color: #f5f5f5;
-}
-
-.heartIcon {
-    margin-right: 10px;
-}
-
-.inputField {
-    flex: 1;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  
+  .inputField {
+    flex-grow: 1;
     padding: 10px;
+    margin-left: 20px;
+    border: none;
+    outline: none;
     border-radius: 20px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-}
-
-.sendButton {
+    background-color: white;
+  }
+  
+  .sendButton {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
     margin-left: 10px;
-}
+    margin-right: 10px;
+  }
+
+  .sendButton:hover{
+    background-color: initial; /* 기본 배경 유지 */
+
+  }
+  
+  .sendIcon {
+    height: 2rem;
+  }
+  
+  .heartIcon{
+    height: 3rem;
+  }
+  /* 기본값은 PC 스타일로 유지 */
+  
+    
+  /* 모바일 화면: 768px 이하 */
+  @media screen and (max-width: 768px) {
+    .container {
+      height: auto; /* 높이를 자동으로 조정 */
+    }
+  
+    .content {
+      padding: 10px; /* 내부 여백을 축소 */
+    }
+  
+    .goBackButton {
+      margin-top: 7%;
+    }
+  
+    .sectionTitle {
+      margin-left: 10%;
+      margin-top: -9%;
+      font-size: 1.4rem;
+    }
+  
+    .classInfo {
+      padding: 8px; /* 여백 축소 */
+      margin-top: -14%;
+    }
+  
+  
+    .messageList {
+      background-color: #ffffff;
+      margin-left: 0%;
+      width: 92%;
+    }
+  
+    .receivedMessage,
+    .sentMessage {
+      max-width: 80%; /* 메시지 박스 너비를 늘림 */
+      font-size: 0.8rem; /* 폰트 크기 축소 */
+    }
+  
+    .inputField {
+      font-size: 0.9rem; /* 입력 필드 크기 축소 */
+      padding: 8px; /* 내부 패딩 축소 */
+    }
+  
+    .sendButton {
+      margin-left: 5px; /* 여백 축소 */
+    }
+  
+    
+    .app-header {
+      width: 90%;
+  }
+   
+  .classInfo {
+    width: 96%;
+    font-size: 1rem;
+    border-bottom: 1.5px solid #000000;
+    margin-left: 0%;
+    margin-top: -12%;
+  }
+  
+  
+  }
+  
+  
+  
+  /* 데스크탑 버전 스타일 */
+  @media (min-width: 769px) {
+    .content {
+      padding: 40px;
+    }
+  
+    .goBackButton{
+  
+  
+      margin-left: 34%;
+    }
+  
+    .headerRow {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .sectionTitle {
+      font-size: 1.4rem;
+      margin-top: -3%;
+      margin-left: 37%;
+    }
+  
+    .classInfo {
+      width: 31%;
+      font-size: 1rem;
+      border-bottom: 2px solid #000000;
+      margin-left: 34%;
+      margin-top: -14%;
+    }
+  
+    .messageList {
+      padding: 25px;
+      
+      background-color: #ffffff;
+      margin-left: 34%;
+      width: 28.6%;
+    }
+  
+    .receivedMessage,
+    .sentMessage {
+      max-width: 50%;
+      padding: 15px;
+      margin: 10px 0;
+      font-size: 1rem;
+    }
+  
+    .receivedMessage {
+      background-color: #d0eaff;
+    }
+  
+    .sentMessage {
+      background-color: #ffe0b3;
+    }
+  
+    .messageText {
+      font-size: 1rem;
+    }
+  
+    .messageTime {
+      font-size: 0.9rem;
+    }
+  
+    
+  .inputContainer {
+    display: flex;
+    align-items: center;
+    width: 32%;
+    position: fixed;
+    bottom: 0;
+    margin-left: 34%;
+    padding: 10px;
+    
+  }
+  
+  
+    .inputField {
+      font-size: 1.2rem;
+    }
+  
+    .sendButton {
+      width: 40px;
+      height: 40px;
+
+    }
+  
+ 
+  
+    h2 {
+      margin-bottom: 10%;
+    }
+  
+    .app-header {
+  margin-left: 34%;
+    }
+  
+  
+  
+      
+  }
+  

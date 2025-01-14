@@ -58,7 +58,7 @@ const G_questionpostingPage = () => {
       console.log(id);
 
       try {
-        const response = await fetch(`${BASE_URL}/quest/${id}`, {
+        const response = await fetch(`${BASE_URL}/graduate/${id}`, {
           headers: {
             'Authorization': `Bearer ${accessToken}`,
             'ngrok-skip-browser-warning': 1,
@@ -69,8 +69,8 @@ const G_questionpostingPage = () => {
           const data = await response.json();
           console.log('게시글 데이터:', data);
 
-          // questCreatedTime 변환
-          const formattedDate = new Date(data.questCreatedTime).toLocaleString('ko-KR', {
+          // graduateCreatedTime 변환
+          const formattedDate = new Date(data.graduateCreatedTime).toLocaleString('ko-KR', {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
@@ -79,8 +79,8 @@ const G_questionpostingPage = () => {
           });
 
           // 상태 업데이트
-          setContent(data.questContents);
-          setTitle(data.questTitle);
+          setContent(data.graduateContents);
+          setTitle(data.graduateTitle);
           setImageUrls(data.imageUrls || []); // imageUrls 상태 업데이트
           setCreatedTime(formattedDate); // 작성 시간 상태 업데이트
         } else {
@@ -122,7 +122,7 @@ const G_questionpostingPage = () => {
   useEffect(() => {
     const fetchHeartStatus = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/quest/${id}/like-status`, {
+        const response = await fetch(`${BASE_URL}/graduate/${id}/like-status`, {
           method: 'GET',
           headers: getAuthHeaders(),
         });
@@ -143,14 +143,14 @@ const G_questionpostingPage = () => {
 
   // 닉네임 생성 함수
 const generateNickname = (id) => {
-  const types = ["int", "short", "double", "char"];
+  const types = ["int"];
   const randomType = types[Math.floor(Math.random() * types.length)];
   return `${randomType}${id}`;
 };
 
 useEffect(() => {
   if (!nickname) {
-    const types = ['int', 'short', 'double', 'char'];
+    const types = ['int'];
     const randomType = types[Math.floor(Math.random() * types.length)];
     setNickname(randomType);
   }
@@ -195,7 +195,7 @@ const organizeComments = (comments) => {
 useEffect(() => {
   const fetchComments = async () => {
     try {
-      const response = await fetch(`${BASE_URL}/quest/${id}/comments`, {
+      const response = await fetch(`${BASE_URL}/graduate/${id}/comments`, {
         method: "GET",
         headers: getAuthHeaders(),
       });
@@ -231,7 +231,7 @@ const handleAddComment = async () => {
 
     if (!anonymousId) {
       // 'char', 'int', 'short', 'double' 중 하나를 랜덤으로 선택
-      const idOptions = ['char', 'int', 'short', 'double'];
+      const idOptions = ['int'];
       anonymousId = idOptions[Math.floor(Math.random() * idOptions.length)];
 
       // 생성된 anonymousId를 localStorage에 저장
@@ -246,7 +246,7 @@ const handleAddComment = async () => {
     };
 
     try {
-      const response = await fetch(`${BASE_URL}/quest/${id}/comments/add?content=${encodeURIComponent(commentContent)}&anonymousId=${encodeURIComponent(anonymousId)}`, {
+      const response = await fetch(`${BASE_URL}/graduate/${id}/comments/add?content=${encodeURIComponent(commentContent)}&anonymousId=${encodeURIComponent(anonymousId)}`, {
         method: 'POST',
         headers: getAuthHeaders(),
         body: JSON.stringify(newComment),
@@ -284,7 +284,7 @@ const handleAddReply = async (index) => {
     let anonymousId = localStorage.getItem(localStorageKey);
 
     if (!anonymousId) {
-      const idOptions = ['char', 'int', 'short', 'double'];
+      const idOptions = ['int'];
       anonymousId = idOptions[Math.floor(Math.random() * idOptions.length)];
 
       localStorage.setItem(localStorageKey, anonymousId);
@@ -307,7 +307,7 @@ const handleAddReply = async (index) => {
 
     try {
       const response = await fetch(
-        `${BASE_URL}/quest/${id}/comments/add?parentCommentId=${parentCommentId}&content=${encodeURIComponent(content)}&anonymousId=${encodeURIComponent(anonymousId)}`,
+        `${BASE_URL}/graduate/${id}/comments/add?parentCommentId=${parentCommentId}&content=${encodeURIComponent(content)}&anonymousId=${encodeURIComponent(anonymousId)}`,
         {
           method: 'POST',
           headers: getAuthHeaders(),
@@ -350,7 +350,7 @@ const handleAddReply = async (index) => {
     setIsHeartFilled(newHeartStatus);
 
     try {
-      const response = await fetch(`${BASE_URL}/quest/${id}/like`, {
+      const response = await fetch(`${BASE_URL}/graduate/${id}/like`, {
         method: 'POST',
         headers: getAuthHeaders(),
         body: JSON.stringify({ isHeartFilled: newHeartStatus }),
@@ -362,7 +362,7 @@ const handleAddReply = async (index) => {
       }
     } catch (error) {
       console.error('좋아요 요청 중 오류 발생:', error);
-      console.log(`${BASE_URL}/quest/${id}/like`);
+      console.log(`${BASE_URL}/graduate/${id}/like`);
       setIsHeartFilled(!newHeartStatus); // 오류 발생 시 상태 되돌림
     }
   };
@@ -382,7 +382,7 @@ const handleAddReply = async (index) => {
       const reporterId = getCurrentUserId(); // 신고자 ID
 
       // URL에 파라미터로 reason과 reporterId 추가
-      const url = `${BASE_URL}/quest/${id}/report?reason=${encodeURIComponent(reason)}&reporterId=${encodeURIComponent(reporterId)}`;
+      const url = `${BASE_URL}/graduate/${id}/report?reason=${encodeURIComponent(reason)}&reporterId=${encodeURIComponent(reporterId)}`;
 
       const response = await fetch(url, {
         method: 'POST',
@@ -412,7 +412,7 @@ const handleAddReply = async (index) => {
 
     try {
       const accessToken = localStorage.getItem('accessToken');
-      const response = await fetch(`${BASE_URL}/quest/delete/${id}`, {
+      const response = await fetch(`${BASE_URL}/graduate/delete/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${accessToken}`,
@@ -423,12 +423,12 @@ const handleAddReply = async (index) => {
       if (response.ok) {
         alert("게시글이 삭제되었습니다.");
         // 삭제 후 원하는 동작 수행 (예: 목록 페이지로 이동)
-        window.location.href = "/questboardPage"; // 목록 페이지 경로로 이동
+        window.location.href = "/G_questboardPage"; // 목록 페이지 경로로 이동
       } else {
         const errorData = await response.json();
         console.error("삭제 실패:", errorData);
         alert("게시글 삭제에 실패했습니다.");
-        console.log(`${BASE_URL}/quest/delete/${id}`);
+        console.log(`${BASE_URL}/graduate/delete/${id}`);
       }
     } catch (error) {
       console.error("삭제 요청 중 오류 발생:", error);
@@ -439,7 +439,7 @@ const handleAddReply = async (index) => {
     // handleScrap 함수 수정
 const handleScrap = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/quest/${id}/scrap`, {
+    const response = await fetch(`${BASE_URL}/graduate/${id}/scrap`, {
       method: 'POST',
       headers: getAuthHeaders(), // getAuthHeaders()로 인증 헤더 포함
     });
@@ -459,7 +459,7 @@ const handleScrap = async () => {
 const handleEdit = async () => {
   try {
     // API 요청 보내기
-    const response = await fetch(`${BASE_URL}/quest/update/${id}`, {
+    const response = await fetch(`${BASE_URL}/graduate/update/${id}`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -470,7 +470,7 @@ const handleEdit = async () => {
       console.log("수정 가능한 데이터를 가져왔습니다:", data);
 
       // 데이터를 활용해 수정 화면으로 이동하거나 상태 업데이트
-      navigate(`/G_questionwritePage/${id}`);
+      navigate(`/G_graduateionwritePage/${id}`);
     } else {
       console.error("수정 데이터를 가져오지 못했습니다:", response.status);
     }
@@ -489,7 +489,7 @@ const handleEdit = async () => {
           alt="back_arrow"
           onClick={handleBackClick}
         />
-        <h1 className={styles["title-text2"]}>대회 정보 게시판</h1>
+        <h1 className={styles["title-text2"]}>질문 게시판</h1>
         <img src={bar} className={styles["app-bar"]} alt="bar" />
 
         <h1 className={styles["title-text3"]}>{title || "게시판 제목"}</h1>

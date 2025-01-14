@@ -11,11 +11,13 @@ import heart from '../images/heart.png';
 import filledHeart from '../images/filledheart.png';
 import bar from '../images/bar.png';
 import Header from './_.js';  // 상단바 컴포넌트
+import axiosInstance from '../utils/api.js';
+
 
 // API에서 사용할 기본 URL과 헤더 설정
-const BASE_URL = 'https://aa51-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board';
+const BASE_URL = 'https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board';
 const getAuthHeaders = () => {
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem('authToken');
   const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
   console.log(localStorage.getItem('userId'));
 
@@ -54,7 +56,7 @@ const StudyBoard = () => {
   // 게시판 데이터 불러오기 useEffect
   useEffect(() => {
     const getBoard = async () => {
-      const accessToken = localStorage.getItem('accessToken');
+      const accessToken = localStorage.getItem('authToken');
       console.log(id);
 
       try {
@@ -70,7 +72,7 @@ const StudyBoard = () => {
           console.log('게시글 데이터:', data);
 
           // studiesCreatedTime 변환
-          const formattedDate = new Date(data.studiesCreatedTime).toLocaleString('ko-KR', {
+          const formattedDate = new Date(data.studyCreatedTime).toLocaleString('ko-KR', {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
@@ -143,14 +145,14 @@ const StudyBoard = () => {
 
   // 닉네임 생성 함수
 const generateNickname = (id) => {
-  const types = ["int", "short", "double", "char"];
+  const types = ["short"];
   const randomType = types[Math.floor(Math.random() * types.length)];
   return `${randomType}${id}`;
 };
 
 useEffect(() => {
   if (!nickname) {
-    const types = ['int', 'short', 'double', 'char'];
+    const types = ['short'];
     const randomType = types[Math.floor(Math.random() * types.length)];
     setNickname(randomType);
   }
@@ -231,7 +233,7 @@ const handleAddComment = async () => {
 
     if (!anonymousId) {
       // 'char', 'int', 'short', 'double' 중 하나를 랜덤으로 선택
-      const idOptions = ['char', 'int', 'short', 'double'];
+      const idOptions = ['short'];
       anonymousId = idOptions[Math.floor(Math.random() * idOptions.length)];
 
       // 생성된 anonymousId를 localStorage에 저장
@@ -284,7 +286,7 @@ const handleAddReply = async (index) => {
     let anonymousId = localStorage.getItem(localStorageKey);
 
     if (!anonymousId) {
-      const idOptions = ['char', 'int', 'short', 'double'];
+      const idOptions = ['short'];
       anonymousId = idOptions[Math.floor(Math.random() * idOptions.length)];
 
       localStorage.setItem(localStorageKey, anonymousId);
@@ -411,7 +413,7 @@ const handleAddReply = async (index) => {
     }
 
     try {
-      const accessToken = localStorage.getItem('accessToken');
+      const accessToken = localStorage.getItem('authToken');
       const response = await fetch(`${BASE_URL}/studies/delete/${id}`, {
         method: 'DELETE',
         headers: {
@@ -481,7 +483,7 @@ const handleEdit = async () => {
 
 // 신청버튼 위한 로직 추가함
 const handleApply = async () => {
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem('authToken');
   console.log(id);
 
   try {
@@ -492,15 +494,12 @@ const handleApply = async () => {
         'Content-Type': 'application/json', // 요청 본문 형식 명시
         'ngrok-skip-browser-warning': 'true', // 추가 헤더
       },
-      body: JSON.stringify({
-        applyUserId: id
-      }),
     });
 
     if (response.ok) {
       console.log('지원 요청 성공');
       alert('지원 요청이 완료되었습니다.'); // 성공 팝업
-      navigate("/scrap"); // 요청 성공 후 스크랩 페이지로 이동
+      navigate("/scrap"); // 요청 성공 후 신청 관리 페이지로 이동하게 해야함.
     } else {
       const errorData = await response.json();
       console.error('지원 요청 실패:', errorData);

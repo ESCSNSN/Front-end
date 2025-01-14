@@ -42,6 +42,9 @@ import BootBoardPage from './pages/BootBoardPage'; // 부트갬프 게시판 목
 import BoardCode from './pages/BoardCode';
 import InformationCodeBoard from './pages/InformationCodeBoard'
 import InformationContestBoard from './pages/InformationContestBoard';
+import MyStudy from './pages/MyStudy';
+import MyApplyStudy from './pages/MyApplyStudy';
+import StudyApplicantList from './pages/StudyApplicantList';
 
 
 // 석진이형 페이지
@@ -69,7 +72,8 @@ import ChatPreview from './pages/ChatPreview'
 import Otherprofile from './pages/Otherprofile'
 import { UserProvider } from './pages/UserContext'; //유저 프로필
 import User_auth from './pages/User_auth'
-import Chat from './pages/Chat'
+import FreeChat from './pages/FreeChat'
+import RoomChat from './pages/RoomChat'
 import G_HomePage from './pages/G_HomePage'
 import HomePage from './pages/HomePage'; // 정확한 경로로 import 추가
 import G_Chat from './pages/G_Chat'
@@ -100,21 +104,24 @@ function App() {
           <Route path="FreepostingPage/:id" element={<FreepostingPage />} />
           <Route path="QuestionpostingPage" element={<QuestionpostingPage />} />
           <Route path="FreewritePage" element={<FreewritePage />} />
-          {/* 글 수정 페이지 (id가 있을 경우) */}
-          <Route path="/FreewritePage/:id" element={<FreewritePage />} />
+          <Route path="FreewritePage/:id" element={<FreewritePage />} />
           <Route path="QuestionwritePage" element={<QuestionwritePage />} />
+          <Route path="QuestionwritePage/:id" element={<QuestionwritePage />} />
           <Route path="FreeboardPage" element={<FreeboardPage />} />
           <Route path="QuestionboardPage" element={<QuestionboardPage />} />
 
           <Route path="G_freepostingPage" element={<G_freepostingPage />} />
           <Route path="G_questionpostingPage" element={<G_questionpostingPage />} />
           <Route path="G_freewritePage" element={<G_freewritePage />} />
+          <Route path="G_freewritePage/:id" element={<G_freewritePage />} />
           <Route path="G_questionwritePage" element={<G_questionwritePage />} />
+          <Route path="G_questionwritePage/:id" element={<G_questionwritePage />} />
           <Route path="G_freeboardPage" element={<G_freeboardPage />} />
           <Route path="G_questionboardPage" element={<G_questionboardPage />} />
 
           <Route path="/Makechat" element={<Makechat />} />
           <Route path="/Announcementwrite" element={<Announcementwrite />} />
+          <Route path="/Announcementwrite/:id" element={<Announcementwrite />} />
           <Route path="/Announcementposting/:id" element={<Announcementposting />} />
 
 
@@ -122,19 +129,27 @@ function App() {
           {/* 상윤님 */}
           {/* <Route path="/BoardPage" element={<BoardPage />} /> 게시판 메인 페이지 */}
           <Route path="/QuestionCode" element={<QuestionCode />} /> {/* 코드 질문방 본문 */}
+          <Route path="/QuestionCode/:id" element={<QuestionCode />} /> {/* 코드 질문방 본문 */}
           <Route path="/RoomPage" element={<RoomPage />} />
           <Route path="/Message" element={<Message />} />
           <Route path="/InformationCode" element={<InformationCode />} /> {/* InformationCode 라우트 추가 */}
           <Route path="/InformationContest" element={<InformationContest />} />
           <Route path="/ContestWrite" element={<ContestWrite />} />
+          <Route path="/ContestWrite/:id" element={<ContestWrite />} />
           <Route path="/AlarmPage" element={<AlarmPage />} />
           <Route path="/Announcement" element={<Announcement />} />
           <Route path="/ClassChatRoom" element={<ClassChatRoom />} />
           <Route path="/ClassChat" element={<ClassChat />} />
           <Route path="/BootBoardPage" element={<BootBoardPage />} />
           <Route path="/BoardCode/:id" element={<BoardCode />} />
-          <Route path="/InformationCodeBoard" element={<InformationCodeBoard />} />
+          <Route path="/InformationCodeBoard/:id" element={<InformationCodeBoard />} />
           <Route path="/InformationContestBoard/:id" element={<InformationContestBoard />} />
+          <Route path="/MyStudy" element={<MyStudy />} />
+          <Route path="/MyApplyStudy" element={<MyApplyStudy />} />
+          <Route path="/StudyApplicantList/:studyId" element={<StudyApplicantList />} />
+
+
+
 
 
 
@@ -147,8 +162,11 @@ function App() {
           <Route path="/Write" element={<WritePage />} />
           <Route path="/Classroom" element={<Classroom />} />
           <Route path="/Bootcamp" element={<BootCamp />} />
+          <Route path="/Bootcamp/:id" element={<BootCamp />} />
           <Route path="/Industry" element={<Industry />} />
+          <Route path="/Industry/:id" element={<Industry />} />
           <Route path="/Study" element={<Study />} />
+          <Route path="/Study/:id" element={<Study />} />
           <Route path="/NoticeBoot" element={<NoticeBoot />} />
           <Route path="/Scrap" element={<Scrap />} />
           <Route path="/My_board" element={<My_board />} />
@@ -169,6 +187,7 @@ function App() {
           <Route path="/Otherprofile" element={<Otherprofile />} />
 
           <Route path="/Otherprofile/:roomId/:userId" element={<Otherprofile />} />
+          
           <Route path="/User_auth" element={<User_auth />} />
           <Route path="/G_HomePage" element={<G_HomePage />} />
 
@@ -181,7 +200,12 @@ function App() {
           <Route path="/G_freepostingPage/:id" element={<G_freepostingPage />} />
           <Route path="/QuestionpostingPage/:id" element={<QuestionpostingPage />} />
           <Route path="/FreepostingPage/:id" element={<FreepostingPage />} />
-          <Route path="/Chat/" element={<Chat />} />
+          <Route path="/FreeChat/" element={<FreeChat />} />
+          <Route path="/FreeChat/:id" element={<FreeChat />} />
+          <Route path="/RoomChat/" element={<RoomChat />} />
+          <Route path="/RoomChat/:id" element={<RoomChat />} />
+          
+          <Route path="/ClassChatRoom/:id" element={<ClassChatRoom />} />
           <Route path="/G_Chat/" element={<G_Chat />} />
         </Routes>
       </BrowserRouter>

@@ -6,6 +6,8 @@ import styles from './LoginPage.module.css';
 import telecom_logo from '../images/정보통신공학과 횃불이.png';
 import back_logo from '../images/뒷모습 횃불이.png';
 import Q_logo from '../images/물음표.png';
+import axiosInstance from '../utils/api.js';
+
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');

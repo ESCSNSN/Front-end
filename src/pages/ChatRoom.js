@@ -21,13 +21,13 @@ const ChatRoom = () => {
 
     useEffect(() => {
         const fetchRoomData = async () => {
-            const userResponse = await axiosInstance.get('https://18a5fe61dbb7.ngrok.app/api/auth/get-username');
+            const userResponse = await axiosInstance.get('http://info-rmation.kro.kr/api/auth/get-username');
                 
                 setUsId(userResponse.data.userId);
                 console.log(usId);
 
             try {
-                const response = await axiosInstance.get(`http://192.168.156.161:8080/Room/${id}`,{
+                const response = await axiosInstance.get(`https://934ef54da7b8.ngrok.app/Room/${id}`,{
                     headers: {
                         'ngrok-skip-browser-warning': 'true', // 필요 시 유지
                     },
@@ -44,7 +44,7 @@ const ChatRoom = () => {
         const fetchChatData = async () => {
             try {
                 // 백엔드 API 호출
-                const response = await axiosInstance.get(`http://192.168.156.161:8080/GetChatData/${id}`, {
+                const response = await axiosInstance.get(`https://934ef54da7b8.ngrok.app/GetChatData/${id}`, {
                     headers: {
                         'ngrok-skip-browser-warning': 'true', // 필요 시 유지
                     },

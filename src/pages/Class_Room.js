@@ -8,6 +8,7 @@ import main_message from '../images/message.png';
 import main_my from '../images/my.png';
 import { useMediaQuery } from 'react-responsive';
 
+import Header from './_2.js'; // 상단바 컴포넌트
 import styles from './Class_Room.module.css';
 import CommunicationRoom_goBack from '../images/왼쪽 나가기 버튼.png';
 import menuIcon from '../images/메뉴버튼.png';
@@ -19,6 +20,7 @@ import Icon7 from '../images/임베디드시스템공학과 횃불이.png';
 import Icon4 from '../images/내가속한방 횃불이.png';
 import Icon5 from '../images/수업소통방 횃불이.png';
 import Icon6 from '../images/자유소통방 횃불이.png';
+
 
 const roomsData = [];
 
@@ -34,7 +36,7 @@ const Class_Room = () => {
   const navigate = useNavigate();
 
   const isDesktop = useMediaQuery({ query: '(min-width: 769px)' });
-  const baseUrl = 'https://e757-61-84-64-212.ngrok-free.app'
+  const baseUrl = 'https://rmation-chat.kro.kr'
   useEffect(() => {
     const fetchRooms = async () => {
         fetch(`${baseUrl}/Room/RoomList`, {
@@ -88,6 +90,8 @@ const Class_Room = () => {
 
   return (
     <div className={`${styles.app} ${isDesktop ? styles.desktopApp : ''}`}>
+       <Header />
+       {/*
       <header className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : ''}`}>
         <div className={`${styles["title-group"]} ${isDesktop ? styles.desktopTitleGroup : ''}`}>
           <img src={main_mascot} className={`${styles["app-main_mascot"]} ${isDesktop ? styles.desktopMascot : ''}`} alt="main_mascot" />
@@ -101,7 +105,7 @@ const Class_Room = () => {
           </div>
         </div>
       </header>
-
+ */}
       <div className={`${styles.container} ${isDesktop ? styles.desktopContainer : ''}`}>
         <div className={`${styles.content} ${isDesktop ? styles.desktopContent : ''}`}>
           <div className={`${styles.titleContainer} ${isDesktop ? styles.desktopTitleContainer : ''}`}>
@@ -122,11 +126,15 @@ const Class_Room = () => {
                   isDesktop ? styles.desktopRoomItem : ''
                 }`}
               >
-                <img src={room.icon} alt={`방 아이콘 ${room.roomId}`} className={`${styles.roomIcon} ${isDesktop ? styles.desktopRoomIcon : ''}`} />
+                <img src={room.icon} alt={`방 아이콘 ${room.id}`} className={`${styles.roomIcon} ${isDesktop ? styles.desktopRoomIcon : ''}`} 
+                 onError={(e) => (e.target.src = '../images/하트이모지.png')}/>
                 <div className={`${styles.roomInfo} ${isDesktop ? styles.desktopRoomInfo : ''}`}>
                   <div className={`${styles.roomTitle} ${isDesktop ? styles.desktopRoomTitle : ''}`}>{room.roomName}</div>
                   <div className={`${styles.roomMessage} ${isDesktop ? styles.desktopRoomMessage : ''}`}>{room.lastMessage}</div>
+               
                 </div>
+
+                
 
                 <button
                   className={`${styles.joinButton} ${isDesktop ? styles.desktopJoinButton : ''}`}
@@ -144,7 +152,7 @@ const Class_Room = () => {
                 src={Icon4}
                 alt="내가 속한 방"
                 className={`${styles.navIcon} ${isDesktop ? styles.desktopNavIcon : ''}`}
-                onClick={() => handleRoomClick("RoomPage")}
+                onClick={() => navigate("/RoomPage")}
               />
               <span className={`${styles.navText} ${isDesktop ? styles.desktopNavText : ''}`}>내가 속한 방</span>
             </div>
@@ -154,7 +162,7 @@ const Class_Room = () => {
                 src={Icon5}
                 alt="수업 소통 방"
                 className={`${styles.navIcon} ${isDesktop ? styles.desktopNavIcon : ''}`}
-                onClick={() => handleRoomClick("ClassRoom")}
+                onClick={() => navigate("/Class_Room")}
               />
               <span className={`${styles.navText} ${isDesktop ? styles.desktopNavText : ''}`}>수업 소통 방</span>
             </div>
@@ -164,7 +172,7 @@ const Class_Room = () => {
                 src={Icon6}
                 alt="자유 소통 방"
                 className={`${styles.navIcon} ${isDesktop ? styles.desktopNavIcon : ''}`}
-                onClick={() => handleRoomClick("FreeRoom")}
+                onClick={() => navigate("/FreeRoom")}
               />
               <span className={`${styles.navText} ${isDesktop ? styles.desktopNavText : ''}`}>자유 소통 방</span>
             </div>

@@ -44,7 +44,6 @@
   
   .roomsList {
     
-    margin-bottom: 10px;
     position: absolute;
     left: 50px;
     right : 40px;
@@ -53,6 +52,8 @@
     gap: 10px;
     padding: 0; /* 내부 여백 제거 */
     overflow-y: auto;
+
+    padding-bottom: 20%; /* 필요하면 여백 추가 */
 
   }
   
@@ -201,7 +202,7 @@
   
   .roomIcon {
     width: 38px;
-    height: 35px;
+    height: 55px;
     margin-right: 15px;
   }
   
@@ -230,7 +231,7 @@
   }
   
   .navIcon {
-    width: 57px;
+    width: 65px;
     height: 50px;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -320,136 +321,55 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    align-items: center;
     background-color: #ffffff;
     overflow-y: auto;  /* 스크롤 가능 */
     
     
   }
   
-  /* 헤더 스타일
-    .app-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 0px; /* 헤더와 대회 정보 섹션 사이에 여백 추가 
-    margin-top: 0px; 
-      margin-top: 60px; /* 상단바 높이만큼 여백 설정 */
-  
-
-    .app-header {  
-      top: 0; /* 페이지 상단에 위치 */
-      left: 0; /* 왼쪽 끝에 위치 */
-      right: 0; /* 오른쪽 끝까지 확장 */
-      
-      z-index: 10; /* 다른 요소 위에 표시 */
-      display: flex; /* 플렉스 박스 사용 */
-      justify-content: space-between; /* 요소 간 간격 조정 */
-      align-items: center; /* 세로 가운데 정렬 */
-      padding: 0px; /* 좌우 여백 */
-
-  }
-  
-  
-  .title-group{
-   
-    display: flex;
-    justify-content: center; /* 가로 중앙 정렬 */
-    gap: 10px;  
-    margin-bottom: 10px;
-  }
-
-  .right-section {
-   
-    display: flex;
-    align-items: center; /* 가로로 나란히 정렬 */
-    margin-top: 40px; /* 아래로 30px 만큼 내림 (값은 조절 가능) */
-    gap: 10px; /* 아이콘 사이의 간격 */
-  }
-  
-  .mascot-logo {
-    width: 0px;
-    margin-right: 40px; /* 로고와 문구 사이의 간격 */
-  }
-  
-  /* 로고 이미지 크기 조절 */
-  .app-main_mascot {
-    height: 60px;
-    margin-bottom: 10px;
-    margin-top: 30px;
-  }
-  
-  .app-main_bell {
-    height: 35px;
-    margin-bottom: 10px;
-  }
-  
-  .app-main_message {
-    height: 35px;
-    margin-bottom:10px;
-  }
-  
-
-  .app-main_my {
-    height: 35px;
-    margin-bottom: 10px;
-    margin-left: 6px;
-
-  }
-
-  /* 공지사항 텍스트  width: 100%;
-    height: 30%;*/
-  .title-text {
-    font-size: 0.9rem ;
-    color: #000000;
-    margin-bottom: 20px;  /* 텍스트 아래에 여백 */
-    margin-top: 10px;  /* 텍스트 위에 여백 */
-  }
-  
-  
-  /* INFO 텍스트 */
-  /* h2 {
-    font-size: 2.0rem ;
-    color: #0056A0;
-    margin-bottom: 0px;
-    margin-top: 43px;
-    margin-right: 5px;  
-
-  } */
-
-
-
 
 /* 반응형 스타일 추가 */
 
 /* 데스크탑 화면용 스타일 */
 @media (min-width: 769px) {
   .desktopTitleContainer {
-    padding-top: 2%; /* 타이틀 위 여백 조절 */
-    padding-bottom: 1%; /* 타이틀 아래 여백 조절 */
+    padding-top: 4%; /* 타이틀 위 여백 조절 */
+    padding-bottom: 0%; /* 타이틀 아래 여백 조절 */
+    
   }
 
+     /*상단바
+     .app-main_mascot {
+     margin-left: -3%;
+     margin-right: 8%;
+     margin-top: 8%;
+    }
+
+    .right-section {
+   margin-left: 3%;
+   margin-top: 4%; }
+*/
   .roomsList {
-    left: 15%; /* 목록 위치 조정 */
-    right: 15%; /* 목록 위치 조정 */
-    max-width: 33%; /* 전체 가로폭 설정 */
-    margin: 0 auto; /* 중앙 정렬 */
+    left: 16%; 
+    right: 15%; 
+    max-width: 33%;
+    margin: 0 auto; 
     margin-top: 5%;
-    margin-bottom: 35%;
+    margin-bottom: 50%;
   }
 
   .roomItem {
-    padding: 12px; /* 여백 확대 */
-    font-size: 1.2rem; /* 글자 크기 확대 */
+    padding: 12px; 
+    font-size: 1.2rem; 
   }
 
   .pageTitle {
-    font-size: 1.6rem; /* 페이지 타이틀 글자 크기 확대 */
-  }
+    font-size: 1.6rem;
+      }
 
   .goBackButton {
-    margin-left: 34%; /* 뒤로가기 버튼 간격 조정 */
-    height: 2rem; /* 버튼 크기 확대 */
+    margin-left: 34%; 
+    height: 2rem; 
   }
 
 
@@ -544,7 +464,7 @@
     padding: 10px; /* 모달 내부 여백 축소 */
   }
 
-    /*상단바*/
+    /*상단바
     .app-main_mascot {
       height: 55px;
       margin-top: 30px;
@@ -558,18 +478,18 @@
     }
   
   
-    /* 공지사항 텍스트 */
       .title-text {
         font-size: 0.8rem ;
         margin-bottom: 40px;
       }
       
       
-      /* INFO 텍스트 */
       h2 {
         font-size: 1.8rem ;
         
       margin-bottom: 35px;
       }
+
+      */
   
 }

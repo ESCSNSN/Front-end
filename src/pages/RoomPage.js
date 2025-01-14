@@ -8,7 +8,7 @@ import main_message from '../images/message.png';  // 로고 이미지 불러오
 import main_my from '../images/my.png';  // 로고 이미지 불러오기
 
 import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들기 위함
-import Header from './_.js';  // 상단바 컴포넌트
+import Header from './_2.js';  // 상단바 컴포넌트
 import axiosInstance from '../utils/api'; // Axios 인스턴스
 import { jwtDecode } from 'jwt-decode'; // default가 아닌 named import 사용. authToken에서 사용자 ID 추출하기. npm install jwt-decode
 import styles from './RoomPage.module.css';
@@ -53,7 +53,7 @@ const RoomPage = () => {
         }
 
         // 백엔드 API 호출
-        const response = await axiosInstance.get(`https://934ef54da7b8.ngrok.app/Tel/202201659`, {
+        const response = await axiosInstance.get(`https://rmation-chat.kro.kr/Tel/202201659`, {
 
           headers: {
             'ngrok-skip-browser-warning': 'true', // 필요 시 유지
@@ -85,7 +85,7 @@ const RoomPage = () => {
         const userName = '신상윤';
 
         // 방 입장 API 호출
-        await axiosInstance.post('https://934ef54da7b8.ngrok.app/JoinRoom', {
+        await axiosInstance.post('https://rmation-chat.kro.kr/JoinRoom', {
             headers: {
                 'ngrok-skip-browser-warning': 'true', // 필요 시 유지
             },
@@ -166,7 +166,7 @@ const RoomPage = () => {
 
     try {
       // fetch API 호출
-      const response = await fetch('https://934ef54da7b8.ngrok.app/Room/TelList/reports', {
+      const response = await fetch('https://rmation-chat.kro.kr/Room/TelList/reports', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -207,7 +207,7 @@ const RoomPage = () => {
       try {
         // 각 선택된 방에 대해 DELETE 요청을 보냄
         for (const roomId of selectedRooms) {
-          const response = await fetch(`https://934ef54da7b8.ngrok.app/Room/TelList/rooms/${roomId}`, {
+          const response = await fetch(`https://rmation-chat.kro.kr/Room/TelList/rooms/${roomId}`, {
             method: 'DELETE',
           });
 
@@ -264,8 +264,7 @@ const RoomPage = () => {
         <div className={`${styles.roomsList} ${isDesktop ? styles.desktopRoomsList : ''}`}>
           {rooms.map((room) => (
             <div
-              key={room.roomId}
-              className={`${styles.roomItem} ${isDesktop ? styles.desktopRoomItem : ''} ${room.selected ? styles.selected : ''
+              key={room.roomId} className={`${styles.roomItem} ${isDesktop ? styles.desktopRoomItem : ''} ${room.selected ? styles.selected : ''
                 }`}
             >
               <img src={room.icon} alt={`방 아이콘 ${room.roomId}`} className={styles.roomIcon} />
@@ -347,7 +346,7 @@ const RoomPage = () => {
               src={Icon4}
               alt="내가 속한 방"
               className={styles.navIcon}
-              onClick={() => handleRoomClick("내가속한방")}
+              onClick={() => navigate("/RoomPage")}
             />
             <span className={styles.navText}>내가 속한 방</span>
           </div>
@@ -356,7 +355,7 @@ const RoomPage = () => {
               src={Icon5}
               alt="수업 소통 방"
               className={styles.navIcon}
-              onClick={() => handleRoomClick("수업소통방")}
+              onClick={() => navigate('/Class_Room')}
             />
             <span className={styles.navText}>수업 소통 방</span>
           </div>
@@ -365,7 +364,7 @@ const RoomPage = () => {
               src={Icon6}
               alt="자유 소통 방"
               className={styles.navIcon}
-              onClick={() => handleRoomClick("자유소통방")}
+              onClick={() => navigate("/FreeRoom")}
             />
             <span className={styles.navText}>자유 소통 방</span>
           </div>

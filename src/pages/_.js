@@ -47,7 +47,7 @@ const _2 = () => {
         <div className={styles["right-section"]}>
           <h2 
             className={styles["title-text"]}
-            onClick={() => navigate("/notice")}
+            onClick={() => navigate("/Announcement")}
             style={{ cursor: "pointer" }}
           >공지사항</h2>
 
@@ -55,7 +55,7 @@ const _2 = () => {
             src={mainBell} 
             className={styles["app-main_bell"]} 
             alt="main_bell"
-            onClick={() => navigate("/notification")}
+            onClick={() => navigate("/AlarmPage")}
             style={{ cursor: 'pointer' }}
           />
 
@@ -78,17 +78,11 @@ const _2 = () => {
           {/* 드롭다운 메뉴 */}
           {dropdownVisible && (
             <div className={styles["dropdown-menu"]}>
-              <a href="/scrap" className={styles["menu-item"]}>스크랩</a>
-              <a href="/write-post" className={styles["menu-item"]}>작성 게시글</a>
-              <a href="/write-comment" className={styles["menu-item"]}>작성 댓글</a>
-              <a href="/User_auth" className={styles["menu-item"]}>스터디 신청 확인</a>
-              <a 
-                href="#" 
-                onClick={handleLogoutClick} 
-                className={`${styles["menu-item"]} ${styles["logout"]}`} 
-              >
-                로그아웃
-              </a>
+                <a href="/scrap" className={styles["menu-item"]}>스크랩</a>
+                <a href="/My_board" className={styles["menu-item"]}>작성 게시글</a>
+                <a href="/My_message" className={styles["menu-item"]}>작성 댓글</a>
+                <a href="/MyStudy" className={styles["menu-item"]}>스터디 신청 확인</a>
+             
             </div>
           )}
 

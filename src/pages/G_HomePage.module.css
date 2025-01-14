@@ -6,194 +6,11 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  align-items: center;
   background-color: #ffffff;
   overflow-y: auto;  /* 스크롤 가능 */
   
+  overflow-x: hidden;  /* 스크롤 가능 */
   
-}
-
-/* 헤더 스타일
-  .app-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 0px; /* 헤더와 대회 정보 섹션 사이에 여백 추가 
-  margin-top: 0px; 
-    margin-top: 60px; /* 상단바 높이만큼 여백 설정 */
-
-
-  .app-header {  
-
-    
-    align-items: center; /* 가운데 정렬 */
-    top: 0; /* 페이지 상단에 위치 */
-    left: 0; /* 왼쪽 끝에 위치 */
-    right: 0; /* 오른쪽 끝까지 확장 */
-    
-    z-index: 10; /* 다른 요소 위에 표시 */
-    display: flex; /* 플렉스 박스 사용 */
-    justify-content: space-between; /* 요소 간 간격 조정 */
-    align-items: center; /* 세로 가운데 정렬 */
-    padding: 0px; /* 좌우 여백 */
-
-}
-
-  
-  .title-group{
-    display: flex;
-    justify-content: center; 
-    gap: 10px;  
-    margin-bottom: 10px;
-  }
-
-  
-  .right-section {
-    display: flex;
-    align-items: center; /* 가로로 나란히 정렬 */
-    margin-top: 40px; /* 아래로 30px 만큼 내림 (값은 조절 가능) */
-    gap: 10px; /* 아이콘 사이의 간격 */
-    
-  }
-  
-  .mascot-logo {
-    width: 0px;
-    margin-right: 40px; /* 로고와 문구 사이의 간격 */
-  }
-  
-  /* 로고 이미지 크기 조절 */
-  .app-main_mascot {
-    height: 60px;
-    margin-bottom: 10px;
-    margin-top: 30px;
-    cursor: pointer;
-  }
-  
-  .app-main_bell {
-    height: 35px;
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
-  
-  .app-main_message {
-    height: 35px;
-    margin-bottom:10px;
-    cursor: pointer;
-  }
-  
-
-  .app-main_my {
-    height: 35px;
-    margin-bottom: 10px;
-    margin-left: 6px;
-
-  }
-
-  /* 공지사항 텍스트  width: 100%;
-    height: 30%;*/
-  .title-text {
-    font-size: 0.9rem ;
-  
-    color: #000000;
-    margin-bottom: 20px;  /* 텍스트 아래에 여백 */
-    margin-top: 10px;  /* 텍스트 위에 여백 */
-  }
-  
-  
-  /* INFO 텍스트 */
-  h2 {
-    font-size: 2.0rem ;
-    color: #0056A0;
-    margin-bottom: 0px;
-    margin-top: 43px;
-    margin-right: 5px;  /* 텍스트 오른쪽에 여백 */
-
-  }
-  
-
-
-
-
-  .app-main_my {
-    cursor: pointer;
-  
-  }
-
-  
-  .dropdown-menu {
-    position: absolute;
-    margin-top: 6%;
-    margin-right: 4%;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    overflow: hidden;
-  }
-  
-  .menu-item {
-    display: block;
-    padding: 12px 20px;
-    color: black;
-    text-decoration: none;
-    text-align: center;
-    font-size: 1.0rem;
-    font-weight: bold;
-  }
-  
-  .menu-item:not(:last-child) {
-    border-bottom: 1px solid #e0e0e0; /* 항목 구분선 */
-  }
-  /*
-  .menu-item:hover {
-    background-color: #f0f0f0;
-  }*/
-  
-/* "스크랩" 항목에 파란색 텍스트 적용 */
-.scrap {
-  color: #007bff;
-}
-
-/* "로그아웃" 항목에 노란색 텍스트 적용 */
-.logout {
-  color: #ff8c00;
-}
-  
-
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modalContent {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  max-width: 400px;
-  width: 90%;
-}
-
-.modalButtons button {
-  margin: 10px;
-  
-  border: 10px;
-  
-  color: black;
-  text-decoration: none;
-  text-align: center;
-  font-size: 1.0rem;
-  font-weight: bold;
-  cursor: pointer;
 }
 
 
@@ -211,16 +28,26 @@ h4 {
   
  /* Tab Container Styles */
  .tabContainer {
-    width: 100%;
+    width: 50%;
     margin-top: 3%;
     
     margin-bottom: 1%;
     height: 3%;
 
-    margin-left: 20%;
+    margin-left: 24%;
     display: flex;
     justify-content: space-evenly;
     
+  }
+
+  .notetext {
+    font-size: 1.6rem; /* 텍스트 크기 */
+    color: #000000; /* 텍스트 색상 */
+    margin-bottom: 3px; 
+    margin-left: 2%;
+    cursor: default;
+    text-align: center;
+  
   }
   
   .activeTab {
@@ -336,16 +163,25 @@ h4 {
     font-weight: bold;
   }
 
-
-  .plusButton2 {
+  .plusButton {
+    margin-left: 3%;
     border-radius: 1px;
     border: none;
     cursor: pointer;
   
   }
+
+  .plusButton2 {
+    border-radius: 1px;
+    border: none;
+    cursor: pointer;
+    margin-left: 20%;
+  
+  }
   
   .postList {
-    width: 100%;
+    margin-left: 34%;
+    width: 30%;
     display: flex;
     flex-direction: column; /* 세로로 정렬 */
     align-items: center; /* 가운데 정렬 */
@@ -500,9 +336,21 @@ h4 {
     border: none; /* 테두리 없음 */
     text-decoration: none; /* 밑줄 제거 */
     cursor: pointer; /* 클릭 가능 표시 */
+    margin-left: 34%;
+    margin-bottom: -9%;
+    margin-top: 10%;
   }
   
   
+  .plusButtonLink2 {
+    display: inline-flex; /* inline-flex로 설정하여 버튼처럼 보이게 함 */
+    border: none; /* 테두리 없음 */
+    text-decoration: none; /* 밑줄 제거 */
+    cursor: pointer; /* 클릭 가능 표시 */
+    margin-left: 86%;
+    margin-bottom: 1%;
+    margin-top: 0%;
+  }
   
   
   
@@ -538,7 +386,7 @@ h4 {
   
   .footer {
     display: flex;
-    width: 130%;
+    width: 100%;
     
     justify-content: center;
     align-items: center;
@@ -579,9 +427,10 @@ h4 {
   .container2 {
     padding: 20px;
     max-width: 800px;
-    margin: 0 auto;
+    margin-top: -12%;
     background-color: #ffffff;
     display: flex;
+    margin-left: 17%;
     flex-direction: column;
     gap: 20px; /* 섹션 간 간격 추가 */
   }
@@ -679,13 +528,12 @@ h4 {
 
 
 /* 방 목록 컨테이너 스타일 */
-.Roomcontainer {
+.Roomcontainer2 {
   border: none;
-  margin-top: 10%;
-  margin-bottom: 10%;
+  margin-bottom: 15%;
   align-items: center;
-  
-
+  width: 31%;
+  margin-left: 34%;
 /*  margin: 0 auto; /* 가운데 정렬 
 margin-bottom: 50%;
 width: 100%;
@@ -694,7 +542,6 @@ width: 100%;
   max-width: 400%;*/
 }
 .roomsList {
-  margin-top: 4%;
   position: relative; /* absolute를 relative로 변경 */
   display: flex;
   flex-direction: column;
@@ -809,6 +656,33 @@ width: 100%;
    margin-left: 77%;
 
 }
+.Roomcontainer2 {
+  border: none;
+  margin-top: 0%;
+  margin-bottom: 10%;
+  align-items: center;
+}
+
+
+.roomsList {
+  flex-direction: column;
+  margin-top: -30%;
+}
+
+
+/* 플러스 버튼 스타일 */
+.plusButton3 {
+  cursor: pointer;
+  height: 100%;
+
+ }
+
+ .plusButton3:hover {
+ 
+    cursor: pointer;
+
+  }
+
 
 .activeTab:hover {
   background: none; /* 호버 시 배경색 변화 없음 */
@@ -843,8 +717,71 @@ width: 100%;
     height: auto;
     padding: 10px;
   }
+  .Roomcontainer2 {
+    border: none;
+    margin-top: 6%;
+    width: 90%;
+    margin-bottom: 20%;
+  }
+
+  .roomsList {
+    width: 100%;
+    margin-left: -35%;
+    overflow-x: hidden; /* 가로 스크롤 제거 */
+  }
+  
+  .plusButtonLink2 {
+    margin-left: 90%;
+    margin-bottom: 1%;
+    margin-top: 20%;
+  }
+  
+  .footer {
+    display: flex;
+    width: 100%;
+    
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  .postList {
+    margin-top: -2%;
+    margin-left: 5%;
+    width: 90%;
+  }
 
 
+  
+  .roomItem {
+    width: 100%;
+  }
+  
+  .roomIcon {
+    width: 35px;
+    height: 55px;
+    margin-right: 10px; /* 아이콘과 텍스트 간 간격 */
+  }
+  
+  
+  .notetext {
+    margin-top: -3%;
+    font-size: 1.2rem; /* 텍스트 크기 */
+    color: #000000; /* 텍스트 색상 */
+    margin-bottom: 5%; 
+    margin-left: 2%;
+    cursor: default;
+    text-align: center;
+  
+  }
+
+  .plusButtonLink {
+    margin-left: 90%;
+    border-radius: 1px;
+    border: none;
+    cursor: pointer;
+  
+  }
   .title-text {
     font-size: 0.8rem;
   }
@@ -881,54 +818,16 @@ width: 100%;
   }
 
   .tabContainer {
-    margin-left: 6%;
-    margin-top: 30%;
+    margin-left: -2%;
+    margin-top: 5%;
     width: 100%;
   }
 
-  /*상단바*/
-  
-  .app-header {
-
-    margin-left: 0%;
-    margin-bottom: -30%;
- 
- }
-  .app-main_mascot {
-    height: 55px;
-    margin-top: 30px;
+  .container2{
+    width: 90%;
+    margin-left: -1%;
+    padding: 15px;
   }
-
-  .app-main_bell,
-  .app-main_message,
-  .app-main_my {
-    height: 35px;
-    margin-bottom: 30px;
-  }
-
-
-  /* 공지사항 텍스트 */
-    .title-text {
-      font-size: 0.8rem ;
-      margin-bottom: 40px;
-      
-    flex-direction: row;
-    }
-    
-    
-    /* INFO 텍스트 */
-    h2 {
-      font-size: 1.8rem ;
-      
-      margin-bottom: 35px;
-    }
-
-    .right-section {
-
-      gap: 1px; /* 아이콘 사이의 간격 */
-    }
-
-
 }
 
 

@@ -30,7 +30,7 @@ const FreeChat = () => {
     const token = 'abc';
     const roomId = '91f3411b-1433-4fdd-b3ac-c0a594b5f407'; // 채팅방 ID는 classId로 설정
     const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
-    const baseUrl = 'https://934ef54da7b8.ngrok.app'; // 백엔드 서버 URL
+    const baseUrl = 'https://rmation-chat.kro.kr'; // 백엔드 서버 URL
     // 웹소켓 초기화 함수
     const initializeWebSocket = () => {
         if (!token) {
@@ -199,11 +199,11 @@ const FreeChat = () => {
                         className={`${styles.goBackButton} ${isDesktop ? styles.desktopGoBackButton : styles.mobileGoBackButton}`}
                         onClick={() => navigate(-1)}
                     />
-                    <h2 className={`${styles.sectionTitle} ${isDesktop ? styles.desktopSectionTitle : styles.mobileSectionTitle}`}>자유 소통방</h2>
+                    <h2 className={`${styles.sectionTitle} ${isDesktop ? styles.desktopSectionTitle : styles.mobileSectionTitle}`}>{room.roomName}</h2>
                 </div>
 
                 <div className={`${styles.classInfo} ${isDesktop ? styles.desktopClassInfo : styles.mobileClassInfo}`}>
-                    <span>{room.roomName}</span>
+                    <span className={`${styles.sectionTitle} ${isDesktop ? styles.desktopSectionTitle : styles.mobileSectionTitle}`}></span>
                     <span>인원 : {userCount}</span>
                 </div>
 
@@ -211,7 +211,7 @@ const FreeChat = () => {
                     {messages.map((msg, index) => (
                         <div key={index} className={msg.userId === '202301641' ? styles.sentMessage : styles.receivedMessage}>
                             <span className={styles.messageText}>{msg.message}</span>
-                            <span className={styles.messageTime}>{msg.time}</span>
+                            <span className={styles.messageTime}>{msg.time.split('T')[1].slice(0, 5)}</span>
                         </div>
                     ))}
                 </div>

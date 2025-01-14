@@ -11,6 +11,8 @@ import axios from 'axios';
 import UserContext from './UserContext';
 import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 처리
 
+import Header from './_2.js'; // 상단바 컴포넌트
+
 const Profileedit = () => {
   const fileInputRef = useRef(null);
   const { user, updateUser } = useContext(UserContext); // 유저 정보 가져오기
@@ -68,7 +70,7 @@ const Profileedit = () => {
     };
 
     try {
-      const response = await axios.post('https://ed75-61-84-64-212.ngrok-free.app/updateProfile', updatedUser,{
+      const response = await axios.post('https://rmation-chat.kro.kr/updateProfile', updatedUser,{
             headers: {
                 contentType: 'application/json',
                 'ngrok-skip-browser-warning': 'abc',
@@ -91,7 +93,8 @@ const Profileedit = () => {
 
   return (
     <div className={styles.app}>
-      <header className={styles['app-header']}>
+      <Header />
+{/*      <header className={styles['app-header']}>
         <div className={styles['title-group']}>
           <img src={main_mascot} className={styles['app-main_mascot']} alt="main_mascot" />
           <h2>INFO!</h2>
@@ -101,7 +104,7 @@ const Profileedit = () => {
             <img src={main_my} className={styles['app-main_my']} alt="main_my" />
           </div>
         </div>
-      </header>
+      </header> */}
 
       <div className={styles.container}>
         <div className={styles.content}>

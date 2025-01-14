@@ -35,11 +35,15 @@ const InformationContest = () => {
   // 게시물 목록 조회 - 백엔드 연동
   useEffect(() => {
     const fetchPosts = async () => {
+      const accessToken = localStorage.getItem('authToken');
+      console.log(accessToken);
+
       setIsLoading(true); // 로딩 시작
       try {
-        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/competition', {// page와 size 추가
+        const response = await axiosInstance.get('https://3e319465b029.ngrok.app/api/board/competition', {// page와 size 추가
           params: { page, size }, // 페이지와 사이즈를 쿼리 파라미터로 추가
           headers: {
+            'Authorization': `Bearer ${accessToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });
@@ -67,7 +71,7 @@ const InformationContest = () => {
     // 좋아요 10개 이상 게시물 가져오기
     const fetchTopLikedPosts = async () => {
       try {
-        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/competition/top-liked', {
+        const response = await axiosInstance.get('https://3e319465b029.ngrok.app/api/board/competition/top-liked', {
           headers: {
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
@@ -87,9 +91,13 @@ const InformationContest = () => {
   }, [page, size]); // page와 size 변경 시 재호출
 
   const toggleScrap = async (id) => {
+    const accessToken = localStorage.getItem('authToken');
+    console.log(accessToken);
+
     try {
-      const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/free/${id}/competition`, {
+      const response = await axiosInstance.post(`https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/competition/${id}/scrap`, {
         headers: {
+          'Authorization': `Bearer ${accessToken}`,
           'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
         },
 
@@ -114,7 +122,7 @@ const InformationContest = () => {
     if (searchTerm.trim() !== '') {
       try {
         console.log(`검색어: ${searchTerm}`);
-        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/competiton', {
+        const response = await axiosInstance.get('https://3e319465b029.ngrok.app/api/board/competiton', {
           params: {
             searchKeyword: searchTerm, // 검색어 전달
             page: 0,
@@ -169,7 +177,7 @@ const InformationContest = () => {
         typeKeyword: '', // 필요 시 값 설정
       };
 
-      const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/competiton/sort-by-likes', {
+      const response = await axiosInstance.get('https://3e319465b029.ngrok.app/api/board/competition/sort-by-likes', {
         params,
         headers: {
           'ngrok-skip-browser-warning': 'true', // 필요 시 유지
@@ -236,7 +244,7 @@ const InformationContest = () => {
           {/* 정렬 버튼들 */}
           <div className={`${styles.sortButtons} ${isDesktop ? styles.desktopSortButtons : ''}`}>
             <button
-              className={`${styles.latestSortButton} ${styles.latestSortButton} ${isDesktop ? styles.desktopLatestSortButton : ''} ${sortType === 'latest' ? styles.activeSortButton : ''}`}
+              className={`${styles.latestSortButton}  ${isDesktop ? styles.desktopLatestSortButton : ''} `}
               onClick={() => handleSort('latest')} // handleSort 함수 호출
             >
               최신순
@@ -244,7 +252,7 @@ const InformationContest = () => {
 
             {/* 추천순 정렬 버튼 */}
             <button
-              className={`${styles.recommendSortButton} ${styles.recommendSortButton} ${isDesktop ? styles.desktopRecommendSortButton : ''} ${sortType === 'recommend' ? styles.activeSortButton : ''}`}
+              className={`${styles.latestSortButton}  ${isDesktop ? styles.desktopRecommendSortButton : ''} `}
               onClick={() => handleSort('recommend')} // handleSort 함수 호출
             >
               추천순
@@ -278,7 +286,11 @@ const InformationContest = () => {
 
               {/* 스크랩 상태 아이콘 */}
               <img
-                src={scrapStatus[post.id] ? IconScrap : IconUnscrap}
+                src={scrapStatus[post.id] !== undefined ? (
+                  scrapStatus[post.id] ? IconScrap : IconUnscrap
+                ) : (
+                  post.scrapped ? IconScrap : IconUnscrap
+                )} // scrapStatus 또는 post.scrapped 값에 따라 이미지 변경
                 alt={scrapStatus[post.id] ? '스크랩됨' : '스크랩안됨'}
                 className={styles.scrapIcon}
                 onClick={() => toggleScrap(post.id)} // 스크랩 상태 변경 및 백엔드 전송

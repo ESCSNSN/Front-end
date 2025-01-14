@@ -4,6 +4,7 @@ import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들�
 import Header from './_.js';  // 상단바 컴포넌트
 import styles from './Message.module.css';
 import menuIcon from '../images/메뉴버튼.png';
+import bar from '../images/bar.png';
 import CommunicationRoom_goBack from '../images/왼쪽 나가기 버튼.png';
 
 const AlarmPage = () => {
@@ -100,6 +101,8 @@ const AlarmPage = () => {
                         alt="뒤로가기"
                         onClick={() => navigate(-1)}  /* 뒤로 가기 동작 추가 */
                     />
+                    <h1 className={styles["title-text2"]}>알림</h1>
+                    <img src={bar} className={styles["app-bar"]} alt="bar" />
 
                 </div>
 

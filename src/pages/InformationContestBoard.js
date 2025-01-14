@@ -143,14 +143,14 @@ const InformationContestBoard = () => {
 
   // 닉네임 생성 함수
 const generateNickname = (id) => {
-  const types = ["int", "short", "double", "char"];
+  const types = ["double"];
   const randomType = types[Math.floor(Math.random() * types.length)];
   return `${randomType}${id}`;
 };
 
 useEffect(() => {
   if (!nickname) {
-    const types = ['int', 'short', 'double', 'char'];
+    const types = ['double'];
     const randomType = types[Math.floor(Math.random() * types.length)];
     setNickname(randomType);
   }
@@ -231,7 +231,7 @@ const handleAddComment = async () => {
 
     if (!anonymousId) {
       // 'char', 'int', 'short', 'double' 중 하나를 랜덤으로 선택
-      const idOptions = ['char', 'int', 'short', 'double'];
+      const idOptions = ['double'];
       anonymousId = idOptions[Math.floor(Math.random() * idOptions.length)];
 
       // 생성된 anonymousId를 localStorage에 저장
@@ -284,7 +284,7 @@ const handleAddReply = async (index) => {
     let anonymousId = localStorage.getItem(localStorageKey);
 
     if (!anonymousId) {
-      const idOptions = ['char', 'int', 'short', 'double'];
+      const idOptions = ['double'];
       anonymousId = idOptions[Math.floor(Math.random() * idOptions.length)];
 
       localStorage.setItem(localStorageKey, anonymousId);
@@ -470,7 +470,7 @@ const handleEdit = async () => {
       console.log("수정 가능한 데이터를 가져왔습니다:", data);
 
       // 데이터를 활용해 수정 화면으로 이동하거나 상태 업데이트
-      // 예: navigate(`/edit/${id}`) 또는 수정 데이터 상태 업데이트
+      navigate(`/ContestWrite/${id}`) 
     } else {
       console.error("수정 데이터를 가져오지 못했습니다:", response.status);
     }

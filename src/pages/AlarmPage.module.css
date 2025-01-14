@@ -26,6 +26,26 @@
     text-underline-offset: 10px;
 }
 
+.title-text2 {
+    /*게시판*/
+    font-size: 1.6rem;
+    color: #000000;
+    margin-bottom: 0px;
+    /* 텍스트를 아래로 살짝 내림 */
+    margin-top: 0px;
+    margin-left: 10px;
+    /* 텍스트를 아래로 살짝 내림 */
+  }
+  
+/* 상단 바 스타일 */
+.app-bar {
+    height: 3px;
+    margin-left: 0px;
+    width: calc(100% - 20px); /* 좌우 10px씩 여백 추가 */
+    margin: 20px auto;        /* 세로 가운데 정렬 및 여백 */
+    background-color: #000;   /* (예시) 배경 색 지정 */
+  }
+
 .messageList {
     display: flex;
     flex-direction: column;

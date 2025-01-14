@@ -111,6 +111,12 @@
     margin-left: 10px;
     margin-right: 10px;
   }
+
+  
+  .sendButton:hover{
+    background-color: initial; /* 기본 배경 유지 */
+
+  }
   
   .sendIcon {
     height: 2rem;

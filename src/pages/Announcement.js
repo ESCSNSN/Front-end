@@ -35,11 +35,14 @@ const Announcement = () => {
     
     useEffect(() => {
       const fetchPosts = async () => {
+        const accessToken = localStorage.getItem('authToken');
+        console.log(accessToken);
         setIsLoading(true); // 로딩 시작
         try {
-          const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/notice', {
+          const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/notice', {
             params: { page, size }, // 페이지와 사이즈를 쿼리 파라미터로 추가
             headers: {
+              'Authorization': `Bearer ${accessToken}`,
               'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
             },
           });
@@ -66,37 +69,13 @@ const Announcement = () => {
       fetchPosts();
     }, [page, size]); // page와 size 변경 시 재호출
 
-  
-    // 스크랩 토글 함수
-  const toggleScrap = async (id) => {
-    try {
-      const response = await axiosInstance.post(`http://info-rmation.kro.kr/${id}/scrap`, {
-        headers: {
-          'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
-        },
-
-      });
-
-      // 성공적으로 응답을 받은 경우 상태를 업데이트
-      setScrapStatus((prevState) => ({
-        ...prevState,
-        [id]: !prevState[id], // 현재 상태를 토글
-      }));
-
-      console.log('스크랩 상태가 성공적으로 업데이트되었습니다.');
-    } catch (error) {
-      console.error('스크랩 상태 업데이트 중 오류가 발생했습니다:', error);
-      alert('스크랩 상태 업데이트에 실패했습니다. 다시 시도해주세요.');
-    }
-  };
-
   // 검색 입력값을 변경하는 함수
   const handleSearch = async () => {
     console.log('검색 버튼 클릭됨');
     if (searchTerm.trim() !== '') {
       try {
         console.log(`검색어: ${searchTerm}`);
-        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/notice', {
+        const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/notice', {
           params: {
             searchKeyword: searchTerm, // 검색어 전달
             page: 0,
@@ -146,7 +125,7 @@ const Announcement = () => {
         typeKeyword: '', // 필요 시 값 설정
       };
 
-      const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/notice/sort-by-likes', {
+      const response = await axiosInstance.get('https://3e319465b029.ngrok.app/api/board/notice/sort-by-likes', {
         params,
         headers: {
           'ngrok-skip-browser-warning': 'true', // 필요 시 유지
@@ -217,27 +196,7 @@ const Announcement = () => {
               onClick={handleSearch} // 돋보기 아이콘 클릭 시 검색
             />
           </div>
-
-          {/* 정렬 버튼들 */}
-          <div className={`${styles.sortButtons} ${isDesktop ? styles.desktopSortButtons : ''}`}>
-            <button
-              className={`${styles.latestSortButton} ${styles.latestSortButton} ${isDesktop ? styles.desktopLatestSortButton : ''} ${sortType === 'latest' ? styles.activeSortButton : ''}`}
-              onClick={() => handleSort('latest')} // handleSort 함수 호출
-            >
-              최신순
-            </button>
-
-            {/* 추천순 정렬 버튼 */}
-            <button
-              className={`${styles.recommendSortButton} ${styles.recommendSortButton} ${isDesktop ? styles.desktopRecommendSortButton : ''} ${sortType === 'recommend' ? styles.activeSortButton : ''}`}
-              onClick={() => handleSort('recommend')} // handleSort 함수 호출
-            >
-              추천순
-            </button>
-          </div>
         </div>
-
-
 
         {/* 게시물 목록 */}
         <div className={styles.postList}>
@@ -257,14 +216,6 @@ const Announcement = () => {
                     : '날짜 없음'}
                 </span>
               </div>
-
-              {/* 스크랩 상태 아이콘 */}
-              <img
-                src={scrapStatus[post.id] ? IconScrap : IconUnscrap}
-                alt={scrapStatus[post.id] ? '스크랩됨' : '스크랩안됨'}
-                className={styles.scrapIcon}
-                onClick={() => toggleScrap(post.id)} // 스크랩 상태 변경 및 백엔드 전송
-              />
             </div>
           ))}
         </div>
