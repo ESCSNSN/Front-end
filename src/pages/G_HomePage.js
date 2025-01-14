@@ -279,7 +279,6 @@ const G_HomePage = () => {
   return (
     <div className={styles.app}>
         <Header />
-
       {/* 탭 네비게이션 */}
       <div className={`${styles.tabContainer} ${isDesktop ? styles.desktopTabContainer : ''}`}>
         <button
@@ -315,7 +314,7 @@ const G_HomePage = () => {
                 <p className={styles.postDescription}>{post.freeContents || '내용 없음'}</p>
                 <button
                   className={styles.commentButton}
-                  onClick={() => navigate(`/FreepostingPage/${post.id}`)} // boardID와 함께 전달
+                  onClick={() => navigate(`/G_freepostingPage/${post.id}`)} // boardID와 함께 전달
                 >
                   댓글 달기
                 </button>
@@ -334,8 +333,8 @@ const G_HomePage = () => {
                 <p className={styles.postDescription}>{post.questContents || '내용 없음'}</p>
                 <button
                   className={styles.commentButton}
-                  onClick={() => navigate(`/QuestionpostingPage/${post.id}`)} // boardID와 함께 전달
-                >
+                  onClick={() => navigate(`/G_questionpostingPage/${post.id}`)} // boardID와 함께 전달
+              >
                   댓글 달기
                 </button>
               </div>
