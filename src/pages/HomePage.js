@@ -27,7 +27,7 @@ import axios from 'axios';
 import {jwtDecode} from 'jwt-decode';
 
 
-const BASE_URL = 'https://3e319465b029.ngrok.app/';
+const BASE_URL = 'http://info-rmation.kro.kr/';
 
 
 //import {  fetchFreeBoardData, fetchQuestBoardData, fetchCompetitionBoardData,fetchCodingBoardData, fetchStudyBoardData } from '../api/boardApi'; //Api
@@ -306,13 +306,7 @@ const HomePage = () => {
         return (
           <>
 
-            {/*  <ul>
-                {data.map((item, index) => (
-                    <li key={index}>
-                        {item.title} - {item.description}
-                    </li>
-                ))}
-            </ul> */}
+         
 
 
 

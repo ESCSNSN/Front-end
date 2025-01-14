@@ -15,14 +15,14 @@ import axiosInstance from '../utils/api.js';
 
 
 // API에서 사용할 기본 URL과 헤더 설정
-const BASE_URL = 'https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board';
+const BASE_URL = 'http://info-rmation.kro.kr/api/board';
 const getAuthHeaders = () => {
-  const accessToken = localStorage.getItem('authToken');
+  const authToken = localStorage.getItem('authToken');
   const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
   console.log(localStorage.getItem('userId'));
 
   return {
-    'Authorization': `Bearer ${accessToken}`,
+    'Authorization': `Bearer ${authToken}`,
     'X-USER-ID': userId, // 사용자 ID를 X-USER-ID로 추가
     'Content-Type': 'application/json',
     'ngrok-skip-browser-warning': 1
@@ -56,13 +56,13 @@ const StudyBoard = () => {
   // 게시판 데이터 불러오기 useEffect
   useEffect(() => {
     const getBoard = async () => {
-      const accessToken = localStorage.getItem('authToken');
+      const authToken = localStorage.getItem('authToken');
       console.log(id);
 
       try {
         const response = await fetch(`${BASE_URL}/studies/${id}`, {
           headers: {
-            'Authorization': `Bearer ${accessToken}`,
+            'Authorization': `Bearer ${authToken}`,
             'ngrok-skip-browser-warning': 1,
           },
         });
@@ -413,11 +413,11 @@ const handleAddReply = async (index) => {
     }
 
     try {
-      const accessToken = localStorage.getItem('authToken');
+      const authToken = localStorage.getItem('authToken');
       const response = await fetch(`${BASE_URL}/studies/delete/${id}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
+          'Authorization': `Bearer ${authToken}`,
           'ngrok-skip-browser-warning': 1
         },
       });
@@ -483,14 +483,14 @@ const handleEdit = async () => {
 
 // 신청버튼 위한 로직 추가함
 const handleApply = async () => {
-  const accessToken = localStorage.getItem('authToken');
+  const authToken = localStorage.getItem('authToken');
   console.log(id);
 
   try {
     const response = await fetch(`${BASE_URL}/studies/${id}/apply`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${accessToken}`, // 인증 헤더
+        'Authorization': `Bearer ${authToken}`, // 인증 헤더
         'Content-Type': 'application/json', // 요청 본문 형식 명시
         'ngrok-skip-browser-warning': 'true', // 추가 헤더
       },

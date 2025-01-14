@@ -13,14 +13,14 @@ import bar from '../images/bar.png';
 import Header from './_.js';  // 상단바 컴포넌트
 
 // API에서 사용할 기본 URL과 헤더 설정
-const BASE_URL = 'https://3e319465b029.ngrok.app/api/board';
+const BASE_URL = 'http://info-rmation.kro.kr/api/board';
 const getAuthHeaders = () => {
-  const accessToken = localStorage.getItem('accessToken');
+  const authToken = localStorage.getItem('authToken');
   const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
   console.log(localStorage.getItem('userId'));
 
   return {
-    'Authorization': `Bearer ${accessToken}`,
+    'Authorization': `Bearer ${authToken}`,
     'X-USER-ID': userId, // 사용자 ID를 X-USER-ID로 추가
     'Content-Type': 'application/json',
     'ngrok-skip-browser-warning': 1
@@ -54,13 +54,13 @@ const InformationCodeBoard = () => {
   // 게시판 데이터 불러오기 useEffect
   useEffect(() => {
     const getBoard = async () => {
-      const accessToken = localStorage.getItem('accessToken');
+      const authToken = localStorage.getItem('authToken');
       console.log(id);
 
       try {
         const response = await fetch(`${BASE_URL}/coding/${id}`, {
           headers: {
-            'Authorization': `Bearer ${accessToken}`,
+            'Authorization': `Bearer ${authToken}`,
             'ngrok-skip-browser-warning': 1,
           },
         });
@@ -411,11 +411,11 @@ const InformationCodeBoard = () => {
     }
 
     try {
-      const accessToken = localStorage.getItem('accessToken');
+      const authToken = localStorage.getItem('authToken');
       const response = await fetch(`${BASE_URL}/coding/delete/${id}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
+          'Authorization': `Bearer ${authToken}`,
           'ngrok-skip-browser-warning': 1
         },
       });
