@@ -1,3 +1,5 @@
+//join js
+
 import React, { useState } from 'react';
 import styles from './JoinPage.module.css';
 import { useNavigate } from 'react-router-dom';
@@ -163,32 +165,36 @@ const JoinPage = () => {
             <div className={styles.loginBox}>
                 <div className={styles.formContainer}>
                     <div className={styles.formGroup}>
-                        <label htmlFor="name">이름</label>
+                        <label htmlFor="name"  className={styles.jointext}>이름</label>
                         <input
                             type="text"
                             id="name"
                             placeholder="이름 입력"
                             value={name}
+                            className={styles.input}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label htmlFor="studentId">학번</label>
+                        <label htmlFor="studentId" className={styles.jointext}>학번</label>
                         <input
                             type="text"
                             id="studentId"
                             placeholder="학번 입력 (9자리)"
                             value={studentId}
+                            className={styles.input}
                             onChange={(e) => setStudentId(e.target.value)}
                         />
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label className={styles.mainLabel}>재학생 / 졸업생 선택</label>
+                        <label className={styles.mainLabel}></label>
                         <div className={styles.radioContainer}>
+
+
                             <div className={styles.radioOption}>
-                                <label htmlFor="student">재학생</label>
+                                <label htmlFor="student" className={styles.jointext}>재학생</label>
                                 <input
                                     type="radio"
                                     id="student"
@@ -196,10 +202,13 @@ const JoinPage = () => {
                                     value="student"
                                     checked={isStudent}
                                     onChange={() => setIsStudent(true)}
+                                    className={styles.input2}
                                 />
+
+                                
                             </div>
                             <div className={styles.radioOption}>
-                                <label htmlFor="graduate">졸업생</label>
+                                <label htmlFor="graduate" className={styles.jointext}>졸업생</label>
                                 <input
                                     type="radio"
                                     id="graduate"
@@ -207,13 +216,14 @@ const JoinPage = () => {
                                     value="graduate"
                                     checked={!isStudent}
                                     onChange={() => setIsStudent(false)}
+                                    className={styles.input2}
                                 />
                             </div>
                         </div>
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label htmlFor="email">이메일</label>
+                        <label htmlFor="email" className={styles.jointext}>이메일</label>
                         <div className={styles.inputWrapper}>
                             <input
                                 type="email"
@@ -221,11 +231,13 @@ const JoinPage = () => {
                                 placeholder="이메일 입력 (@inu.ac.kr)"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                className={styles.input}
                             />
                             <button
                                 className={styles.inputBtn}
                                 onClick={handleSendVerificationCode}
                                 disabled={isCodeSent}
+                                
                             >
                                 인증번호 받기
                             </button>
@@ -259,7 +271,7 @@ const JoinPage = () => {
                     className={styles.loginButton}
                     onClick={() => navigate('/LoginPage')}
                 >
-                    닫기
+                    확인
                 </button>
             </div>
             {/* 비밀번호 변경 팝업 */}

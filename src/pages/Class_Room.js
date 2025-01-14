@@ -65,6 +65,15 @@ const Class_Room = () => {
     // 컴포넌트 언마운트 시 웹소켓 연결 종료
     return () => newSocket.close();
   }, []);
+
+
+  // 방 ID에 맞는 ChatPreview 페이지로 이동하기
+  const handleRoomClick = (roomId) => {
+    navigate(`/ChatPreview/${roomId}`);
+  };
+
+
+  {/*
   
   const handleRoomClick = (roomId) => {
     // 채팅방 입장 API 호출 (백엔드 URL로 변경)
@@ -87,7 +96,7 @@ const Class_Room = () => {
         }
       });
   };
-
+ */}
   return (
     <div className={`${styles.app} ${isDesktop ? styles.desktopApp : ''}`}>
        <Header />

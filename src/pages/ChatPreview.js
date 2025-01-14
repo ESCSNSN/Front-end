@@ -58,7 +58,28 @@ function ChatPreview() {
   const handleJoinClick = () => {
     // 참여하기 버튼 클릭 로직 추가 가능
     //alert('채팅방에 참여합니다!');
-    navigate(`/FreeChat/${roomId}`);
+    //navigate(`/FreeChat/${roomId}`);
+    
+  const roomType = roomData.type; // roomData에서 방 타입을 가져온다고 가정
+  let targetPath = '';
+
+  switch (roomType) {
+    case 'free':
+      targetPath = `/FreeChat/${roomId}`;
+      break;
+    case 'class':
+      targetPath = `/ClassChatRoom/${roomId}`;
+      break;
+    case 'room':
+      targetPath = `/RoomChat/${roomId}`;
+      break;
+    default:
+      targetPath = `/FreeChat/${roomId}`; // 기본값
+      break;
+  }
+
+  navigate(targetPath);
+
   };
 
   if (loading) return <div>Loading...</div>;
