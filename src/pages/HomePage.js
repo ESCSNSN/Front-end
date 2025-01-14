@@ -306,13 +306,7 @@ const HomePage = () => {
         return (
           <>
 
-            {/*  <ul>
-                {data.map((item, index) => (
-                    <li key={index}>
-                        {item.title} - {item.description}
-                    </li>
-                ))}
-            </ul> */}
+         
 
 
 
