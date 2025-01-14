@@ -45,7 +45,7 @@ const Myprofile = () => {
         if (userRooms && userRooms.length > 0) {
           // 필요한 데이터만 추출해 저장
           setProfileData({
-            userName: userRooms[0]?.userName || '닉네임 없음',
+            userName: userRooms[0]?.userName || '닉네임',
             userId,
           });
         } else {
