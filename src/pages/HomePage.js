@@ -1,5 +1,4 @@
 /*import React from 'react';*/
-
 import React, { useState, useEffect } from 'react'; // 이 라인이 빠져 있을 수 있습니다.
 
 import { Link, useNavigate } from 'react-router-dom';
@@ -672,12 +671,17 @@ const HomePage = () => {
       {/* 하단바 */}
       <div className={`${styles.footer} ${isDesktop ? styles.desktopFooter : ''}`}>
         <div className={styles.footerItem}>
-          <span>문의하기 </span>
-          <a href="mailto:abcd@gmail.com">abcd@gmail.com</a>
+          <h8 className={styles.footertext}>문의하기 information@inu.ac.kr</h8>
+          <a className={styles.footertext} href="mailto:information@inu.ac.kr"></a>
         </div>
-        <div className={styles.footerItem}>
-          <span>개인정보처리방침</span>
-        </div>
+        <a
+    href="https://www.inu.ac.kr/inu/600/subview.do"
+    target="_blank" // 새 탭에서 열기
+    rel="noopener noreferrer" // 보안 설정
+    className={styles.footerLink} // 필요하면 스타일 추가
+  >
+    개인정보처리방침
+  </a>
       </div>
     </div>
   );
