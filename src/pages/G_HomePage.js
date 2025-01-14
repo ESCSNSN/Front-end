@@ -25,7 +25,7 @@ import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들�
 
 
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 
 
 const BASE_URL = 'http://info-rmation.kro.kr';
