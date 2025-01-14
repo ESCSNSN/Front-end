@@ -11,7 +11,7 @@ import IconScrap from '../images/횃불이스크랩.png';
 import IconUnscrap from '../images/횃불이스크랩X.png';
 
 // API에서 사용할 기본 URL과 헤더 설정
-const BASE_URL = 'https://your-backend-api.com/api/board';
+const BASE_URL = 'http://info-rmation.kro.kr/api/board';
 const getAuthHeaders = () => {
   const accessToken = localStorage.getItem('accessToken');
   const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.

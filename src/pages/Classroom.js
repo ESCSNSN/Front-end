@@ -8,14 +8,14 @@ import { jwtDecode } from 'jwt-decode';
 
 
 const getAuthHeaders = () => {
-  const accessToken = localStorage.getItem('accessToken');
-  if (!accessToken) throw new Error('사용자 인증 정보가 없습니다.');
+  const authToken = localStorage.getItem('authToken');
+  if (!authToken) throw new Error('사용자 인증 정보가 없습니다.');
 
-  const decodedToken = jwtDecode(accessToken);
+  const decodedToken = jwtDecode(authToken);
   const userId = decodedToken.userId;
 
   return {
-    'Authorization': `Bearer ${accessToken}`,
+    'Authorization': `Bearer ${authToken}`,
     'X-USER-ID': userId,
     'ngrok-skip-browser-warning': 1
   };

@@ -7,7 +7,7 @@ import bar from '../images/bar.png';
 import menuIcon from '../images/메뉴버튼.png';
 
 // API에서 사용할 기본 URL과 헤더 설정
-const BASE_URL = 'https://3e319465b029.ngrok.app/api';
+const BASE_URL = 'http://info-rmation.kro.kr/api';
 const getAuthHeaders = () => {
   const accessToken = localStorage.getItem('accessToken');
   const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.

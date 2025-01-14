@@ -9,14 +9,14 @@ import IconUnscrap from '../images/횃불이스크랩X.png';
 
 
 // API에서 사용할 기본 URL과 헤더 설정
-const BASE_URL = 'https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board';
+const BASE_URL = 'http://info-rmation.kro.kr/api/board';
 const getAuthHeaders = () => {
-    const accessToken = localStorage.getItem('accessToken');
+    const authToken = localStorage.getItem('authToken');
     const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
     console.log(localStorage.getItem('userId'));
 
     return {
-        'Authorization': `Bearer ${accessToken}`,
+        'Authorization': `Bearer ${authToken}`,
         'X-USER-ID': userId, // 사용자 ID를 X-USER-ID로 추가
         'Content-Type': 'application/json',
         'ngrok-skip-browser-warning': 1

@@ -42,8 +42,8 @@ const BootBoardPage = () => {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const accessToken = localStorage.getItem('authToken');
-            console.log(accessToken);
+            const authToken = localStorage.getItem('authToken');
+            console.log(authToken);
 
             setIsLoading(true); // 로딩 시작
 
@@ -55,7 +55,7 @@ const BootBoardPage = () => {
                         studyid: selectedCategory === '부트캠프' ? 'bootcamp' : selectedCategory === '산업 연계' ? 'industry' : 'study',
                     },
                     headers: {
-                        'Authorization': `Bearer ${accessToken}`,
+                        'Authorization': `Bearer ${authToken}`,
                         'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
                     },
                 });
@@ -90,8 +90,8 @@ const BootBoardPage = () => {
 
 
     const toggleScrap = async (id) => {
-        const accessToken = localStorage.getItem('authToken');
-        console.log(accessToken);
+        const authToken = localStorage.getItem('authToken');
+        console.log(authToken);
 
         try {
             // 카테고리에 따라 엔드포인트 동적으로 설정
@@ -103,7 +103,7 @@ const BootBoardPage = () => {
 
             const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/studies/${id}/scrap`, {
                 headers: {
-                    'Authorization': `Bearer ${accessToken}`,
+                    'Authorization': `Bearer ${authToken}`,
                     'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
                 },
             });
