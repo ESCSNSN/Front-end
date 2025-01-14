@@ -15,6 +15,9 @@ import Header from './_2.js'; // 상단바 컴포넌트
 const Myprofile = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
+  
+  const [roomData, setRoomData] = useState({ type: 'free' }); 
+
   const [profileData, setProfileData] = useState({ userName: '', userId: '' });
 
   // API 호출로 프로필 데이터 로드
