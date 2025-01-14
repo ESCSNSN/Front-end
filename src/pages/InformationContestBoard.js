@@ -423,7 +423,7 @@ const handleAddReply = async (index) => {
       if (response.ok) {
         alert("게시글이 삭제되었습니다.");
         // 삭제 후 원하는 동작 수행 (예: 목록 페이지로 이동)
-        window.location.href = "/competitionboardPage"; // 목록 페이지 경로로 이동
+        window.location.href = "/InformationContest"; // 목록 페이지 경로로 이동
       } else {
         const errorData = await response.json();
         console.error("삭제 실패:", errorData);
