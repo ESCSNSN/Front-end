@@ -263,29 +263,27 @@
 
     .desktopGoBackButton {
         height: 3rem;
-        width: auto;
-        margin-left: 280px;
+        margin-left: 40px;
         margin-top: 15px;
-    }
+      }
 
     .desktopPageTitle {
-        margin-top: -150px;
         font-size: 1.5rem;
     }
 
    
     /* 큰 화면용 메뉴 버튼 */
-    .desktopDownMenuButton {
-        height: 1rem;
-        right: 22rem;
-        margin-top: 3rem;
-    }
+  .desktopDownMenuButton {
+    height: 1rem;
+    right: 25%;
+    margin-top: 20px;
+  }
 
     /* 드롭다운 메뉴 */
     .desktopDropdownMenu {
         position: absolute;
-        top: 10.5rem;
-        right: 22.2rem;
+        top: 10rem;
+        right: 23.8rem;
         border-radius: 5px;
         z-index: 100;
         /* 다른 요소 위에 보이게 */
@@ -365,13 +363,11 @@
     }
 
     .desktopLatestSortButton {
-        color: black;
-        /* 데스크탑에서 최신순 버튼의 색상 */
-    }
-
-    .desktopRecommendSortButton {
-        color: black;
-        /* 데스크탑에서 추천순 버튼의 색상 */
-    }
+        color: white; /* 데스크탑에서 최신순 버튼의 색상 */
+      }
+      
+      .desktopRecommendSortButton {
+        color: white; /* 데스크탑에서 추천순 버튼의 색상 */
+      }
 
 }

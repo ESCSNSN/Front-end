@@ -333,17 +333,18 @@
 
   /* 큰 화면용 메뉴 버튼 */
   .desktopDownMenuButton {
-    height: 3rem;
-    right: 50px;
-    margin-top: 50px;
+    height: 1rem;
+    right: 25%;
+    margin-top: 20px;
   }
 
   .desktopDropdownMenu {
     position: absolute;
-    margin-top: 3rem;
-    right: 80px;
-    width: 180px;
+    margin-top: 2rem;
+    right: 20%;
+    width: 10%;
     z-index: 150;
+    text-align: center;
     /* 다른 요소 위에 보이도록 설정 */
   }
 
@@ -368,7 +369,7 @@
 
   .desktopSearchIcon {
     height: 2rem; /* 돋보기 아이콘의 크기를 더 크게 조정 */
-    margin-left: 150px; /* 입력 필드와 아이콘 사이의 간격을 조정 */
+    margin-left: 10%; /* 입력 필드와 아이콘 사이의 간격을 조정 */
   }
   
   /* 두 버튼의 공통 속성 */
@@ -377,14 +378,13 @@
   display: flex;
   flex-direction: row; /* 정렬 버튼들을 가로 방향으로 배치 */
   gap: 20px; /* 정렬 버튼 사이 간격 조정 */
-  margin-left: 20px; /* 정렬 버튼 그룹을 오른쪽으로 이동 */
 }
 
-  .desktopLatestSortButton {
-    color: #244A95; /* 데스크탑에서 최신순 버튼의 색상 */
-  }
-  
-  .desktopRecommendSortButton {
-    color: #FF6347; /* 데스크탑에서 추천순 버튼의 색상 */
-  }
+.desktopLatestSortButton {
+  color: white; /* 데스크탑에서 최신순 버튼의 색상 */
+}
+
+.desktopRecommendSortButton {
+  color: white; /* 데스크탑에서 추천순 버튼의 색상 */
+}
 }

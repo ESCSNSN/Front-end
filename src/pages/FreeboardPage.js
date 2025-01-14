@@ -10,7 +10,6 @@ import SearchIcon from '../images/돋보기아이콘.png'; // 돋보기 아이�
 import IconScrap from '../images/횃불이스크랩.png';
 import IconUnscrap from '../images/횃불이스크랩X.png';
 
-
 const FreeboardPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);  // 드롭다운 상태 관리
   const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태 관리
@@ -94,7 +93,7 @@ const FreeboardPage = () => {
   // 스크랩 토글 함수
   const toggleScrap = async (id) => {
     const accessToken = localStorage.getItem('authToken');
-      console.log(accessToken);
+    console.log(accessToken);
 
     try {
       const response = await axiosInstance.post(`https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/free/${id}/scrap`, {
@@ -175,7 +174,7 @@ const FreeboardPage = () => {
         typeKeyword: '', // 필요 시 값 설정
       };
 
-      const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/free/sort-by-likes', {
+      const response = await axiosInstance.get('https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board/free/sort-by-likes', {
         params,
         headers: {
           'ngrok-skip-browser-warning': 'true', // 필요 시 유지

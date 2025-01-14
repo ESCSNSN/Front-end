@@ -1,5 +1,5 @@
 /* 데스크탑 전용 CSS 설정 */
-@media (min-width: 769px) {
+@media (min-width: 1024px) {
     .desktopTitleContainer {
       padding-top: 20px;
       padding-bottom: 20px;
@@ -9,13 +9,17 @@
       height: 3rem;
       margin-left: 40px;
       margin-top: 15px;
+      }
+    
+      .desktopPageTitle {
+        font-size: 1.5rem;
     }
-  
+
     /* 큰 화면용 메뉴 버튼 */
     .desktopDownMenuButton {
-      height: 3rem;
-      right: 50px;
-      margin-top: 50px;
+      height: 1rem;
+      right: 25%;
+      margin-top: 20px;
     }
   
     .desktopDropdownMenu {
@@ -29,11 +33,14 @@
   
     .desktopControlPanel {
       display: flex;
-      justify-content: center; /* 컨트롤 패널 내의 요소들을 중앙에 정렬 */
+      justify-content: center;
+      /* 컨트롤 패널 내의 요소들을 중앙에 정렬 */
       align-items: center;
-      gap: 20px; /* 컨트롤 패널 내부의 간격을 넓혀 여유로운 디자인 */
-      margin-top: 20px; /* 상단과의 간격 조정 */
-    }
+      gap: 0.3rem;
+      /* 컨트롤 패널 내부의 간격을 넓혀 여유로운 디자인 */
+      margin-top: 0rem;
+      /* 상단과의 간격 조정 */
+  }
   
     .desktopSearchBar {
       display: flex;
