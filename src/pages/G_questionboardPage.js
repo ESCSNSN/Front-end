@@ -11,7 +11,7 @@ import IconScrap from '../images/횃불이스크랩.png';
 import IconUnscrap from '../images/횃불이스크랩X.png';
 
 // API에서 사용할 기본 URL과 헤더 설정
-const BASE_URL = 'https://your-backend-api.com/api/board';
+const BASE_URL = 'http://info-rmation.kro.kr/api/board';
 const getAuthHeaders = () => {
   const accessToken = localStorage.getItem('accessToken');
   const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
@@ -54,7 +54,7 @@ const G_freeboardPage = () => {
 
       setIsLoading(true); // 로딩 시작
       try {
-        const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/graduate', {
+        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/graduate', {
           params: {
             page,
             size,
@@ -88,7 +88,7 @@ const G_freeboardPage = () => {
     // 좋아요 10개 이상 게시물 가져오기
     const fetchTopLikedPosts = async () => {
       try {
-        const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/graduate/top-liked', {
+        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/graduate/top-liked', {
           headers: {
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
@@ -123,7 +123,7 @@ const G_freeboardPage = () => {
     console.log(accessToken);
 
     try {
-      const response = await axiosInstance.post(`https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/graduate/${id}/scrap`, {
+      const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/graduate/${id}/scrap`, {
         headers: {
           'Authorization': `Bearer ${accessToken}`,
           'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
@@ -169,7 +169,7 @@ const G_freeboardPage = () => {
         graduateId: 'Quest',
       };
 
-      const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/graduate/sort-by-likes', {
+      const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/graduate/sort-by-likes', {
         params,
         headers: {
           'ngrok-skip-browser-warning': 'true', // 필요 시 유지
@@ -198,7 +198,7 @@ const G_freeboardPage = () => {
     if (searchTerm.trim() !== '') {
       try {
         console.log(`검색어: ${searchTerm}`);
-        const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/graduate', {
+        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/graduate', {
           params: {
             searchKeyword: searchTerm, // 검색어 전달
             page: 0,

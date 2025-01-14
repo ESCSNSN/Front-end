@@ -39,7 +39,7 @@ const QuestionboardPage = () => {
       console.log(accessToken);
       setIsLoading(true); // 로딩 시작
       try {
-        const response = await axiosInstance.get('https://3e319465b029.ngrok.app/api/board/quest', {
+        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/quest', {
           params: { page, size }, // 페이지와 사이즈를 쿼리 파라미터로 추가
           headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -69,7 +69,7 @@ const QuestionboardPage = () => {
     // 좋아요 10개 이상 게시물 가져오기
     const fetchTopLikedPosts = async () => {
       try {
-        const response = await axiosInstance.get('https://3e319465b029.ngrok.app/api/board/quest/top-liked', {
+        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/quest/top-liked', {
           headers: {
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
@@ -92,7 +92,7 @@ const QuestionboardPage = () => {
     const accessToken = localStorage.getItem('authToken');
     console.log(accessToken);
     try {
-      const response = await axiosInstance.post(`https://3e319465b029.ngrok.app/api/board/quest/${id}/scrap`, {
+      const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/quest/${id}/scrap`, {
         headers: {
           'Authorization': `Bearer ${accessToken}`,
           'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
@@ -136,7 +136,7 @@ const QuestionboardPage = () => {
     if (searchTerm.trim() !== '') {
       try {
         console.log(`검색어: ${searchTerm}`);
-        const response = await axiosInstance.get('https://3e319465b029.ngrok.app/api/board/quest', {
+        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/quest', {
           params: {
             searchKeyword: searchTerm, // 검색어 전달
             page: 0,
@@ -187,7 +187,7 @@ const QuestionboardPage = () => {
         typeKeyword: '', // 필요 시 값 설정
       };
 
-      const response = await axiosInstance.get('https://3e319465b029.ngrok.app/api/board/quest/sort-by-likes', {
+      const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/quest/sort-by-likes', {
         params,
         headers: {
           'ngrok-skip-browser-warning': 'true', // 필요 시 유지
