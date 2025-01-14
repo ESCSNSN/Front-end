@@ -27,7 +27,7 @@ import Header from './_.js'; // 상단바 컴포넌트
 
 
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 
 
 const BASE_URL = 'https://3e319465b029.ngrok.app/';
