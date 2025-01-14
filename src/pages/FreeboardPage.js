@@ -10,6 +10,7 @@ import SearchIcon from '../images/돋보기아이콘.png'; // 돋보기 아이�
 import IconScrap from '../images/횃불이스크랩.png';
 import IconUnscrap from '../images/횃불이스크랩X.png';
 
+
 const FreeboardPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);  // 드롭다운 상태 관리
   const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태 관리

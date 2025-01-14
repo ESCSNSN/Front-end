@@ -11,6 +11,8 @@ import heart from '../images/heart.png';
 import filledHeart from '../images/filledheart.png';
 import bar from '../images/bar.png';
 import Header from './_.js';  // 상단바 컴포넌트
+import axiosInstance from '../utils/api.js';
+
 
 // API에서 사용할 기본 URL과 헤더 설정
 const BASE_URL = 'https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board';
@@ -143,14 +145,14 @@ const StudyBoard = () => {
 
   // 닉네임 생성 함수
 const generateNickname = (id) => {
-  const types = ["int", "short", "double", "char"];
+  const types = ["short"];
   const randomType = types[Math.floor(Math.random() * types.length)];
   return `${randomType}${id}`;
 };
 
 useEffect(() => {
   if (!nickname) {
-    const types = ['int', 'short', 'double', 'char'];
+    const types = ['short'];
     const randomType = types[Math.floor(Math.random() * types.length)];
     setNickname(randomType);
   }
@@ -231,7 +233,7 @@ const handleAddComment = async () => {
 
     if (!anonymousId) {
       // 'char', 'int', 'short', 'double' 중 하나를 랜덤으로 선택
-      const idOptions = ['char', 'int', 'short', 'double'];
+      const idOptions = ['short'];
       anonymousId = idOptions[Math.floor(Math.random() * idOptions.length)];
 
       // 생성된 anonymousId를 localStorage에 저장
@@ -284,7 +286,7 @@ const handleAddReply = async (index) => {
     let anonymousId = localStorage.getItem(localStorageKey);
 
     if (!anonymousId) {
-      const idOptions = ['char', 'int', 'short', 'double'];
+      const idOptions = ['short'];
       anonymousId = idOptions[Math.floor(Math.random() * idOptions.length)];
 
       localStorage.setItem(localStorageKey, anonymousId);

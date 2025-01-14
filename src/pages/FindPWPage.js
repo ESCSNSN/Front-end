@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import back_logo from '../images/뒷모습 횃불이.png';
 
-const BASE_URL = "https://8d48-117-16-196-138.ngrok-free.app";
+const BASE_URL = "https://fd5ca3755e85.ngrok.app";
 
 const FindPWPage = () => {
     const [name, setName] = useState('');
