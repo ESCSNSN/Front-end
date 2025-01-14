@@ -26,7 +26,130 @@ import Header from './_.js'; // 상단바 컴포넌트
 
 
 
-import { fetchFreeBoardData, fetchQuestBoardData, fetchCompetitionBoardData, fetchCodingBoardData, fetchStudyBoardData } from '../api/boardApi'; //Api
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
+
+
+const BASE_URL = 'https://3e319465b029.ngrok.app/';
+
+
+//import {  fetchFreeBoardData, fetchQuestBoardData, fetchCompetitionBoardData,fetchCodingBoardData, fetchStudyBoardData } from '../api/boardApi'; //Api
+//fetchMainPageData,
+
+
+// 인증 헤더 가져오기 함수
+const getAuthHeaders = () => {
+  const accessToken = localStorage.getItem('authToken');
+
+  if (!accessToken) {
+    console.warn('Access token is missing');
+    return {};
+  }
+
+  try {
+    const decodedToken = jwtDecode(accessToken);
+    const userId = decodedToken?.userId || '';
+    console.log('Decoded Token:', decodedToken);
+
+    return {
+      Authorization: `Bearer ${accessToken}`,
+      'X-USER-ID': userId,
+    };
+  } catch (error) {
+    console.error('Token decoding error:', error);
+    return {};
+  }
+};
+
+// axios 인스턴스 설정
+const axiosInstance = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true,
+});
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const authHeaders = getAuthHeaders();
+    console.log('Auth Headers:', authHeaders);
+    config.headers = {
+      ...config.headers,
+      ...authHeaders,
+      'ngrok-skip-browser-warning': 1,
+    };
+    return config;
+  },
+  (error) => {
+    console.error('Request Error:', error);
+    return Promise.reject(error);
+  }
+);
+
+
+
+
+// 자유게시판 상위 3개 조회
+const fetchFreeBoardData = async () => {
+  try {
+    const response = await axiosInstance.get('api/board/main/free'); // 자유게시판 엔드포인트 호출
+    return response.data; // 응답 데이터를 반환
+  } catch (error) {
+    console.error('Error fetching free board data:', error);
+    throw error;
+  }
+};
+
+
+
+// 질문 게시판 데이터 가져오기
+const fetchQuestBoardData = async () => {
+  try {
+      const response = await axiosInstance.get('api/board/main/quest'); // 질문 게시판 엔드포인트 호출
+      return response.data; // 응답 데이터 반환
+  } catch (error) {
+      console.error('Error fetching quest board data:', error);
+      throw error;
+  }
+};
+
+const fetchCompetitionBoardData = async () => {
+  try {
+      const response = await axiosInstance.get('api/board/main/competition'); // 대회게시판 엔드포인트 호출
+      return response.data; // 응답 데이터를 반환
+  } catch (error) {
+      console.error('Error fetching competition board data:', error);
+      throw error; // 에러 발생 시 throw
+  }
+};
+
+//코딩게시판
+const fetchCodingBoardData = async () => {
+  try {
+    const response = await axiosInstance.get('api/board/main/coding'); // 코딩 게시판 엔드포인트 호출
+    return response.data; // 응답 데이터를 반환
+  } catch (error) {
+    console.error('Error fetching coding board data:', error);
+    throw error;
+  }
+};
+
+
+
+//정보게시판
+
+const fetchStudyBoardData = async () => {
+  try {
+      const response = await axiosInstance.get('api/board/main/study'); // 스터디 게시판 API 호출
+      return response.data; // 응답 데이터 반환
+  } catch (error) {
+      console.error('Error fetching study board data:', error);
+      throw error;
+  }
+};
+
+
+
+
+//import { fetchFreeBoardData, fetchQuestBoardData, fetchCompetitionBoardData, fetchCodingBoardData, fetchStudyBoardData } from '../api/boardApi'; //Api
 //fetchMainPageData,
 const HomePage = () => {
   const navigate = useNavigate(); // useNavigate 훅 선언-> 최상단에 호출
