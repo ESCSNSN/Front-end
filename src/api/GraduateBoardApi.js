@@ -1,4 +1,4 @@
-import axiosInstance from './axiosInstance'; // 미리 설정된 axios 인스턴스
+import axiosInstance from '../utils/api.js'; // 미리 설정된 axios 인스턴스
 
 // 1. 퀘스트 게시글 상위 3개 조회
 export const G_fetchQuestBoardData = async () => {

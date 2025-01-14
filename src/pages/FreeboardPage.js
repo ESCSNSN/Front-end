@@ -36,7 +36,7 @@ const FreeboardPage = () => {
   // 게시물 목록을 가져오는 함수
   useEffect(() => {
     const fetchPosts = async () => {
-      const accessToken = localStorage.getItem('authToken');
+      const accessToken = localStorage.getItem('accessToken');
       console.log(accessToken);
 
       setIsLoading(true); // 로딩 시작

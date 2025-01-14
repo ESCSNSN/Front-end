@@ -19,10 +19,10 @@ import Icon5 from '../images/수업소통방 횃불이.png';
 import Icon6 from '../images/자유소통방 횃불이.png';
 import Icon8 from '../images/프로필.png';
 import Icon9 from '../images/검색.png';
-import Icon10 from '../images/Make.png'
+import Icon10 from '../images/Plus.png'
 
 
-import Header from './_2.js'; // 상단바 컴포넌트
+import Header from './_.js'; // 상단바 컴포넌트
 
 const FreeRoom = () => {
   const [rooms, setRooms] = useState([]);
