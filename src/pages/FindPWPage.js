@@ -168,7 +168,7 @@ const FindPWPage = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <button
-                                className={styles.inputBtn}
+                                className={styles.inputBtn2}
                                 onClick={handleSendVerificationCode}
                                 disabled={isCodeSent}
                             >
