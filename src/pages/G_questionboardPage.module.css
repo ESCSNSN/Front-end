@@ -1,74 +1,3 @@
-/* 데스크탑 전용 CSS 설정 */
-@media (min-width: 769px) {
-    .desktopTitleContainer {
-      padding-top: 20px;
-      padding-bottom: 20px;
-    }
-  
-    .desktopGoBackButton {
-      height: 3rem;
-      margin-left: 40px;
-      margin-top: 15px;
-    }
-  
-    /* 큰 화면용 메뉴 버튼 */
-    .desktopDownMenuButton {
-      height: 3rem;
-      right: 50px;
-      margin-top: 50px;
-    }
-  
-    .desktopDropdownMenu {
-      position: absolute;
-      margin-top: 3rem;
-      right: 80px;
-      width: 180px;
-      z-index: 150;
-      /* 다른 요소 위에 보이도록 설정 */
-    }
-  
-    .desktopControlPanel {
-      display: flex;
-      justify-content: center; /* 컨트롤 패널 내의 요소들을 중앙에 정렬 */
-      align-items: center;
-      gap: 20px; /* 컨트롤 패널 내부의 간격을 넓혀 여유로운 디자인 */
-      margin-top: 20px; /* 상단과의 간격 조정 */
-    }
-  
-    .desktopSearchBar {
-      display: flex;
-      align-items: center;
-      width: 300px;
-      /* 검색창을 라인에서 정중앙에 배치하도록 설정 */
-    }
-  
-    .desktopSearchInput {
-      width: 200px; /* 검색 입력 필드의 너비를 넓힘 */
-    }
-  
-    .desktopSearchIcon {
-      height: 2rem; /* 돋보기 아이콘의 크기를 더 크게 조정 */
-      margin-left: 150px; /* 입력 필드와 아이콘 사이의 간격을 조정 */
-    }
-    
-    /* 두 버튼의 공통 속성 */
-  .desktopSortButtons {
-    cursor: pointer;
-    display: flex;
-    flex-direction: row; /* 정렬 버튼들을 가로 방향으로 배치 */
-    gap: 20px; /* 정렬 버튼 사이 간격 조정 */
-    margin-left: 20px; /* 정렬 버튼 그룹을 오른쪽으로 이동 */
-  }
-  
-    .desktopLatestSortButton {
-      color: #244A95; /* 데스크탑에서 최신순 버튼의 색상 */
-    }
-    
-    .desktopRecommendSortButton {
-      color: #FF6347; /* 데스크탑에서 추천순 버튼의 색상 */
-    }
-  }
-  
   .container {
     margin: 0;
     padding: 0;
@@ -376,3 +305,74 @@
   .cancelButton:hover {
     background-color: #aaa;
   }
+
+  /* 데스크탑 전용 CSS 설정 */
+@media (min-width: 769px) {
+  .desktopTitleContainer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .desktopGoBackButton {
+    height: 3rem;
+    margin-left: 40px;
+    margin-top: 15px;
+  }
+
+  /* 큰 화면용 메뉴 버튼 */
+  .desktopDownMenuButton {
+    height: 3rem;
+    right: 50px;
+    margin-top: 50px;
+  }
+
+  .desktopDropdownMenu {
+    position: absolute;
+    margin-top: 3rem;
+    right: 80px;
+    width: 180px;
+    z-index: 150;
+    /* 다른 요소 위에 보이도록 설정 */
+  }
+
+  .desktopControlPanel {
+    display: flex;
+    justify-content: center; /* 컨트롤 패널 내의 요소들을 중앙에 정렬 */
+    align-items: center;
+    gap: 20px; /* 컨트롤 패널 내부의 간격을 넓혀 여유로운 디자인 */
+    margin-top: 20px; /* 상단과의 간격 조정 */
+  }
+
+  .desktopSearchBar {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    /* 검색창을 라인에서 정중앙에 배치하도록 설정 */
+  }
+
+  .desktopSearchInput {
+    width: 200px; /* 검색 입력 필드의 너비를 넓힘 */
+  }
+
+  .desktopSearchIcon {
+    height: 2rem; /* 돋보기 아이콘의 크기를 더 크게 조정 */
+    margin-left: 150px; /* 입력 필드와 아이콘 사이의 간격을 조정 */
+  }
+  
+  /* 두 버튼의 공통 속성 */
+.desktopSortButtons {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row; /* 정렬 버튼들을 가로 방향으로 배치 */
+  gap: 20px; /* 정렬 버튼 사이 간격 조정 */
+  margin-left: 20px; /* 정렬 버튼 그룹을 오른쪽으로 이동 */
+}
+
+  .desktopLatestSortButton {
+    color: #244A95; /* 데스크탑에서 최신순 버튼의 색상 */
+  }
+  
+  .desktopRecommendSortButton {
+    color: #FF6347; /* 데스크탑에서 추천순 버튼의 색상 */
+  }
+}

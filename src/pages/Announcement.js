@@ -211,7 +211,7 @@ const Announcement = () => {
                   {post.noticeTitle || '제목 없음'} {/* 백엔드 데이터의 키에 맞춰 수정, 기본값 처리 */}
                 </span>
                 <span className={styles.postDate}>
-                  {post.noticeeCreatedTime
+                  {post.noticeCreatedTime
                     ? new Date(post.noitceCreatedTime).toLocaleDateString() // 작성 날짜 표시
                     : '날짜 없음'}
                 </span>

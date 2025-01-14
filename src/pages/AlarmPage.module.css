@@ -246,6 +246,10 @@
         padding-top:60px;
     }
 
+    .desktopPageTitle {
+        font-size: 1.5rem;
+    }
+    
     .desktopMessageItem {
         display: flex;
         justify-content: space-between;

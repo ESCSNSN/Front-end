@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들기 위함
 import Header from './_.js';  // 상단바 컴포넌트
-import styles from './Message.module.css';
+import styles from './AlarmPage.module.css';
 import menuIcon from '../images/메뉴버튼.png';
 import bar from '../images/bar.png';
 import CommunicationRoom_goBack from '../images/왼쪽 나가기 버튼.png';
@@ -86,7 +86,7 @@ const AlarmPage = () => {
                 <div className={`${styles.titleContainer} ${isDesktop ? styles.desktopTitleContainer : ''}`}>
                     <img
                         src={CommunicationRoom_goBack}
-                        className={`${styles.goBackButton} ${isDesktop ? styles.desktopGoBackButton : ''}`}
+                        className={`${styles.goBackButton} ${isDesktop ? styles["desktopGoBackButton"]: ''}`}
                         alt="뒤로가기"
                         onClick={() => navigate(-1)}  /* 뒤로 가기 동작 추가 */
                     />
