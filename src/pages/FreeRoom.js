@@ -25,15 +25,18 @@ import Icon10 from '../images/plusIcon.png'
 import Header from './_.js'; // 상단바 컴포넌트
 
 const FreeRoom = () => {
+  
+const [roomData, setRoomData] = useState({ type: 'free' }); 
   const [rooms, setRooms] = useState([]);
   const [filteredRooms, setFilteredRooms] = useState([]); // 필터된 방 목록
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const isDesktop = useMediaQuery({ query: '(min-width: 769px)' });
   const baseUrl = 'https://rmation-chat.kro.kr';
+  const roomType = 'free'; 
   // 열린 채팅방 목록 조회
   useEffect(() => {
-    fetch(`${baseUrl}/Room/RoomList`, {
+    fetch(`${baseUrl}/Room/RoomList/${roomType}`, {
       headers: {
         "ngrok-skip-browser-warning": "abc",
         'Content-Type': 'application/json'
@@ -55,6 +58,7 @@ const FreeRoom = () => {
       .catch((error) => console.error('채팅방 목록 불러오기 실패:', error));
   }, []);
 
+   // 기본값 설정
   // 검색 기능 처리 함수
   const handleSearch = () => {
     const filtered = rooms.filter(

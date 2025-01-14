@@ -30,13 +30,16 @@ function ChatPreview() {
   // 특정 채팅방 정보 가져오기
   const fetchRoomData = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/Room/${roomId}`, {
+      // roomType에 따라 요청할 URL 생성
+      const roomType = roomData?.type; // 기본값으로 'free' 설정
+      const response = await axios.get(`${BASE_URL}/Room/RoomList/${roomType}`, {
         headers: {
           'ngrok-skip-browser-warning': 'abc',
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*', // CORS 문제 방지
         },
       });
+  
       if (response.data.code === 200) {
         setRoomData(response.data.data);
       } else {
@@ -49,42 +52,22 @@ function ChatPreview() {
     }
     console.log(roomData);
   };
-
+  
   // 컴포넌트 마운트 시 API 호출
   React.useEffect(() => {
     fetchRoomData();
   }, [roomId]);
 
+  console.log(roomData);
+
   const handleJoinClick = () => {
-    // 참여하기 버튼 클릭 로직 추가 가능
-    //alert('채팅방에 참여합니다!');
-    //navigate(`/FreeChat/${roomId}`);
-    
-  const roomType = roomData.type; // roomData에서 방 타입을 가져온다고 가정
-  let targetPath = '';
-
-  switch (roomType) {
-    case 'free':
-      targetPath = `/FreeChat/${roomId}`;
-      break;
-    case 'class':
-      targetPath = `/ClassChatRoom/${roomId}`;
-      break;
-    case 'room':
-      targetPath = `/RoomChat/${roomId}`;
-      break;
-    default:
-      targetPath = `/FreeChat/${roomId}`; // 기본값
-      break;
+    navigate(`/FreeChat/${roomId}`);
   }
-
-  navigate(targetPath);
-
-  };
-
+  
+  
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-
+  
   return (
     <div className={styles.app}>
        <Header />

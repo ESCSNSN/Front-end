@@ -22,99 +22,76 @@ import Icon5 from '../images/수업소통방 횃불이.png';
 import Icon6 from '../images/자유소통방 횃불이.png';
 
 
-const roomsData = [];
+//const roomsData = [];
 
 const Class_Room = () => {
-  const [rooms, setRooms] = useState(roomsData);
+
+  const navigate = useNavigate();
+
+  const [rooms, setRooms] = useState([]); // 초기값을 빈 배열로 설정
   const [menuOpen, setMenuOpen] = useState(false);
   const [isSelectingForReport, setIsSelectingForReport] = useState(false);
   const [isSelectingForEdit, setIsSelectingForEdit] = useState(false);
   const [selectedRooms, setSelectedRooms] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reportReason, setReportReason] = useState('');
-  const [socket, setSocket] = useState(null);  // 웹소켓 연결 상태 관리
-  const navigate = useNavigate();
+  const [socket, setSocket] = useState(null); // 웹소켓 연결 상태 관리
 
   const isDesktop = useMediaQuery({ query: '(min-width: 769px)' });
-  const baseUrl = 'https://rmation-chat.kro.kr'
+  const baseUrl = 'https://rmation-chat.kro.kr';
+
   useEffect(() => {
     const fetchRooms = async () => {
-        fetch(`${baseUrl}/Room/RoomList`, {
-            headers: {  "ngrok-skip-browser-warning": "abc",
-                'Content-Type': 'application/json' },
-            method: 'GET',
-        }).then((res)=> {return res.json()})
-        .then((data) => {
-            console.log(data);
-            setRooms(data.data);
+      try {
+        const roomType = roomData?.type || 'room'; // roomData에서 type을 가져오되, 없으면 'room'으로 기본값 설정
+        const response = await fetch(`${baseUrl}/Room/RoomList/${roomType}`, {
+          headers: {
+            'ngrok-skip-browser-warning': 'abc',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'ngrok-skip-browser-warning': 1,
+          },
+          method: 'GET',
         });
+        const data = await response.json();
+        console.log(data);
+        setRooms(data.data || []); // 데이터가 없으면 빈 배열로 설정
+      } catch (error) {
+        console.error('Error fetching rooms:', error);
+      }
     };
 
     fetchRooms();
-    
-    // 웹소켓 서버와 연결 (서버 URL을 실제 백엔드 주소로 변경)
-    const newSocket = io(`${baseUrl}`);  // 실제 백엔드 URL로 변경
+
+    // 웹소켓 서버와 연결
+    const newSocket = io(`${baseUrl}`); // 실제 백엔드 URL로 변경
     setSocket(newSocket);
 
     // 채팅 메시지 수신 이벤트 처리
     newSocket.on('chat-message', (message) => {
       console.log('New message received:', message);
-      // 채팅방 리스트나 메시지 상태를 업데이트하는 로직을 추가해야 함
+      // 채팅방 리스트나 메시지 상태를 업데이트하는 로직 추가
     });
 
     // 컴포넌트 언마운트 시 웹소켓 연결 종료
     return () => newSocket.close();
   }, []);
 
-
+  const [roomData, setRoomData] = useState({ type: 'class' });  // 기본값 설정
+  
   // 방 ID에 맞는 ChatPreview 페이지로 이동하기
   const handleRoomClick = (roomId) => {
-    navigate(`/ChatPreview/${roomId}`);
+    navigate(`/ClassChatRoom/${roomId}`);
   };
 
+  if (!Array.isArray(rooms)) {
+    return <div>Error: Invalid room data</div>; // rooms가 배열이 아닌 경우 에러 메시지 표시
+  }
 
-  {/*
-  
-  const handleRoomClick = (roomId) => {
-    // 채팅방 입장 API 호출 (백엔드 URL로 변경)
-    fetch(`${baseUrl}/JoinRoom`, {  // 백엔드 엔드포인트로 변경
-      method: 'POST',
-      headers: {  "ngrok-skip-browser-warning": "abc",
-                'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        roomId: roomId,
-        userName: '김수빈', // 실제 사용자 이름으로 변경
-        userId: '202301641',  // 실제 사용자 ID로 변경  // 프로필 이미지 URL
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.code === 200) {
-          // 서버에서 'join-room' 이벤트를 처리하도록 설정
-          //socket.emit('join-room', roomId);  
-          navigate(`/Room/${roomId}`);
-        }
-      });
-  };
- */}
   return (
     <div className={`${styles.app} ${isDesktop ? styles.desktopApp : ''}`}>
        <Header />
-       {/*
-      <header className={`${styles["app-header"]} ${isDesktop ? styles.desktopHeader : ''}`}>
-        <div className={`${styles["title-group"]} ${isDesktop ? styles.desktopTitleGroup : ''}`}>
-          <img src={main_mascot} className={`${styles["app-main_mascot"]} ${isDesktop ? styles.desktopMascot : ''}`} alt="main_mascot" />
-          <h2>INFO!</h2>
-          <div className={`${styles["right-section"]} ${isDesktop ? styles.desktopRightSection : ''}`}>
-            <div className={`${styles["mascot-logo"]} ${isDesktop ? styles.desktopLogo : ''}`}></div>
-            <h2 className={`${styles["title-text"]} ${isDesktop ? styles.desktopTitleText : ''}`}>공지사항</h2>
-            <img src={main_bell} className={`${styles["app-main_bell"]} ${isDesktop ? styles.desktopBell : ''}`} alt="main_bell" />
-            <img src={main_message} className={`${styles["app-main_message"]} ${isDesktop ? styles.desktopMessage : ''}`} alt="main_message" />
-            <img src={main_my} className={`${styles["app-main_my"]} ${isDesktop ? styles.desktopMy : ''}`} alt="main_my" />
-          </div>
-        </div>
-      </header>
- */}
+      
       <div className={`${styles.container} ${isDesktop ? styles.desktopContainer : ''}`}>
         <div className={`${styles.content} ${isDesktop ? styles.desktopContent : ''}`}>
           <div className={`${styles.titleContainer} ${isDesktop ? styles.desktopTitleContainer : ''}`}>
@@ -139,6 +116,7 @@ const Class_Room = () => {
                  onError={(e) => (e.target.src = '../images/하트이모지.png')}/>
                 <div className={`${styles.roomInfo} ${isDesktop ? styles.desktopRoomInfo : ''}`}>
                   <div className={`${styles.roomTitle} ${isDesktop ? styles.desktopRoomTitle : ''}`}>{room.roomName}</div>
+                  
                   <div className={`${styles.roomMessage} ${isDesktop ? styles.desktopRoomMessage : ''}`}>{room.lastMessage}</div>
                
                 </div>

@@ -175,61 +175,54 @@ const HomePage = () => {
   // 반응형 페이지 처리를 위한 useMediaQuery 사용
   const isDesktop = useMediaQuery({ query: '(min-width: 769px)' });
 
-
   useEffect(() => {
     const loadData = async () => {
       try {
-
-
-        const [freeData, questData, ComData, codingData, studyData,] = await Promise.all([//mainData, 
-          // fetchMainPageData(),
+        const [freeData, questData, ComData, codingData, studyData] = await Promise.all([
           fetchFreeBoardData(),
           fetchQuestBoardData(),
           fetchCompetitionBoardData(),
           fetchCodingBoardData(),
           fetchStudyBoardData(),
         ]);
-
-        //setMainPageData(mainData);
+  
         setFreeBoardData(freeData);
         setQuestBoardData(questData);
         setCompetitionBoardData(ComData);
         setCodingBoardData(codingData);
         setStudyBoardData(studyData);
-
-
       } catch (err) {
         setError('Failed to load data.');
       } finally {
         setLoading(false);
       }
     };
-
-
-
+  
     loadData();
+  
     const fetchRooms = async () => {
-      const userId = '202301641'; // 추후 삭제제
+      const userId = '202301641'; // 추후 삭제 예정
+      const roomType = roomData?.type || 'room'; // roomData에서 type을 가져오되, 없으면 'room'으로 기본값 설정
       const baseUrl = 'https://rmation-chat.kro.kr';
-      fetch(`${baseUrl}/Room/userId/${userId}`, {
-        headers: {
-          contentType: 'application/json',
-          'ngrok-skip-browser-warning': 'abc',
-        },
-        method: 'GET'
-      }).then((res) => { return res.json() })
-        .then((data) => {
-          setRooms(data.data);
+  
+      try {
+        const response = await fetch(`${baseUrl}/Room/RoomList/${roomType}`, {
+          headers: {
+            'Content-Type': 'application/json', // 'contentType'을 'Content-Type'으로 변경
+            'ngrok-skip-browser-warning': 'abc',
+          },
+          method: 'GET',
         });
-      const roomsData = [
-        { roomId: 1, roomName: '내가 속한 방 제목 1', lastMessage: '마지막 내용', icon: Icon1, selected: false },
-      ];
+        const data = await response.json();
+        setRooms(data.data);
+      } catch (error) {
+        console.error('Error fetching rooms:', error);
+      }
     };
+  
     fetchRooms();
   }, []);
-
-
-
+  
   //여기까지 Api..
 
   //소통방
@@ -247,6 +240,7 @@ const HomePage = () => {
 
   const [rooms, setRooms] = useState(roomsData);
 
+  const [roomData, setRoomData] = useState({ type: 'room' });  // 기본값 설정
 
   const [dropdownVisible, setDropdownVisible] = useState(false);  // 드롭다운 상태 관리
   const [activeTab, setActiveTab] = useState('정보게시판'); // Default active tab
