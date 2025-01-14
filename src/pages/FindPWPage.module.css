@@ -7,12 +7,19 @@
   background-color: white;
   padding: 0 20px; /* 작은 화면에서 여백 추가 */
 }
+.input{
+  margin-top: 4%;
+  margin-bottom: -10%;
+  border: 0px solid #ddd;
+  border-radius: 5px;
+  width: 80%;
+}
 
 .header {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 3%;
 }
 
 .logoSection {
@@ -21,9 +28,10 @@
 
 .group-info {
   display: flex;
-  justify-content: center; /* 가로 중앙 정렬 */
-  gap: 10px;
-  margin-top: 60px;
+  justify-content: center;
+  margin-left: -270px;
+  gap: 110px;
+  margin-top: 30px;
 }
 
 h1 {
@@ -33,26 +41,37 @@ h1 {
   margin-top: -80px;
 }
 
+
+
 .loginBox {
   background-color: #73B3E3;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  width: 90%;
+  width: 30%;
+  margin-bottom: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
+
+.jointext{
+  margin-left: 0%;
+  margin-bottom: 0%;
+  }
+  
 
 .loginButton {
   background-color: #0056a0;
   color: white;
   border: none;
   padding: 10px;
+  width: 77%;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 5%;
 }
 
 .loginButton:hover {
@@ -78,9 +97,10 @@ h1 {
   text-decoration: underline;
 }
 
+
 /* INFO 텍스트 */
 h2 {
-  font-size: 2.7rem;
+  font-size: 2rem;
   color: #0056A0;
   margin-bottom: 30px;
 }
@@ -88,6 +108,7 @@ h2 {
 .app-back_logo {
   height: 90px;
   margin-bottom: 80px;
+  margin-right: -120px;
 }
 
 .form-group {
@@ -118,22 +139,18 @@ h2 {
 }
 
 .inputBtn {
-  position: relative;
-  right: -20px;
-  top: 75%;
-  padding: 8px;
+  padding: 6px;
   background-color: #0056A0;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 30%;
-  transform: translateY(-109%);
+  font-size: 10px;
+  margin-top: -20%;
+  width: 20%;
+  margin-left: 90%;
 }
 
-.inputBtn:hover {
-  background-color: #004080;
-}
 
 .popup {
   display: flex;

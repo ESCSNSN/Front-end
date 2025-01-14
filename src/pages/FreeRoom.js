@@ -19,6 +19,7 @@ import Icon5 from '../images/수업소통방 횃불이.png';
 import Icon6 from '../images/자유소통방 횃불이.png';
 import Icon8 from '../images/프로필.png';
 import Icon9 from '../images/검색.png';
+import Icon10 from '../images/Make.png'
 
 
 import Header from './_2.js'; // 상단바 컴포넌트
@@ -79,6 +80,11 @@ const FreeRoom = () => {
     navigate('/myprofile');
   };
 
+  // 프로필로 이동
+  const handleMakeRoomClick = () => {
+    navigate('/Makechat');
+  };
+
   return (
     <div className={styles.app}>
       <Header />
@@ -98,6 +104,7 @@ const FreeRoom = () => {
           </div>
 
           <div className={`${styles.searchContainer} ${isDesktop ? styles.desktopSearchContainer : ''}`}>
+            
             <div className={styles.profileIcon} onClick={handleProfileClick}>
               <img src={Icon8} alt="Profile Icon" />
             </div>
@@ -113,6 +120,9 @@ const FreeRoom = () => {
             <button className={styles.searchButton} onClick={handleSearch}>
               <img src={Icon9} alt="Search Icon" />
             </button>
+            <div className={styles.makeroomicon} onClick={handleMakeRoomClick}>
+              <img src={Icon10} alt="MakeChat icon" />
+            </div>
           </div>
 
           <div className={styles.roomsList}>

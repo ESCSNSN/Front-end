@@ -1,3 +1,4 @@
+//pw js
 import React, { useState } from 'react';
 import styles from './FindPWPage.module.css';
 import { useNavigate } from 'react-router-dom';
@@ -156,11 +157,12 @@ const FindPWPage = () => {
                     
 
                     <div className={styles.formGroup}>
-                        <label htmlFor="email">이메일</label>
+                        <label htmlFor="email" className={styles.jointext}>이메일</label>
                         <div className={styles.inputWrapper}>
                             <input
                                 type="email"
                                 id="email"
+                                className={styles.input}
                                 placeholder="이메일 입력 (@inu.ac.kr)"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}

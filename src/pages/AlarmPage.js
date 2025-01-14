@@ -9,46 +9,26 @@ import CommunicationRoom_goBack from '../images/왼쪽 나가기 버튼.png';
 
 const AlarmPage = () => {
 
-    // 하드코딩된 방 목록 (백엔드 연동 시 주석 처리)
-    const [messages, setMessages] = useState([
-        { id: 1, username: '자유게시판 - 질문', title: '글 제목 ', lastMessage: '익명 1이 새로운 댓글을 달았습니다.' },
-        { id: 2, username: '정보게시판 - 자기 개발', title: '글 제목 ', lastMessage: '졸업생 1이 새로운 댓글을 달았습니다.' },
-        { id: 3, username: '자유게시판', title: '글 제목 ', lastMessage: '익명 1이 새로운 댓글을 달았습니다.' },
-        { id: 4, username: '자유게시판 - 질문', title: '글 제목 ', lastMessage: '익명 1이 새로운 댓글을 달았습니다.' },
-        { id: 5, username: '자유게시판 - 질문', title: '글 제목 ', lastMessage: '익명 1이 새로운 댓글을 달았습니다.' },
-        { id: 6, username: '자유게시판 - 질문', title: '글 제목 ', lastMessage: '익명 1이 새로운 댓글을 달았습니다.' },
-    ]); // 하드코딩된 메시지 목록
-
-    /*
-    // 백엔드와 연동할 때 사용할 초기 상태
     const [messages, setMessages] = useState([]); // 메시지 목록 상태 관리 
-    */
+    
     const [visibleMessages, setVisibleMessages] = useState(5); // 처음에는 4개의 메시지만 표시
     const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
     const navigate = useNavigate();
-
-    /*
-     // 백엔드와 연동할 때 사용할 코드
     useEffect(() => {
-        const fetchMessages = async () => { 
-            try {
-                const id = 'subibi21'
-                const response = await fetch(`http://192.168.165.161:8080/Room/userId/${id}`);
-                if (!response.ok) {
-                    throw new Error('메시지 목록을 불러오는데 실패했습니다.');
-                }
-                const data = await response.json();
-                if(data.code!=200){
-                    throw new Error('메시지 목록을 불러오는데 실패했습니다.')
-                }
-                setMessages(data.data); // 메시지 목록 상태 업데이트
-            } catch (error) {
-                console.error('메시지 목록 불러오는 중 오류가 발생했습니다:', error);
-            }
-        };
-        fetchMessages();
-    }, []); 
-    */
+        const fetchNoti = async () => {
+            const userId = 200204263//localStorage.getItem('authToken'); // 로그인 url 고치고 나면 authToken 받아오는 코드로
+            console.log(userId);
+            fetch(`https://rmation-chat.kro.kr/notification/${userId}`, {
+                method : 'get'
+            }).then((res) => {
+                return res.json();
+            }).then((data) => {
+                console.log(data);
+                setMessages(data.data);
+            })
+        }
+        fetchNoti();
+    }, []);
 
 
     // 방 클릭 시 해당 채팅방으로 이동하는 함수
@@ -72,6 +52,14 @@ const AlarmPage = () => {
 
     // 삭제 확인 모달 열기
     const handleDeleteClick = (id, event) => {
+       
+        fetch(`https://rmation-chat.kro.kr/notification/${id}`,{
+            method : 'delete'
+        }).then((res) => {
+            return res.json();
+        }).then((data) => {
+            
+        });
         event.stopPropagation(); // 삭제하기 버튼 클릭 시 이벤트 전파 방지
         setSelectedMessageId(id);
         setShowDeleteModal(true);
@@ -79,6 +67,7 @@ const AlarmPage = () => {
 
     // 삭제 확인 모달에서 삭제 버튼 클릭 시
     const handleConfirmDelete = () => {
+       
         setMessages((prevMessages) => prevMessages.filter((message) => message.id !== selectedMessageId));
         setShowDeleteModal(false);
         setSelectedMessageId(null);
@@ -118,7 +107,7 @@ const AlarmPage = () => {
                                     <span className={styles.nickname}>{message.username}</span>
                                     <span className={styles.title}>{message.title}</span>
                                 </div>
-                                <span className={styles.lastMessage}>{message.lastMessage}</span>
+                                <span className={styles.lastMessage}>{message.content}</span>
                             </div>
                             <img
                                 src={menuIcon}

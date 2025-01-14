@@ -171,7 +171,7 @@ const InformationCode = () => {
     const accessToken = localStorage.getItem('authToken');
     console.log(accessToken);
     try {
-      const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/coding/${id}/scrap`, {
+      const response = await axiosInstance.post(`https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/coding/${id}/scrap`, {
         headers: {
           'Authorization': `Bearer ${accessToken}`,
           'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가

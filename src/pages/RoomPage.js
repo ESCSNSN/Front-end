@@ -53,7 +53,7 @@ const RoomPage = () => {
         }
 
         // 백엔드 API 호출
-        const response = await axiosInstance.get(`https://rmation-chat.kro.kr/Tel/202201659`, {
+        const response = await axiosInstance.get(`https://rmation-chat.kro.kr/Tel/${UserId}`, {
 
           headers: {
             'ngrok-skip-browser-warning': 'true', // 필요 시 유지
