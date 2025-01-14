@@ -125,7 +125,7 @@ const Announcement = () => {
         typeKeyword: '', // 필요 시 값 설정
       };
 
-      const response = await axiosInstance.get('https://3e319465b029.ngrok.app/api/board/notice/sort-by-likes', {
+      const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/notice/sort-by-likes', {
         params,
         headers: {
           'ngrok-skip-browser-warning': 'true', // 필요 시 유지
@@ -212,7 +212,7 @@ const Announcement = () => {
                 </span>
                 <span className={styles.postDate}>
                   {post.noticeCreatedTime
-                    ? new Date(post.noitceCreatedTime).toLocaleDateString() // 작성 날짜 표시
+                    ? new Date(post.noticeCreatedTime).toLocaleDateString() // 작성 날짜 표시
                     : '날짜 없음'}
                 </span>
               </div>

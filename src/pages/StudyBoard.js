@@ -15,7 +15,7 @@ import axiosInstance from '../utils/api.js';
 
 
 // API에서 사용할 기본 URL과 헤더 설정
-const BASE_URL = 'https://1c9e-2406-5900-10f0-c886-dc6f-be50-3736-d1bc.ngrok-free.app/api/board';
+const BASE_URL = 'https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board';
 const getAuthHeaders = () => {
   const accessToken = localStorage.getItem('authToken');
   const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
@@ -81,8 +81,8 @@ const StudyBoard = () => {
           });
 
           // 상태 업데이트
-          setContent(data.studiesContents);
-          setTitle(data.studiesTitle);
+          setContent(data.studyContents);
+          setTitle(data.studyTitle);
           setImageUrls(data.imageUrls || []); // imageUrls 상태 업데이트
           setCreatedTime(formattedDate); // 작성 시간 상태 업데이트
         } else {
