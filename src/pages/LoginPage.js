@@ -13,7 +13,7 @@ const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const BASE_URL = "https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app"; // 실제 URL로 변경
+  const BASE_URL = "https://fd5ca3755e85.ngrok.app"; // 실제 URL로 변경
 
   // 페이지 이동을 위한 navigate 선언
   const navigate = useNavigate();
