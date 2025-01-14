@@ -24,10 +24,8 @@ import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들�
 
 import Header from './_.js'; // 상단바 컴포넌트
 
-
-
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 
 
 const BASE_URL = 'https://3e319465b029.ngrok.app/';
@@ -615,8 +613,12 @@ const HomePage = () => {
       {/* 대회 정보 리스트 (상위 3개 게시물) */}
       <div className={`${styles.competitions} ${isDesktop ? styles.desktopCompetitions : ''}`}>
         {competitionBoardData.slice(0, 3).map((post) => (  // 상위 3개 게시물만 렌더링
-          <div key={post.id} className={styles.competitionItem}>
-
+           <div
+           key={post.id}
+           className={styles.competitionItem}
+           onClick={() => navigate(`/InformationContestBoard/${post.id}`)} // navigate 추가
+           style={{ cursor: 'pointer' }} // 클릭 가능하도록 포인터 추가
+         >
             {post.imageUrls && post.imageUrls.length > 0 ? (
               <div className={styles.imageContainer}>
                 {post.imageUrls.slice(0, 3).map((url, index) => (
@@ -633,7 +635,7 @@ const HomePage = () => {
                 ))}
               </div>
             ) : (
-              <span className={styles.noImageText}>이미지가 없습니다</span>
+              <span className={styles.noImageText}></span>
             )}
 
           </div>
