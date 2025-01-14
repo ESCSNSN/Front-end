@@ -13,7 +13,7 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
 // API에서 사용할 기본 URL과 헤더 설정
-const BASE_URL = 'http://info-rmation.kro.kr/api/board';
+const BASE_URL = 'https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board';
 
 const getAuthHeaders = () => {
   const accessToken = localStorage.getItem('accessToken');
