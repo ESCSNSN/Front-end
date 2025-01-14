@@ -179,17 +179,19 @@ const FindPWPage = () => {
 
                     {isCodeSent && (
                         <div className={styles.formGroup}>
-                            <label htmlFor="verificationCode">인증번호 확인</label>
+                            <label htmlFor="verificationCode" className={styles.jointext}>인증번호 확인</label>
                             <div className={styles.inputWrapper}>
                                 <input
                                     type="text"
+                                    
+                                className={styles.input}
                                     id="verificationCode"
                                     placeholder="인증번호 입력"
                                     value={enteredCode}
                                     onChange={(e) => setEnteredCode(e.target.value)}
                                 />
                                 <button
-                                    className={styles.inputBtn}
+                                    className={styles.inputBtn2}
                                     onClick={handleVerifyCode}
                                     disabled={isCodeVerified}
                                 >
@@ -204,7 +206,7 @@ const FindPWPage = () => {
                     className={styles.loginButton}
                     onClick={() => navigate('/LoginPage')}
                 >
-                    닫기
+                    확인
                 </button>
             </div>
             {/* 비밀번호 변경 팝업 */}

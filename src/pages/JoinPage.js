@@ -246,13 +246,14 @@ const JoinPage = () => {
 
                     {isCodeSent && (
                         <div className={styles.formGroup}>
-                            <label htmlFor="verificationCode">인증번호 확인</label>
+                            <label htmlFor="verificationCode" className={styles.jointext}>인증번호 확인</label>
                             <div className={styles.inputWrapper}>
                                 <input
                                     type="text"
                                     id="verificationCode"
                                     placeholder="인증번호 입력"
                                     value={enteredCode}
+                                    className={styles.input}
                                     onChange={(e) => setEnteredCode(e.target.value)}
                                 />
                                 <button
