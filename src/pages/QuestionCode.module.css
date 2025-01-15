@@ -44,7 +44,8 @@
 }
 
 .title-text2 {
-  margin-top: -40px;
+  margin-top: -2%;
+  margin-bottom: 1%;
   /* 기존 설정 유지 */
   font-size: 1.5rem;
   color: #000000;

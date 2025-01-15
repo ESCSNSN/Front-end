@@ -500,7 +500,7 @@ const handleEdit = async () => {
           {/* 첫 번째 이미지 */}
           <div
             className={styles["hover-image"]}
-            onClick={() => navigate("/ChatRoom")}
+            onClick={() => navigate("/Message")}
           >
             <img
               src={main_message}

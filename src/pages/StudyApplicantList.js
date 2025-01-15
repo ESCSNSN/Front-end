@@ -43,7 +43,7 @@ const StudyApplicantList = () => {
             }
 
             try {
-                const response = await axiosInstance.get(`https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/studies/${studyId}/applicants`,
+                const response = await axiosInstance.get(`http://info-rmation.kro.kr/api/board/studies/${studyId}/applicants`,
 
                     {
                         headers: {
@@ -105,7 +105,7 @@ const StudyApplicantList = () => {
         console.log(authToken);
 
         try {
-            await axiosInstance.post(`https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/studies/apply/${applyId}/accept`, {}, {
+            await axiosInstance.post(`http://info-rmation.kro.kr/api/board/studies/apply/${applyId}/accept`, {}, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('authToken')}`,
                 },
@@ -127,7 +127,7 @@ const StudyApplicantList = () => {
         console.log(authToken);
 
         try {
-            await axiosInstance.delete(`https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/studies/apply/${applyId}/reject`, {
+            await axiosInstance.delete(`http://info-rmation.kro.kr/api/board/studies/apply/${applyId}/reject`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('authToken')}`,
                 },

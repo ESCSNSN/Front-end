@@ -332,8 +332,8 @@
 
   /* 큰 화면용 메뉴 버튼 */
   .desktopDownMenuButton {
-    height: 3rem;
-    right: 50px;
+    height: 1.5rem;
+    right: 20px;
     margin-top: 50px;
   }
 

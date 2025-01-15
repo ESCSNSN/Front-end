@@ -44,7 +44,7 @@ const MyApplyStudy = () => {
             console.log(authToken);
 
             try {
-                const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/studies/ApplyPost', {
+                const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/studies/ApplyPost', {
                     params: {
                         page,
                         size,
