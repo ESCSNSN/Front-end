@@ -70,11 +70,15 @@ const InformationCode = () => {
         setIsLoading(false); // 로딩 종료
       }
     };
+
     // 좋아요 10개 이상 게시물 가져오기
     const fetchTopLikedPosts = async () => {
+      const authToken = localStorage.getItem('authToken');
+      console.log(authToken);
       try {
         const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/coding/top-liked', {
           headers: {
+            'Authorization': `Bearer ${authToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });
@@ -122,6 +126,9 @@ const InformationCode = () => {
   };
 
   const handleLanguageChange = async (language) => {
+    const authToken = localStorage.getItem('authToken');
+    console.log(authToken);
+
     setSelectedLanguage(language);
     setMenuOpen(false); // 메뉴 닫기
 
@@ -133,6 +140,7 @@ const InformationCode = () => {
           size: 10,
         },
         headers: {
+          'Authorization': `Bearer ${authToken}`,
           'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
         },
       });
@@ -145,6 +153,9 @@ const InformationCode = () => {
   };
 
   const handleFixedLanguageChange = async () => {
+    const authToken = localStorage.getItem('authToken');
+      console.log(authToken);
+
     console.log("데이터를 불러왔습니다.")
     setMenuOpen(false); // 메뉴 닫기
 
@@ -155,6 +166,7 @@ const InformationCode = () => {
           size: 10,
         },
         headers: {
+          'Authorization': `Bearer ${authToken}`,
           'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
         },
       });
@@ -171,10 +183,10 @@ const InformationCode = () => {
     const authToken = localStorage.getItem('authToken');
     console.log(authToken);
     try {
-      const response = await axiosInstance.post(`https://3e319465b029.ngrok.app/api/board/graduate/${id}/scrap`,
-        {headers: {
+      const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/coding/${id}/scrap`,
+        {
+          headers: {
           'Authorization': `Bearer ${authToken}`,
-          'Content-Type': 'application/json',
           'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
         },
 
@@ -197,6 +209,9 @@ const InformationCode = () => {
 
   // 검색 입력값을 변경하는 함수
   const handleSearch = async () => {
+    const authToken = localStorage.getItem('authToken');
+    console.log(authToken);
+
     console.log('검색 버튼 클릭됨');
     if (searchTerm.trim() !== '') {
       try {
@@ -208,6 +223,7 @@ const InformationCode = () => {
             size: 10,
           },
           headers: {
+            'Authorization': `Bearer ${authToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });

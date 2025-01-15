@@ -70,9 +70,12 @@ const FreeboardPage = () => {
     };
     // 좋아요 10개 이상 게시물 가져오기
     const fetchTopLikedPosts = async () => {
+      const authToken = localStorage.getItem('authToken');
+      console.log(authToken);
       try {
         const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/free/top-liked', {
           headers: {
+            'Authorization': `Bearer ${authToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });
@@ -120,6 +123,9 @@ const FreeboardPage = () => {
 
   // 검색 입력값을 변경하는 함수
   const handleSearch = async () => {
+    const authToken = localStorage.getItem('authToken');
+    console.log(authToken);
+
     console.log('검색 버튼 클릭됨');
     if (searchTerm.trim() !== '') {
       try {
@@ -131,6 +137,7 @@ const FreeboardPage = () => {
             size: 10,
           },
           headers: {
+            'Authorization': `Bearer ${authToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });
@@ -157,6 +164,9 @@ const FreeboardPage = () => {
 
   // 정렬 버튼 클릭 시 호출
   const handleSort = async (type) => {
+    const authToken = localStorage.getItem('authToken');
+    console.log(authToken);
+
     setSortType(type); // 정렬 상태 업데이트
 
     if (type === 'latest') {
@@ -177,6 +187,7 @@ const FreeboardPage = () => {
       const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/free/sort-by-likes', {
         params,
         headers: {
+          'Authorization': `Bearer ${authToken}`,
           'ngrok-skip-browser-warning': 'true', // 필요 시 유지
         },
       });
