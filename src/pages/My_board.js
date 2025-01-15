@@ -9,12 +9,12 @@ import menuIcon from '../images/메뉴버튼.png';
 // API에서 사용할 기본 URL과 헤더 설정
 const BASE_URL = 'http://info-rmation.kro.kr/api';
 const getAuthHeaders = () => {
-    const accessToken = localStorage.getItem('authToken');
+    const authToken = localStorage.getItem('authToken');
     const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
     console.log(localStorage.getItem('userId'));
 
     return {
-        'Authorization': `Bearer ${accessToken}`,
+        'Authorization': `Bearer ${authToken}`,
         'X-USER-ID': userId, // 사용자 ID를 X-USER-ID로 추가
         'Content-Type': 'application/json',
         'ngrok-skip-browser-warning': 1

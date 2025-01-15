@@ -35,15 +35,15 @@ const InformationContest = () => {
   // 게시물 목록 조회 - 백엔드 연동
   useEffect(() => {
     const fetchPosts = async () => {
-      const accessToken = localStorage.getItem('authToken');
-      console.log(accessToken);
+      const authToken = localStorage.getItem('authToken');
+      console.log(authToken);
 
       setIsLoading(true); // 로딩 시작
       try {
         const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/competition', {// page와 size 추가
           params: { page, size }, // 페이지와 사이즈를 쿼리 파라미터로 추가
           headers: {
-            'Authorization': `Bearer ${accessToken}`,
+            'Authorization': `Bearer ${authToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });
@@ -91,13 +91,13 @@ const InformationContest = () => {
   }, [page, size]); // page와 size 변경 시 재호출
 
   const toggleScrap = async (id) => {
-    const accessToken = localStorage.getItem('authToken');
-    console.log(accessToken);
+    const authToken = localStorage.getItem('authToken');
+    console.log(authToken);
 
     try {
       const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/competition/${id}/scrap`, {
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
+          'Authorization': `Bearer ${authToken}`,
           'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
         },
 
@@ -160,8 +160,8 @@ const InformationContest = () => {
 
   // 정렬 버튼 클릭 시 호출
   const handleSort = async (type) => {
-    const accessToken = localStorage.getItem('authToken');
-    console.log(accessToken);
+    const authToken = localStorage.getItem('authToken');
+    console.log(authToken);
 
     setSortType(type); // 정렬 상태 업데이트
 
@@ -183,7 +183,7 @@ const InformationContest = () => {
       const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/competition/sort-by-likes', {
         params,
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
+          'Authorization': `Bearer ${authToken}`,
           'ngrok-skip-browser-warning': 'true', // 필요 시 유지
         },
       });

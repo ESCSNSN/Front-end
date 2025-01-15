@@ -11,12 +11,12 @@ import IconScrap from '../images/횃불이스크랩.png';
 import IconUnscrap from '../images/횃불이스크랩X.png';
 
 const getAuthHeaders = () => {
-    const accessToken = localStorage.getItem('authToken');
+    const authToken = localStorage.getItem('authToken');
     const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
     console.log(localStorage.getItem('userId'));
 
     return {
-        'Authorization': `Bearer ${accessToken}`,
+        'Authorization': `Bearer ${authToken}`,
         'X-USER-ID': userId, // 사용자 ID를 X-USER-ID로 추가
         'Content-Type': 'application/json',
         'ngrok-skip-browser-warning': 1
@@ -40,8 +40,8 @@ const MyApplyStudy = () => {
     // 게시물 목록을 가져오는 함수
     useEffect(() => {
         const fetchPosts = async () => {
-            const accessToken = localStorage.getItem('authToken');
-            console.log(accessToken);
+            const authToken = localStorage.getItem('authToken');
+            console.log(authToken);
 
             try {
                 const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/studies/ApplyPost', {
@@ -52,7 +52,7 @@ const MyApplyStudy = () => {
                     }
                     ,
                     headers: {
-                        'Authorization': `Bearer ${accessToken}`,
+                        'Authorization': `Bearer ${authToken}`,
                         'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
                     },
                 });

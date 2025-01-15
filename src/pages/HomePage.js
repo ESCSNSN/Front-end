@@ -36,20 +36,20 @@ const BASE_URL = 'http://info-rmation.kro.kr/';
 
 // 인증 헤더 가져오기 함수
 const getAuthHeaders = () => {
-  const accessToken = localStorage.getItem('authToken');
+  const authToken = localStorage.getItem('authToken');
 
-  if (!accessToken) {
-    console.warn('Access token is missing');
+  if (!authToken) {
+    console.warn('auth token is missing');
     return {};
   }
 
   try {
-    const decodedToken = jwtDecode(accessToken);
+    const decodedToken = jwtDecode(authToken);
     const userId = decodedToken?.userId || '';
     console.log('Decoded Token:', decodedToken);
 
     return {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `Bearer ${authToken}`,
       'X-USER-ID': userId,
     };
   } catch (error) {

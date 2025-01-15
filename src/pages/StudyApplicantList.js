@@ -11,12 +11,12 @@ import IconScrap from '../images/횃불이스크랩.png';
 import IconUnscrap from '../images/횃불이스크랩X.png';
 
 const getAuthHeaders = () => {
-    const accessToken = localStorage.getItem('authToken');
+    const authToken = localStorage.getItem('authToken');
     const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
     console.log(localStorage.getItem('userId'));
 
     return {
-        'Authorization': `Bearer ${accessToken}`,
+        'Authorization': `Bearer ${authToken}`,
         'X-USER-ID': userId, // 사용자 ID를 X-USER-ID로 추가
         'Content-Type': 'application/json',
         'ngrok-skip-browser-warning': 1
@@ -35,9 +35,9 @@ const StudyApplicantList = () => {
     // 게시물 목록을 가져오는 함수
     useEffect(() => {
         const fetchApplicants = async () => {
-            const accessToken = localStorage.getItem('authToken');
-            if (!accessToken) {
-                console.error('Access Token이 없습니다. 로그인을 확인하세요.');
+            const authToken = localStorage.getItem('authToken');
+            if (!authToken) {
+                console.error('auth Token이 없습니다. 로그인을 확인하세요.');
                 alert('로그인이 필요합니다.');
                 return;
             }
@@ -47,7 +47,7 @@ const StudyApplicantList = () => {
 
                     {
                         headers: {
-                            'Authorization': `Bearer ${accessToken}`,
+                            'Authorization': `Bearer ${authToken}`,
                             'ngrok-skip-browser-warning': 'true',
                         },
                     }
@@ -101,8 +101,8 @@ const StudyApplicantList = () => {
     };
 
     const handleAccept = async (applyId) => {
-        const accessToken = localStorage.getItem('authToken');
-        console.log(accessToken);
+        const authToken = localStorage.getItem('authToken');
+        console.log(authToken);
 
         try {
             await axiosInstance.post(`https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/studies/apply/${applyId}/accept`, {}, {
@@ -123,8 +123,8 @@ const StudyApplicantList = () => {
     };
 
     const handleReject = async (applyId) => {
-        const accessToken = localStorage.getItem('authToken');
-        console.log(accessToken);
+        const authToken = localStorage.getItem('authToken');
+        console.log(authToken);
 
         try {
             await axiosInstance.delete(`https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/studies/apply/${applyId}/reject`, {

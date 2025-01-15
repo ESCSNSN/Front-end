@@ -85,8 +85,8 @@ const RoomPage = () => {
   // 방 ID에 맞는 페이지로 이동하기
   const handleRoomClick = async (id) => {
     try {
-      const accessToken = localStorage.getItem('accessToken');
-      console.log(accessToken);
+      const authToken = localStorage.getItem('authToken');
+      console.log(authToken);
 
         // 방 입장 API 호출
         await axiosInstance.post('https://rmation-chat.kro.kr/JoinRoom', {

@@ -13,10 +13,10 @@ import IconUnscrap from '../images/횃불이스크랩X.png';
 // API에서 사용할 기본 URL과 헤더 설정
 const BASE_URL = 'http://info-rmation.kro.kr/api/board';
 const getAuthHeaders = () => {
-  const accessToken = localStorage.getItem('accessToken');
+  const authToken = localStorage.getItem('authToken');
   const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
   return {
-    'Authorization': `Bearer ${accessToken}`,
+    'Authorization': `Bearer ${authToken}`,
     'X-USER-ID': userId, // 사용자 ID를 X-USER-ID로 추가
     'Content-Type': 'application/json',
   };
@@ -49,8 +49,8 @@ const G_freeboardPage = () => {
   // 게시물 목록을 백엔드에서 불러오기
   useEffect(() => {
     const fetchPosts = async () => {
-      const accessToken = localStorage.getItem('authToken');
-      console.log(accessToken);
+      const authToken = localStorage.getItem('authToken');
+      console.log(authToken);
 
       setIsLoading(true); // 로딩 시작
       try {
@@ -61,7 +61,7 @@ const G_freeboardPage = () => {
             graduateId: 'Quest'
           }, // 페이지와 사이즈를 쿼리 파라미터로 추가
           headers: {
-            'Authorization': `Bearer ${accessToken}`,
+            'Authorization': `Bearer ${authToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });
@@ -119,13 +119,13 @@ const G_freeboardPage = () => {
   };
 
   const toggleScrap = async (id) => {
-    const accessToken = localStorage.getItem('authToken');
-    console.log(accessToken);
+    const authToken = localStorage.getItem('authToken');
+    console.log(authToken);
 
     try {
       const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/graduate/${id}/scrap`, {
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
+          'Authorization': `Bearer ${authToken}`,
           'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
         },
 

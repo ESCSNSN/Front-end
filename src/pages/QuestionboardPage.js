@@ -35,14 +35,14 @@ const QuestionboardPage = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const accessToken = localStorage.getItem('authToken');
-      console.log(accessToken);
+      const authToken = localStorage.getItem('authToken');
+      console.log(authToken);
       setIsLoading(true); // 로딩 시작
       try {
         const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/quest', {
           params: { page, size }, // 페이지와 사이즈를 쿼리 파라미터로 추가
           headers: {
-            'Authorization': `Bearer ${accessToken}`,
+            'Authorization': `Bearer ${authToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });
@@ -92,12 +92,12 @@ const QuestionboardPage = () => {
   }, [page, size]); // page와 size 변경 시 재호출
 
   const toggleScrap = async (id) => {
-    const accessToken = localStorage.getItem('authToken');
-    console.log(accessToken);
+    const authToken = localStorage.getItem('authToken');
+    console.log(authToken);
     try {
       const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/quest/${id}/scrap`, {
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
+          'Authorization': `Bearer ${authToken}`,
           'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
         },
 

@@ -11,12 +11,12 @@ import IconScrap from '../images/횃불이스크랩.png';
 import IconUnscrap from '../images/횃불이스크랩X.png';
 
 const getAuthHeaders = () => {
-  const accessToken = localStorage.getItem('authToken');
+  const authToken = localStorage.getItem('authToken');
   const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
   console.log(localStorage.getItem('userId'));
 
   return {
-    'Authorization': `Bearer ${accessToken}`,
+    'Authorization': `Bearer ${authToken}`,
     'X-USER-ID': userId, // 사용자 ID를 X-USER-ID로 추가
     'Content-Type': 'application/json',
     'ngrok-skip-browser-warning': 1
@@ -40,8 +40,8 @@ const MyStudy = () => {
   // 게시물 목록을 가져오는 함수
   useEffect(() => {
     const fetchPosts = async () => {
-      const accessToken = localStorage.getItem('authToken');
-      console.log(accessToken);
+      const authToken = localStorage.getItem('authToken');
+      console.log(authToken);
 
       try {
         const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/studies/myPost', {
@@ -52,7 +52,7 @@ const MyStudy = () => {
           }
           ,
           headers: {
-            'Authorization': `Bearer ${accessToken}`,
+            'Authorization': `Bearer ${authToken}`,
           },
         });
 
