@@ -94,18 +94,20 @@ const InformationContest = () => {
     fetchTopLikedPosts();
   }, [page, size]); // page와 size 변경 시 재호출
 
+  // 스크랩 토글 함수
   const toggleScrap = async (id) => {
     const authToken = localStorage.getItem('authToken');
     console.log(authToken);
 
     try {
-      const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/competition/${id}/scrap`, {
-        headers: {
-          'Authorization': `Bearer ${authToken}`,
-          'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
-        },
+      const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/competition/${id}/scrap`, {},
+        {
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+            'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
+          },
 
-      });
+        });
 
       // 성공적으로 응답을 받은 경우 상태를 업데이트
       setScrapStatus((prevState) => ({
@@ -119,6 +121,8 @@ const InformationContest = () => {
       alert('스크랩 상태 업데이트에 실패했습니다. 다시 시도해주세요.');
     }
   };
+
+
 
   // 검색 입력값을 변경하는 함수
   const handleSearch = async () => {

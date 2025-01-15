@@ -118,18 +118,21 @@ const G_freeboardPage = () => {
     setMenuOpen(false);  // 메뉴 닫기
   };
 
+  
+     // 스크랩 토글 함수
   const toggleScrap = async (id) => {
     const authToken = localStorage.getItem('authToken');
     console.log(authToken);
 
     try {
-      const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/graduate/${id}/scrap`, {
-        headers: {
-          'Authorization': `Bearer ${authToken}`,
-          'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
-        },
+      const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/free/${id}/scrap`, {},
+        {
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+            'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
+          },
 
-      });
+        });
 
       // 성공적으로 응답을 받은 경우 상태를 업데이트
       setScrapStatus((prevState) => ({
@@ -143,7 +146,6 @@ const G_freeboardPage = () => {
       alert('스크랩 상태 업데이트에 실패했습니다. 다시 시도해주세요.');
     }
   };
-
 
   const handlePostClick = (postId) => {
     navigate(`/G_freepostingPage/${postId}`);  // 해당 게시물 상세 페이지로 이동

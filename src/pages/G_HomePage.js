@@ -25,7 +25,7 @@ import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들�
 
 
 import axios from 'axios';
-import {jwtDecode} from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 
 const BASE_URL = 'http://info-rmation.kro.kr';
@@ -37,20 +37,20 @@ const BASE_URL = 'http://info-rmation.kro.kr';
 
 // 인증 헤더 가져오기 함수
 const getAuthHeaders = () => {
-  const authToken = localStorage.getItem('authToken');
+  const accessToken = localStorage.getItem('authToken');
 
-  if (!authToken) {
-    console.warn('auth token is missing');
+  if (!accessToken) {
+    console.warn('Access token is missing');
     return {};
   }
 
   try {
-    const decodedToken = jwtDecode(authToken);
+    const decodedToken = jwtDecode(accessToken);
     const userId = decodedToken?.userId || '';
     console.log('Decoded Token:', decodedToken);
 
     return {
-      Authorization: `Bearer ${authToken}`,
+      Authorization: `Bearer ${accessToken}`,
       'X-USER-ID': userId,
     };
   } catch (error) {
@@ -222,10 +222,10 @@ const G_HomePage = () => {
   const handleRoomClick = (path) => {
     navigate(`/${path}`);  // 방 ID에 맞는 페이지로 이동
   };
-  //   const authToken = localStorage.getItem('authToken');
-  // if (!authToken) throw new Error('사용자 인증 정보가 없습니다.');
+  //   const accessToken = localStorage.getItem('accessToken');
+  // if (!accessToken) throw new Error('사용자 인증 정보가 없습니다.');
 
-  //const decodedToken = jwtDecode(authToken);
+  //const decodedToken = jwtDecode(accessToken);
   //const userId = decodedToken.userId;
 
 
