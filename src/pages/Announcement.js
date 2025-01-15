@@ -71,6 +71,9 @@ const Announcement = () => {
 
   // 검색 입력값을 변경하는 함수
   const handleSearch = async () => {
+    const authToken = localStorage.getItem('authToken');
+    console.log(authToken);
+
     console.log('검색 버튼 클릭됨');
     if (searchTerm.trim() !== '') {
       try {
@@ -82,6 +85,7 @@ const Announcement = () => {
             size: 10,
           },
           headers: {
+            'Authorization': `Bearer ${authToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });
@@ -107,43 +111,43 @@ const Announcement = () => {
   };
 
   // 정렬 버튼 클릭 시 호출
-  const handleSort = async (type) => {
-    setSortType(type); // 정렬 상태 업데이트
+  // const handleSort = async (type) => {
+  //   setSortType(type); // 정렬 상태 업데이트
 
-    if (type === 'latest') {
-      setPosts(initialPosts); // 초기 데이터로 복원
-      return;
-    }
+  //   if (type === 'latest') {
+  //     setPosts(initialPosts); // 초기 데이터로 복원
+  //     return;
+  //   }
 
-    try {
-      const params = {
-        page: 0,
-        size: 10,
-        searchKeyword: '', // 필요 시 값 설정
-        contentKeyword: '', // 필요 시 값 설정
-        hashtagKeyword: '', // 필요 시 값 설정
-        typeKeyword: '', // 필요 시 값 설정
-      };
+  //   try {
+  //     const params = {
+  //       page: 0,
+  //       size: 10,
+  //       searchKeyword: '', // 필요 시 값 설정
+  //       contentKeyword: '', // 필요 시 값 설정
+  //       hashtagKeyword: '', // 필요 시 값 설정
+  //       typeKeyword: '', // 필요 시 값 설정
+  //     };
 
-      const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/notice/sort-by-likes', {
-        params,
-        headers: {
-          'ngrok-skip-browser-warning': 'true', // 필요 시 유지
-        },
-      });
+  //     const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/notice/sort-by-likes', {
+  //       params,
+  //       headers: {
+  //         'ngrok-skip-browser-warning': 'true', // 필요 시 유지
+  //       },
+  //     });
 
-      const data = response.data;
+  //     const data = response.data;
 
-      if (!data || !data.content) {
-        throw new Error('API 응답이 올바르지 않습니다.');
-      }
+  //     if (!data || !data.content) {
+  //       throw new Error('API 응답이 올바르지 않습니다.');
+  //     }
 
-      setPosts(data.content); // 정렬된 데이터로 게시물 목록 업데이트
-    } catch (error) {
-      console.error('정렬 데이터 로드 중 오류 발생:', error);
-      alert('정렬된 데이터를 가져오는 중 오류가 발생했습니다.');
-    }
-  };
+  //     setPosts(data.content); // 정렬된 데이터로 게시물 목록 업데이트
+  //   } catch (error) {
+  //     console.error('정렬 데이터 로드 중 오류 발생:', error);
+  //     alert('정렬된 데이터를 가져오는 중 오류가 발생했습니다.');
+  //   }
+  // };
   
   const handlePostClick = (postId) => {
     navigate(`/Announcementposting/${postId}`);  // 해당 게시물 상세 페이지로 이동

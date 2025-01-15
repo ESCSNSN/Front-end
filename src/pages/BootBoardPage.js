@@ -127,6 +127,9 @@ const BootBoardPage = () => {
 
     // 검색 입력값을 변경하는 함수
     const handleSearch = async () => {
+        const authToken = localStorage.getItem('authToken');
+        console.log(authToken);
+
         console.log('검색 버튼 클릭됨');
         if (searchTerm.trim() !== '') {
             try {
@@ -139,7 +142,7 @@ const BootBoardPage = () => {
                         ? 'industry'
                         : 'study';
 
-                const response = await axiosInstance.get(`http://info-rmation.kro.kr/api/board/studies/${categoryPath}`, {
+                const response = await axiosInstance.get(`http://info-rmation.kro.kr/api/board/studies`, {
                     params: {
                         searchKeyword: searchTerm, // 검색어 전달
                         page: 0,
@@ -147,6 +150,7 @@ const BootBoardPage = () => {
                         studyid: selectedCategory === '부트캠프' ? 'bootcamp' : selectedCategory === '산업 연계' ? 'industry' : 'study',
                     },
                     headers: {
+                        'Authorization': `Bearer ${authToken}`,
                         'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
                     },
                 });
@@ -183,6 +187,9 @@ const BootBoardPage = () => {
 
     // 정렬 버튼 클릭 시 정렬 상태 업데이트
     const handleSort = async (type) => {
+        const authToken = localStorage.getItem('authToken');
+        console.log(authToken);
+
         setSortType(type); // 정렬 상태 업데이트
 
         if (type === 'latest') {
@@ -202,20 +209,20 @@ const BootBoardPage = () => {
                     ? 'industry'
                     : 'study';
 
-            const response = await axiosInstance.get(`http://info-rmation.kro.kr/api/board/studies/sort-by-deadline`, {
-                params: {
-                    page: 0,
-                    size: 10,
-                    searchKeyword: '', // 필요 시 값 설정
-                    contentKeyword: '', // 필요 시 값 설정
-                    hashtagKeyword: '', // 필요 시 값 설정
-                    typeKeyword: '', // 필요 시 값 설정
-                    studyid: selectedCategory === '부트캠프' ? 'bootcamp' : selectedCategory === '산업 연계' ? 'industry' : 'study',
-                },
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('authToken')}`
-                },
-            });
+                    const response = await axiosInstance.get(`http://info-rmation.kro.kr/api/board/studies/sort-by-deadline`, {
+                        params: {
+                            page: 0,
+                            size: 10,
+                            searchKeyword: '', // 필요 시 값 설정
+                            contentKeyword: '', // 필요 시 값 설정
+                            hashtagKeyword: '', // 필요 시 값 설정
+                            typeKeyword: '', // 필요 시 값 설정
+                            studyid: selectedCategory === '부트캠프' ? 'bootcamp' : selectedCategory === '산업 연계' ? 'industry' : 'study',
+                        },
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem('authToken')}`
+                        },
+                    });
 
             const data = response.data;
 

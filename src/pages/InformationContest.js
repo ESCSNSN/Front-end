@@ -70,9 +70,13 @@ const InformationContest = () => {
 
     // 좋아요 10개 이상 게시물 가져오기
     const fetchTopLikedPosts = async () => {
+      const authToken = localStorage.getItem('authToken');
+      console.log(authToken);
+
       try {
         const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/competition/top-liked', {
           headers: {
+            'Authorization': `Bearer ${authToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });
@@ -118,17 +122,21 @@ const InformationContest = () => {
 
   // 검색 입력값을 변경하는 함수
   const handleSearch = async () => {
+    const authToken = localStorage.getItem('authToken');
+    console.log(authToken);
+
     console.log('검색 버튼 클릭됨');
     if (searchTerm.trim() !== '') {
       try {
         console.log(`검색어: ${searchTerm}`);
-        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/competiton', {
+        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/competition', {
           params: {
             searchKeyword: searchTerm, // 검색어 전달
             page: 0,
             size: 10,
           },
           headers: {
+            'Authorization': `Bearer ${authToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });

@@ -95,7 +95,7 @@
   align-items: center;
   gap: 10px;
   /* 간격을 조금 줄여 공간 확보 */
-  margin-top: 30px;
+  margin-top: -10px;
   /* 상단과의 간격 줄이기 */
 }
 
