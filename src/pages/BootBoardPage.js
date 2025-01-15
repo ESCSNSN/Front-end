@@ -213,7 +213,7 @@ const BootBoardPage = () => {
                     studyid: selectedCategory === '부트캠프' ? 'bootcamp' : selectedCategory === '산업 연계' ? 'industry' : 'study',
                 },
                 headers: {
-                    'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
+                    Authorization: `Bearer ${localStorage.getItem('authToken')}`
                 },
             });
 

@@ -9,16 +9,16 @@ import menuIcon from '../images/메뉴버튼.png';
 // API에서 사용할 기본 URL과 헤더 설정
 const BASE_URL = 'http://info-rmation.kro.kr/api';
 const getAuthHeaders = () => {
-  const accessToken = localStorage.getItem('accessToken');
-  const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
-  console.log(localStorage.getItem('userId'));
+    const accessToken = localStorage.getItem('authToken');
+    const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
+    console.log(localStorage.getItem('userId'));
 
-  return {
-    'Authorization': `Bearer ${accessToken}`,
-    'X-USER-ID': userId, // 사용자 ID를 X-USER-ID로 추가
-    'Content-Type': 'application/json',
-    'ngrok-skip-browser-warning': 1
-  };
+    return {
+        'Authorization': `Bearer ${accessToken}`,
+        'X-USER-ID': userId, // 사용자 ID를 X-USER-ID로 추가
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 1
+    };
 };
 
 const My_board = () => {
@@ -30,7 +30,7 @@ const My_board = () => {
     // 방 클릭 시 해당 채팅방으로 이동하는 함수
     const handleRoomClick = (id, type) => {
         let path = ""; // 기본 경로 변수
-    
+
         // 게시글 type에 따라 경로를 설정
         switch (type) {
             case "coding":
@@ -53,7 +53,7 @@ const My_board = () => {
                 console.error(`알 수 없는 type: ${type}`); // 예외 처리
                 return;
         }
-    
+
         navigate(path); // 동적으로 생성된 경로로 이동
     };
 
@@ -65,10 +65,10 @@ const My_board = () => {
                     method: 'GET',
                     headers: getAuthHeaders(), // getAuthHeaders를 호출하여 헤더 설정
                 });
-    
+
                 if (response.ok) {
                     const data = await response.json();
-    
+
                     // 기존 데이터 구조 변경
                     const reformattedData = {
                         posts: data.posts.map(item => ({
@@ -78,7 +78,7 @@ const My_board = () => {
                             type: item.type,
                         })),
                     };
-    
+
                     setMessages(reformattedData.posts); // 상태에 posts를 저장
                     console.log(data);
                 } else {
@@ -88,10 +88,10 @@ const My_board = () => {
                 console.error('API 호출 중 오류 발생:', error);
             }
         };
-    
+
         fetchMessages();
     }, []);
-    
+
 
     // 더보기 버튼 클릭 시 화면에 보이는 메시지 수를 증가시키는 함수
     const handleLoadMore = () => {

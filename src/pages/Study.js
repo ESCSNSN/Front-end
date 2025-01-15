@@ -13,10 +13,10 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
 // API에서 사용할 기본 URL과 헤더 설정
-const BASE_URL = 'https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board';
+const BASE_URL = 'http://info-rmation.kro.kr/api/board';
 
 const getAuthHeaders = () => {
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem('authToken');
   if (!accessToken) throw new Error('사용자 인증 정보가 없습니다.');
 
   const decodedToken = jwtDecode(accessToken);
@@ -57,7 +57,7 @@ const Study = () => {
       const response = await axios.get(`${BASE_URL}/studies/update/${postId}`, {
         headers: { ...getAuthHeaders(), 'ngrok-skip-browser-warning': 1 },
       });
-      const { studyID, studyTitle, studyContents, studyHashtag, startTime, deadline, studyFile} = response.data;
+      const { studyID, studyTitle, studyContents, studyHashtag, startTime, deadline, studyFile } = response.data;
       setID(studyID);
       setTitle(studyTitle);
       setContent(studyContents);
@@ -89,12 +89,12 @@ const Study = () => {
 
     console.log(startDate);
 
-// 파일이 있을 경우에만 추가
+    // 파일이 있을 경우에만 추가
     if (files && files.length > 0) {
       files.forEach((file) => formData.append('studyFile', file)); // 'freeFile'은 서버에서 요구하는 키 이름
     }
 
-    
+
     // 수정모드일 때만 id 추가
     if (isEditing) {
       formData.append('id', id); // 수정 시에만 id 추가
@@ -117,7 +117,7 @@ const Study = () => {
       alert('요청 처리 중 문제가 발생했습니다.');
     }
   };
-  
+
   const handleFileChange = (e) => {
     setFiles(Array.from(e.target.files)); // FileList를 배열로 변환
   };
