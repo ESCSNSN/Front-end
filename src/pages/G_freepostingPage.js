@@ -54,7 +54,7 @@ const G_freepostingPage = () => {
   // 게시판 데이터 불러오기 useEffect
   useEffect(() => {
     const getBoard = async () => {
-      const accessToken = localStorage.getItem('accessToken');
+      const accessToken = localStorage.getItem('authToken');
       console.log(id);
 
       try {

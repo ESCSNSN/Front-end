@@ -39,14 +39,14 @@ const InformationCode = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const accessToken = localStorage.getItem('authToken');
-      console.log(accessToken);
+      const authToken = localStorage.getItem('authToken');
+      console.log(authToken);
       setIsLoading(true); // 로딩 시작
       try {
         const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/coding', {
           params: { page, size }, // 페이지와 사이즈를 쿼리 파라미터로 추가
           headers: {
-            'Authorization': `Bearer ${accessToken}`,
+            'Authorization': `Bearer ${authToken}`,
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });
@@ -168,12 +168,13 @@ const InformationCode = () => {
 
 
   const toggleScrap = async (id) => {
-    const accessToken = localStorage.getItem('authToken');
-    console.log(accessToken);
+    const authToken = localStorage.getItem('authToken');
+    console.log(authToken);
     try {
-      const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/coding/${id}/scrap`, {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
+      const response = await axiosInstance.post(`https://3e319465b029.ngrok.app/api/board/graduate/${id}/scrap`,
+        {headers: {
+          'Authorization': `Bearer ${authToken}`,
+          'Content-Type': 'application/json',
           'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
         },
 
@@ -237,6 +238,9 @@ const InformationCode = () => {
 
   // 정렬 버튼 클릭 시 정렬 상태 업데이트
   const handleSort = async (type) => {
+    const authToken = localStorage.getItem('authToken');
+    console.log(authToken);
+    
     setSortType(type); // 정렬 상태 업데이트
 
     if (type === 'latest') {
@@ -257,6 +261,7 @@ const InformationCode = () => {
       const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/coding/sort-by-likes', {
         params,
         headers: {
+          'Authorization': `Bearer ${authToken}`,
           'ngrok-skip-browser-warning': 'true', // 필요 시 유지
         },
       });
@@ -390,7 +395,11 @@ const InformationCode = () => {
                 >
                   {post.codingTitle}
                 </span>
-                <span className={styles.postDate}>{post.codingCreatedTime}</span>
+                <span className={styles.postDate}>
+                  {post.codingCreatedTime
+                    ? new Date(post.codingCreatedTime).toLocaleDateString() // 작성 날짜 표시
+                    : '날짜 없음'}
+                </span>
               </div>
 
               {/* 스크랩 상태 아이콘 */}

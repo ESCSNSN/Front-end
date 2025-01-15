@@ -40,7 +40,7 @@ const InformationContest = () => {
 
       setIsLoading(true); // 로딩 시작
       try {
-        const response = await axiosInstance.get('http://info-rmation.kro.kr/board/competition', {// page와 size 추가
+        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/competition', {// page와 size 추가
           params: { page, size }, // 페이지와 사이즈를 쿼리 파라미터로 추가
           headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -160,6 +160,9 @@ const InformationContest = () => {
 
   // 정렬 버튼 클릭 시 호출
   const handleSort = async (type) => {
+    const accessToken = localStorage.getItem('authToken');
+    console.log(accessToken);
+
     setSortType(type); // 정렬 상태 업데이트
 
     if (type === 'latest') {
@@ -180,6 +183,7 @@ const InformationContest = () => {
       const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/competition/sort-by-likes', {
         params,
         headers: {
+          'Authorization': `Bearer ${accessToken}`,
           'ngrok-skip-browser-warning': 'true', // 필요 시 유지
         },
       });
