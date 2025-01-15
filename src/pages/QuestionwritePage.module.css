@@ -4,156 +4,177 @@
         padding: 24px;
         font-size: 16px;
       }
-    
+
       .titleContainer {
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
-    
+
       .writeButton {
         font-size: 18px;
         padding: 10px 20px;
       }
     }
-    .app{
+
+    .app {
       margin-top: 0px;
-        /* 상단바도 하나의 그룹이라 내가 원하는 항목 만들면 아래로 밀림.*/
-        padding: 20px;
-        background-color: white;
-        /* 배경색 설정 */
-        height: 100vh;
-        overflow-y: auto;
-        /* 스크롤 가능 */
+      /* 상단바도 하나의 그룹이라 내가 원하는 항목 만들면 아래로 밀림.*/
+      padding: 20px;
+      background-color: white;
+      /* 배경색 설정 */
+      height: 100vh;
+      overflow-y: auto;
+
+      /* 스크롤 가능 */
     }
-    
-       /* 텍스트 스타일 (아래로 살짝 내림) */
-       .title-text {
-        font-size: 0.8rem;
-        color: #000000;
-        margin-bottom: 20px;
-        /* 텍스트를 아래로 살짝 내림 */
-        /*margin-top: 50px;  /* 텍스트를 아래로 살짝 내림 */
-      }
-      
-      .title-text2 {
-        margin-top: -40px;
-        font-size: 1.5rem;
-        color: #000000;
-        text-align: center;
-        flex-grow: 1;
-        /* 제목이 가능한 넓은 공간을 차지하도록 설정 */
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        /* 제목을 정확히 중앙으로 이동 */
-      }
-      
-      .title-text3 {
-        font-size: 1.2rem ;
-        color: #000000;
-        margin-bottom: 10px;
-        margin-top: 0px;
-        /* 텍스트를 아래로 살짝 내림 */
-        margin-left: 10px;
-      }
-      
-      .title-text4 {
-        font-size: 1.2rem ;
-        color: #000000;
-        margin-bottom: 10px;
-        margin-left: 8px;
-        margin-top: 10px;
-    
-        /* 텍스트를 아래로 살짝 내림 */
-        margin-right: 260px;
-      }
-    
-      .title-text5 {
-        font-size: 1.2rem ;
-        color: #000000;
-        margin-bottom: 5px;
-        /* 텍스트를 아래로 살짝 내림 */
-        margin-right: 5px;
-        margin-top: 10px;
-    
-      }
-    
-      .title-text6 {
-        font-size: 1.2rem ;
-        color: #000000;
-        margin-bottom: 10px;
-        /* 텍스트를 아래로 살짝 내림 */
-        margin-top: 10px;
-        margin-right: 300px;
-      }
-      
-      .app-main_message2 {
-        height: 25px;
-        margin-top: -25px;
-        margin-left: 300px;
-      }
-      
-      .app-main_message3 {
-        height: 35px;
-        margin-top: -29px;
-        margin-left: 355px;
-      }
-      
-      /* INFO 텍스트 */
-      h2 {
-        font-size: 2.4rem;
-        color: #0056A0;
-        margin-bottom: 0px;
-        margin-right: 5px;
-        /* 텍스트를 아래로 살짝 내림 */
-      
-      }
-      
-      .app-arrow {
-        height: 35px;
-        margin-top: 25px;
-        margin-right: 380px;
-        cursor: pointer;
-        /* 커서를 손 모양으로 변경 */
-        transition: transform 0.3s ease;
-        /* 부드러운 확대 효과 추가 */
-      }
-      
+
+    /* 텍스트 스타일 (아래로 살짝 내림) */
+    .title-text {
+      font-size: 0.8rem;
+      color: #000000;
+      margin-bottom: 20px;
+      /* 텍스트를 아래로 살짝 내림 */
+      /*margin-top: 50px;  /* 텍스트를 아래로 살짝 내림 */
+    }
+
+    .title-text2 {
+     margin-top: -40px; /* 기존 설정 유지 */
+     font-size: 1.5rem;
+     color: #000000;
+     text-align: center;
+     flex-grow: 1; /* 제목이 가능한 넓은 공간을 차지하도록 설정 */
+     position: absolute; /* 절대 위치 지정 */
+     margin-left:10px;
+     left: 50%; /* X축에서 정 가운데로 이동 */
+     transform: translateX(-50%); /* 가로 방향 중심 보정 */
+   }
+
+    .title-text10 {
+      font-size: 1.2rem;
+      color: #000000;
+      margin-bottom: 10px;
+      margin-top: 0px;
+      /* 텍스트를 아래로 살짝 내림 */
+      margin-left: 10px;
+    }
+
+
+    .title-text3 {
+      font-size: 1.2rem;
+      color: #000000;
+      margin-bottom: 10px;
+      margin-top: 0px;
+      /* 텍스트를 아래로 살짝 내림 */
+      margin-left: 10px;
+    }
+
+    .title-text4 {
+      font-size: 1.2rem;
+      color: #000000;
+      margin-bottom: 10px;
+      margin-left: 8px;
+      margin-top: 10px;
+
+      /* 텍스트를 아래로 살짝 내림 */
+      margin-right: 260px;
+    }
+
+    .title-text5 {
+      font-size: 1.2rem;
+      color: #000000;
+      margin-bottom: 5px;
+      /* 텍스트를 아래로 살짝 내림 */
+      margin-left: 10px;
+      margin-top: 10px;
+
+    }
+
+    .title-text6 {
+      font-size: 1.2rem;
+      color: #000000;
+      margin-bottom: 10px;
+      /* 텍스트를 아래로 살짝 내림 */
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+
+    .app-main_message2 {
+      height: 25px;
+      margin-top: -25px;
+      margin-left: 300px;
+    }
+
+    .app-main_message3 {
+      height: 35px;
+      margin-top: -29px;
+      margin-left: 355px;
+    }
+
+    /* INFO 텍스트 */
+    h2 {
+      font-size: 2.4rem;
+      color: #0056A0;
+      margin-bottom: 0px;
+      margin-right: 5px;
+      /* 텍스트를 아래로 살짝 내림 */
+
+    }
+
+    .app-arrow {
+      height: 35px;
+      margin-top: 25px;
+      margin-right: 380px;
+      cursor: pointer;
+      /* 커서를 손 모양으로 변경 */
+      transition: transform 0.3s ease;
+      /* 부드러운 확대 효과 추가 */
+    }
+
     .app-bar {
       height: 3px;
       margin-left: 0px;
-      width: calc(100% - 20px); /* 좌우 10px씩 여백 추가 */
-      margin: 20px auto;        /* 세로 가운데 정렬 및 여백 */
-      background-color: #000;   /* (예시) 배경 색 지정 */
+      width: calc(100% - 20px);
+      /* 좌우 10px씩 여백 추가 */
+      margin: 20px auto;
+      /* 세로 가운데 정렬 및 여백 */
+      background-color: #000;
+      /* (예시) 배경 색 지정 */
     }
-      
+
     /* 기본 입력 필드 */
-    .input, .textarea {
-      width: 95%; /* 너비 기본값 */
+    .input,
+    .textarea {
+      width: 95%;
+      /* 너비 기본값 */
       padding: 10px;
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 5px;
-      margin-bottom: 10px; /* 하단 여백 추가 */
+      margin-bottom: 10px;
+      /* 하단 여백 추가 */
     }
-    
+
     /* 큰 텍스트 영역 */
     .textarea {
-      height: 200px; /* 고정 높이 */
-      resize: none; /* 크기 조절 불가능 */
-      
+      height: 200px;
+      /* 고정 높이 */
+      resize: none;
+      /* 크기 조절 불가능 */
+
     }
-    
+
     /* 작성 버튼 스타일 */
     .submit-group {
-      margin-top: 20px; /* 간격 조정 */
+      margin-top: 20px;
+      /* 간격 조정 */
       display: flex;
       justify-content: flex-end;
-      width: 97%; /* 반응형 너비 */
-      
+      width: 97%;
+      /* 반응형 너비 */
+
     }
-    
+
     .submit-button {
       padding: 10px 20px;
       background-color: #73B3E3;
@@ -162,22 +183,23 @@
       border-radius: 5px;
       font-size: 1rem;
       cursor: pointer;
-      
+
     }
-    
+
     .submit-button:hover {
       background-color: #0056b3;
     }
-    
+
     /* 모집 기간 스타일 */
     .date-range {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 10px;
-      width: 98%; /* 반응형 너비 */
+      width: 98%;
+      /* 반응형 너비 */
     }
-    
+
     .input-date {
       padding: 5px;
       border: 1px solid #ccc;
@@ -185,40 +207,96 @@
       font-size: 1rem;
       flex: 1;
       margin: 0 5px;
-      width: 90%; /* 반응형 너비 */
-    
+      width: 90%;
+      /* 반응형 너비 */
+
     }
-    
+
     .date-separator {
       margin: 0 10px;
     }
-    
+
     .image-upload {
       display: flex;
       align-items: center;
-      gap: 10px; /* 카메라와 다른 요소 간격 */
-      justify-content: flex-start; /* 왼쪽 정렬 */
+      gap: 10px;
+      /* 카메라와 다른 요소 간격 */
+      justify-content: flex-start;
+      /* 왼쪽 정렬 */
       width: 100%;
     }
-    
+
     .camera-icon {
-      flex-shrink: 0; /* 크기가 줄어들지 않도록 설정 */
+      flex-shrink: 0;
+      /* 크기가 줄어들지 않도록 설정 */
       width: 40px;
       height: 40px;
       cursor: pointer;
     }
-    
+
     .image-preview-container {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      justify-content: center; /* 가운데 정렬 */
+      justify-content: center;
+      /* 가운데 정렬 */
       margin-top: 10px;
     }
-    
+
     .image-preview {
       max-width: 80%;
       max-height: 120px;
       border: 1px solid #ddd;
       border-radius: 4px;
+    }
+
+
+
+
+    .languageSelectionContainer {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+      /* 언어 선택 부분 중앙 정렬 */
+    }
+
+    .languageSelectionLabel {
+      font-size: 1.2rem;
+      color: #000000;
+      margin-bottom: 10px;
+      /* 레이블과 버튼 간격 */
+    }
+
+    .languageSelection {
+      display: flex;
+      justify-content: space-evenly;
+      /* 버튼 간격을 균등하게 배치 */
+      width: 100%;
+      /* 부모 컨테이너 너비에 맞게 */
+      gap: 10px;
+      /* 버튼 간 간격 */
+      margin-top: px;
+    }
+
+    .languageButton {
+      padding: 10px 20px;
+      background-color: #73B3E3;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: center;
+      white-space: nowrap;
+      /* 버튼 안 텍스트가 줄바꿈 되지 않도록 */
+    }
+
+    .languageButton:hover {
+      background-color: #73B3E3;
+      color: white;
+    }
+
+    .activeLanguageButton {
+      background-color: #0056b3;
+      color: white;
+      border: none;
     }

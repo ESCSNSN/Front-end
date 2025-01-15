@@ -15,11 +15,7 @@ import Header from './_.js';  // 상단바 컴포넌트
 // API에서 사용할 기본 URL과 헤더 설정
 const BASE_URL = 'http://info-rmation.kro.kr/api/board';
 const getAuthHeaders = () => {
-<<<<<<< HEAD
   const authToken = localStorage.getItem('authToken');
-=======
-  const accessToken = localStorage.getItem('authToken');
->>>>>>> 1e5f6d8c9740884a92ae39dff5988ab6e69feef7
   const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
   console.log(localStorage.getItem('userId'));
 
