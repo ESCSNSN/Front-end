@@ -39,16 +39,12 @@
       }
  
       .title-text2 {
-       margin-top: -40px; /* 기존 설정 유지 */
-       font-size: 1.5rem;
-       color: #000000;
-       text-align: center;
-       flex-grow: 1; /* 제목이 가능한 넓은 공간을 차지하도록 설정 */
-       position: absolute; /* 절대 위치 지정 */
-       margin-left:10px;
-       left: 50%; /* X축에서 정 가운데로 이동 */
-       transform: translateX(-50%); /* 가로 방향 중심 보정 */
-     }
+        margin-top: -40px; /* 기존 설정 유지 */
+        font-size: 1.5rem;
+        color: #000000;
+        text-align: center;
+        margin-left:10px;
+      }
  
       .title-text10 {
         font-size: 1.2rem;
