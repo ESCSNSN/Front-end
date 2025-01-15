@@ -17,7 +17,7 @@ import { jwtDecode } from 'jwt-decode';
 const BASE_URL = 'http://info-rmation.kro.kr/api/board';
 
 const getAuthHeaders = () => {
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem('authToken');
   if (!accessToken) throw new Error('사용자 인증 정보가 없습니다.');
 
   const decodedToken = jwtDecode(accessToken);

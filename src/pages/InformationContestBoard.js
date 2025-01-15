@@ -15,7 +15,7 @@ import Header from './_.js';  // 상단바 컴포넌트
 // API에서 사용할 기본 URL과 헤더 설정
 const BASE_URL = 'http://info-rmation.kro.kr/api/board';
 const getAuthHeaders = () => {
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem('authToken');
   const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
   console.log(localStorage.getItem('userId'));
 
@@ -54,7 +54,7 @@ const InformationContestBoard = () => {
   // 게시판 데이터 불러오기 useEffect
   useEffect(() => {
     const getBoard = async () => {
-      const accessToken = localStorage.getItem('accessToken');
+      const accessToken = localStorage.getItem('authToken');
       console.log(id);
 
       try {

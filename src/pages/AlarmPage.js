@@ -16,7 +16,7 @@ const AlarmPage = () => {
     const navigate = useNavigate();
     useEffect(() => {
         const fetchNoti = async () => {
-            const userId = 200204263//localStorage.getItem('authToken'); // 로그인 url 고치고 나면 authToken 받아오는 코드로
+            const userId = localStorage.getItem('authToken'); // 로그인 url 고치고 나면 authToken 받아오는 코드로
             console.log(userId);
             fetch(`https://rmation-chat.kro.kr/notification/${userId}`, {
                 method : 'get'
@@ -90,8 +90,8 @@ const AlarmPage = () => {
                         alt="뒤로가기"
                         onClick={() => navigate(-1)}  /* 뒤로 가기 동작 추가 */
                     />
-                    <h1 className={styles["title-text2"]}>알림</h1>
-                    <img src={bar} className={styles["app-bar"]} alt="bar" />
+                    <h1 className={styles["pageTitle"]}>알림</h1>
+                    {/* <img src={bar} className={styles["app-bar"]} alt="bar" /> */}
 
                 </div>
 
