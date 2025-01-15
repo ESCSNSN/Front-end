@@ -41,7 +41,7 @@ const RoomPage = () => {
   useEffect(() => {
     const fetchRooms = async () => {
       const token = localStorage.getItem('authToken');
-      fetch('https://fd5ca3755e85.ngrok.app/api/auth/get-username', {
+      fetch('http://info-rmation.kro.kr/api/auth/get-username', {
         headers: {
             'Authorization': `Bearer ${token}`,
             'ngrok-skip-browser-warning': 'true'

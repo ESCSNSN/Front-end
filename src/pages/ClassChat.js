@@ -180,7 +180,7 @@ const ClassChat = () => {
 
         try {
             // fetch API 호출
-            const response = await fetch('https://your-backend-api.com/reports', {
+            const response = await fetch('https://rmation-chat.kro.kr/reports', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -235,7 +235,7 @@ const ClassChat = () => {
             try {
                 // 각 선택된 방에 대해 DELETE 요청을 보냄
                 for (const roomId of selectedRooms) {
-                    const response = await fetch(`https://your-backend-api.com/rooms/${roomId}`, {
+                    const response = await fetch(`https://rmation-chat.kro.kr/rooms/${roomId}`, {
                         method: 'DELETE',
                     });
 

@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import back_logo from '../images/뒷모습 횃불이.png';
 
-const BASE_URL = "https://fd5ca3755e85.ngrok.app";
+const BASE_URL = "http://info-rmation.kro.kr";
 
 const JoinPage = () => {
     const [name, setName] = useState('');

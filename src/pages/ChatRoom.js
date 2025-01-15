@@ -27,7 +27,7 @@ const ChatRoom = () => {
                 console.log(usId);
 
             try {
-                const response = await axiosInstance.get(`https://934ef54da7b8.ngrok.app/Room/${id}`,{
+                const response = await axiosInstance.get(`https://rmation-chat.kro.kr/Room/${id}`,{
                     headers: {
                         'ngrok-skip-browser-warning': 'true', // 필요 시 유지
                     },
@@ -44,7 +44,7 @@ const ChatRoom = () => {
         const fetchChatData = async () => {
             try {
                 // 백엔드 API 호출
-                const response = await axiosInstance.get(`https://934ef54da7b8.ngrok.app/GetChatData/${id}`, {
+                const response = await axiosInstance.get(`https://rmation-chat.kro.kr/GetChatData/${id}`, {
                     headers: {
                         'ngrok-skip-browser-warning': 'true', // 필요 시 유지
                     },
@@ -68,7 +68,7 @@ const ChatRoom = () => {
 
         // STOMP 클라이언트 설정
         const stompClient = new Client({
-            brokerURL: 'ws://192.168.156.161:8080/ws-stomp', // WebSocket 서버 URL
+            brokerURL: 'https://rmation-chat.kro.kr/ws-stomp', // WebSocket 서버 URL
             reconnectDelay: 5000, // 재연결 딜레이
             heartbeatIncoming: 4000, // 서버로부터 heartbeat 수신 간격
             heartbeatOutgoing: 4000, // 서버로 heartbeat 전송 간격
