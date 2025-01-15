@@ -58,7 +58,7 @@ const BoardPage = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axiosInstance.get('https://cce1-2406-5900-10f0-c886-2035-dcac-532c-702.ngrok-free.app/api/board/free', {
+        const response = await axiosInstance.get('http://cce1-2406-5900-10f0-c886-2035-dcac-532c-702.ngrok-free.app/api/board/free', {
           params: { page, size }, // 페이지와 사이즈를 쿼리 파라미터로 추가
           headers: {
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
@@ -84,7 +84,7 @@ const BoardPage = () => {
     // 좋아요 10개 이상 게시물 가져오기
     const fetchTopLikedPosts = async () => {
       try {
-        const response = await axiosInstance.get('https://cce1-2406-5900-10f0-c886-2035-dcac-532c-702.ngrok-free.app/api/board/free/top-liked', {
+        const response = await axiosInstance.get('http://cce1-2406-5900-10f0-c886-2035-dcac-532c-702.ngrok-free.app/api/board/free/top-liked', {
           headers: {
             'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },

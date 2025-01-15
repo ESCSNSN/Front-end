@@ -27,7 +27,7 @@ const ChatRoom = () => {
                 console.log(usId);
 
             try {
-                const response = await axiosInstance.get(`https://info-rmation.kro.kr/Room/${id}`,{
+                const response = await axiosInstance.get(`http://info-rmation.kro.kr/Room/${id}`,{
                     headers: {
                         'ngrok-skip-browser-warning': 'true', // 필요 시 유지
                     },
@@ -44,7 +44,7 @@ const ChatRoom = () => {
         const fetchChatData = async () => {
             try {
                 // 백엔드 API 호출
-                const response = await axiosInstance.get(`https://info-rmation.kro.kr/GetChatData/${id}`, {
+                const response = await axiosInstance.get(`http://info-rmation.kro.kr/GetChatData/${id}`, {
                     headers: {
                         'ngrok-skip-browser-warning': 'true', // 필요 시 유지
                     },

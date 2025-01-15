@@ -18,7 +18,7 @@ const Message = () => {
 
     useEffect(() => {
         const fetchMessages = async () => {
-            const userResponse = await axiosInstance.get('https://info-rmation.kro.kr/api/auth/get-username');
+            const userResponse = await axiosInstance.get('http://info-rmation.kro.kr/api/auth/get-username');
                 setUserId(userResponse.data.userId); // 올바른 데이터 추출
 
                 console.log(UserId);
@@ -134,7 +134,7 @@ const Message = () => {
     const handleConfirmDelete = async () => {
         try {
             // 백엔드로 메시지 삭제 요청
-            await axiosInstance.delete(`https://info-rmation.kro.kr/Room/message/${selectedMessageId}`,{
+            await axiosInstance.delete(`http://info-rmation.kro.kr/Room/message/${selectedMessageId}`,{
                 headers: {
                     'ngrok-skip-browser-warning': 'true', // 필요 시 유지
                 },

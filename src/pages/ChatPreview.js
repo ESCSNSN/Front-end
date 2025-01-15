@@ -14,7 +14,7 @@ import Header from './_2.js'; // 상단바 컴포넌트
 
 
 // 백엔드 기본 URL 설정
-const BASE_URL = 'https://info-rmation.kro.kr';
+const BASE_URL = 'http://info-rmation.kro.kr';
 
 function ChatPreview() {
   const navigate = useNavigate();

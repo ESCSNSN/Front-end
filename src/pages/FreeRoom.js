@@ -35,7 +35,7 @@ const FreeRoom = () => {
   const [searchTerm, setSearchTerm] = useState('');
   
   const isDesktop = useMediaQuery({ query: '(min-width: 769px)' });
-  const baseUrl = 'https://info-rmation.kro.kr';
+  const baseUrl = 'http://info-rmation.kro.kr';
   const roomType = 'free'; 
   // 열린 채팅방 목록 조회
   useEffect(() => {

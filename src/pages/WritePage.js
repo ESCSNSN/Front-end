@@ -22,7 +22,7 @@ const WritePage = () => {
     const postData = { title, startDate, endDate, hashtag, content };
 
     try {
-      const response = await fetch('https://your-backend-api.com/api/posts', {
+      const response = await fetch('http://your-backend-api.com/api/posts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

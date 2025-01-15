@@ -15,7 +15,7 @@ import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들�
 import axios from 'axios';
 
 // 백엔드 기본 URL 설정
-const BASE_URL = 'https://info-rmation.kro.kr';
+const BASE_URL = 'http://info-rmation.kro.kr';
 
 const Otherprofile = () => {
   const navigate = useNavigate();

@@ -399,13 +399,13 @@ const Home = () => {
   
       {/* 대회 정보 이미지 부분 */}
       <div className={`${styles.competitions} ${isDesktop ? styles.desktopCompetitions : ''}`}>
-        <a className={styles.competitionItem} href="https://example.com/competition1" target="_blank" rel="noopener noreferrer">
+        <a className={styles.competitionItem} href="http://example.com/competition1" target="_blank" rel="noopener noreferrer">
           <img src={competitionImage1} className={styles.competitionImage} alt="대회 1" />
         </a>
-        <a className={styles.competitionItem} href="https://example.com/competition2" target="_blank" rel="noopener noreferrer">
+        <a className={styles.competitionItem} href="http://example.com/competition2" target="_blank" rel="noopener noreferrer">
           <img src={competitionImage2} className={styles.competitionImage} alt="대회 2" />
         </a>
-        <a className={styles.competitionItem} href="https://example.com/competition3" target="_blank" rel="noopener noreferrer">
+        <a className={styles.competitionItem} href="http://example.com/competition3" target="_blank" rel="noopener noreferrer">
           <img src={competitionImage3} className={styles.competitionImage} alt="대회 3" />
         </a>
       </div>

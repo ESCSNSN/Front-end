@@ -26,7 +26,7 @@ const Profileedit = () => {
   // 닉네임 중복 확인
   const handleDuplicateCheck = async () => {
     try {
-   //   const response = await axios.post('https://your-backend-api.com/check-username', { username: name });
+   //   const response = await axios.post('http://your-backend-api.com/check-username', { username: name });
      // setIsDuplicate(response.data.isDuplicate);
      // if (response.data.isDuplicate) {
      //   alert('이미 사용 중인 닉네임입니다.');
@@ -70,7 +70,7 @@ const Profileedit = () => {
     };
 
     try {
-      const response = await axios.post('https://info-rmation.kro.kr/updateProfile', updatedUser,{
+      const response = await axios.post('http://info-rmation.kro.kr/updateProfile', updatedUser,{
             headers: {
                 contentType: 'application/json',
                 'ngrok-skip-browser-warning': 'abc',

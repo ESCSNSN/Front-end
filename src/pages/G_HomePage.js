@@ -192,7 +192,7 @@ const G_HomePage = () => {
     const fetchRooms = async () => {
       const userId = '202301641'; // 추후 삭제 예정
       const roomType = roomData?.type || 'room'; // roomData에서 type을 가져오되, 없으면 'room'으로 기본값 설정
-      const baseUrl = 'https://info-rmation.kro.kr';
+      const baseUrl = 'http://info-rmation.kro.kr';
   
       try {
         const response = await fetch(`${baseUrl}/Room/RoomList/${roomType}`, {

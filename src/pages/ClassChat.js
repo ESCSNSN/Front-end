@@ -37,7 +37,7 @@ const ClassChat = () => {
    useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response = await fetch('https://your-backend-api.com/rooms');
+        const response = await fetch('http://your-backend-api.com/rooms');
         if (!response.ok) {
           throw new Error('방 목록을 가져오는 데 실패했습니다.');
         }
@@ -58,7 +58,7 @@ const ClassChat = () => {
       useEffect(() => {
           const fetchCourses = async () => {
               try {
-                  const response = await fetch('https://your-backend-api.com/user-courses');
+                  const response = await fetch('http://your-backend-api.com/user-courses');
                   if (!response.ok) {
                       throw new Error('수업 정보를 가져오는 데 실패했습니다.');
                   }
@@ -180,7 +180,7 @@ const ClassChat = () => {
 
         try {
             // fetch API 호출
-            const response = await fetch('https://info-rmation.kro.kr/reports', {
+            const response = await fetch('http://info-rmation.kro.kr/reports', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -235,7 +235,7 @@ const ClassChat = () => {
             try {
                 // 각 선택된 방에 대해 DELETE 요청을 보냄
                 for (const roomId of selectedRooms) {
-                    const response = await fetch(`https://info-rmation.kro.kr/rooms/${roomId}`, {
+                    const response = await fetch(`http://info-rmation.kro.kr/rooms/${roomId}`, {
                         method: 'DELETE',
                     });
 

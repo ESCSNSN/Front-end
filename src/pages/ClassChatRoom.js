@@ -29,7 +29,7 @@ const ClassChatRoom = () => {
     //const token = localStorage.getItem('token'); // 로컬 스토리지에서 JWT 토큰 가져오기
     const token = 'abc';
     const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
-    const baseUrl = 'https://info-rmation.kro.kr'; // 백엔드 서버 URL
+    const baseUrl = 'http://info-rmation.kro.kr'; // 백엔드 서버 URL
     // 웹소켓 초기화 함수
     const initializeWebSocket = () => {
         if (!token) {

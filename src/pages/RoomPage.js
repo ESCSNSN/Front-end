@@ -56,7 +56,7 @@ const RoomPage = () => {
                   throw new Error('로그인 토큰이 없습니다.'); // 로그인되지 않은 상태 
                 }
         
-                fetch(`https://info-rmation.kro.kr/Tel/${data.userId}`, {
+                fetch(`http://info-rmation.kro.kr/Tel/${data.userId}`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'ngrok-skip-browser-warning': 'true',
@@ -89,7 +89,7 @@ const RoomPage = () => {
       console.log(authToken);
 
         // 방 입장 API 호출
-        await axiosInstance.post('https://info-rmation.kro.kr/JoinRoom', {
+        await axiosInstance.post('http://info-rmation.kro.kr/JoinRoom', {
             headers: {
                 'ngrok-skip-browser-warning': 'true', // 필요 시 유지
             },
@@ -170,7 +170,7 @@ const RoomPage = () => {
 
     try {
       // fetch API 호출
-      const response = await fetch('https://info-rmation.kro.kr/Room/TelList/reports', {
+      const response = await fetch('http://info-rmation.kro.kr/Room/TelList/reports', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -211,7 +211,7 @@ const RoomPage = () => {
       try {
         // 각 선택된 방에 대해 DELETE 요청을 보냄
         for (const roomId of selectedRooms) {
-          const response = await fetch(`https://info-rmation.kro.kr/Room/TelList/rooms/${roomId}`, {
+          const response = await fetch(`http://info-rmation.kro.kr/Room/TelList/rooms/${roomId}`, {
             method: 'DELETE',
           });
 

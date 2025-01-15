@@ -29,7 +29,7 @@ const Chat = () => {
     const token = 'abc';
     const roomId = '91f3411b-1433-4fdd-b3ac-c0a594b5f407'; // 채팅방 ID는 classId로 설정
     const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
-    const baseUrl = 'https://info-rmation.kro.kr'; // 백엔드 서버 URL
+    const baseUrl = 'http://info-rmation.kro.kr'; // 백엔드 서버 URL
     // 웹소켓 초기화 함수
     const initializeWebSocket = () => {
         if (!token) {
