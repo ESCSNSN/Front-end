@@ -28,7 +28,7 @@ const Myprofile = () => {
       //  if (!userId) return;
       const roomType = roomData?.type;
         // 사용자 채팅방 목록 조회
-        const response = await fetch(`https://rmation-chat.kro.kr/Room/userId/${userId}/${roomType}`, {
+        const response = await fetch(`https://info-rmation.kro.kr/Room/userId/${userId}/${roomType}`, {
           headers: {
               contentType: 'application/json',
               'ngrok-skip-browser-warning': 'abc',

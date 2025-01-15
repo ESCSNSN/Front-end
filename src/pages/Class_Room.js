@@ -38,7 +38,7 @@ const Class_Room = () => {
   const [socket, setSocket] = useState(null); // 웹소켓 연결 상태 관리
 
   const isDesktop = useMediaQuery({ query: '(min-width: 769px)' });
-  const baseUrl = 'https://rmation-chat.kro.kr';
+  const baseUrl = 'https://info-rmation.kro.kr';
 
   useEffect(() => {
     const fetchRooms = async () => {

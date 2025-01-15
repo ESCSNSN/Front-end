@@ -18,7 +18,7 @@ const AlarmPage = () => {
         const fetchNoti = async () => {
             const userId = localStorage.getItem('authToken'); // 로그인 url 고치고 나면 authToken 받아오는 코드로
             console.log(userId);
-            fetch(`https://rmation-chat.kro.kr/notification/${userId}`, {
+            fetch(`https://info-rmation.kro.kr/notification/${userId}`, {
                 method : 'get'
             }).then((res) => {
                 return res.json();
@@ -53,7 +53,7 @@ const AlarmPage = () => {
     // 삭제 확인 모달 열기
     const handleDeleteClick = (id, event) => {
        
-        fetch(`https://rmation-chat.kro.kr/notification/${id}`,{
+        fetch(`https://info-rmation.kro.kr/notification/${id}`,{
             method : 'delete'
         }).then((res) => {
             return res.json();

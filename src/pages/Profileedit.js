@@ -70,7 +70,7 @@ const Profileedit = () => {
     };
 
     try {
-      const response = await axios.post('https://rmation-chat.kro.kr/updateProfile', updatedUser,{
+      const response = await axios.post('https://info-rmation.kro.kr/updateProfile', updatedUser,{
             headers: {
                 contentType: 'application/json',
                 'ngrok-skip-browser-warning': 'abc',

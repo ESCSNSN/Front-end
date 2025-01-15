@@ -18,7 +18,7 @@ const Message = () => {
 
     useEffect(() => {
         const fetchMessages = async () => {
-            const userResponse = await axiosInstance.get('https://18a5fe61dbb7.ngrok.app/api/auth/get-username');
+            const userResponse = await axiosInstance.get('https://info-rmation.kro.kr/api/auth/get-username');
                 setUserId(userResponse.data.userId); // 올바른 데이터 추출
 
                 console.log(UserId);
@@ -31,7 +31,7 @@ const Message = () => {
                 }
 
                 // 백엔드 API 호출
-                const response = await axiosInstance.get(`http://192.168.156.161:8080/Room/TelList`, {
+                const response = await axiosInstance.get(`http://info-rmation.kro.kr/Room/TelList`, {
 
                     headers: {
                         'ngrok-skip-browser-warning': 'true', // 필요 시 유지
@@ -63,7 +63,7 @@ const Message = () => {
             const userName = '신상윤';
 
             // 방 입장 API 호출
-            await axiosInstance.post('http://192.168.156.161:8080/JoinRoom', {
+            await axiosInstance.post('http://info-rmation.kro.kr/JoinRoom', {
                 headers: {
                     'ngrok-skip-browser-warning': 'true', // 필요 시 유지
                 },
@@ -91,7 +91,7 @@ const Message = () => {
             const userId = decodedToken.userId;
 
             // 백엔드에서 다음 페이지 메시지 요청
-            const response = await axiosInstance.get(`http://192.168.156.161:8080/Room/userId/${userId}`, {
+            const response = await axiosInstance.get(`http://info-rmation.kro.kr/Room/userId/${userId}`, {
                 params: { page: nextPage, size: 4 }, // 다음 페이지와 크기 설정
                 headers: {
                     'ngrok-skip-browser-warning': 'true', // 필요 시 유지
@@ -134,7 +134,7 @@ const Message = () => {
     const handleConfirmDelete = async () => {
         try {
             // 백엔드로 메시지 삭제 요청
-            await axiosInstance.delete(`https://8afb-211-216-139-144.ngrok-free.app/Room/message/${selectedMessageId}`,{
+            await axiosInstance.delete(`https://info-rmation.kro.kr/Room/message/${selectedMessageId}`,{
                 headers: {
                     'ngrok-skip-browser-warning': 'true', // 필요 시 유지
                 },
