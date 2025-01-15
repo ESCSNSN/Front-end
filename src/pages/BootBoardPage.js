@@ -88,38 +88,34 @@ const BootBoardPage = () => {
         setSelectedCategory(category);
     };
 
+  // 스크랩 토글 함수
+  const toggleScrap = async (id) => {
+    const authToken = localStorage.getItem('authToken');
+    console.log(authToken);
 
-    const toggleScrap = async (id) => {
-        const authToken = localStorage.getItem('authToken');
-        console.log(authToken);
+    try {
+      const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/studies/${id}/scrap`, {},
+        {
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+            'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
+          },
 
-        try {
-            // 카테고리에 따라 엔드포인트 동적으로 설정
-            const categoryPath = selectedCategory === '부트캠프'
-                ? 'bootcamp'
-                : selectedCategory === '산업 연계'
-                    ? 'industry'
-                    : 'study';
+        });
 
-            const response = await axiosInstance.post(`http://info-rmation.kro.kr/api/board/studies/${id}/scrap`, {
-                headers: {
-                    'Authorization': `Bearer ${authToken}`,
-                    'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
-                },
-            });
+      // 성공적으로 응답을 받은 경우 상태를 업데이트
+      setScrapStatus((prevState) => ({
+        ...prevState,
+        [id]: !prevState[id], // 현재 상태를 토글
+      }));
 
-            // 서버 응답이 성공적일 경우 상태 업데이트
-            setScrapStatus((prevState) => ({
-                ...prevState,
-                [id]: !prevState[id], // 현재 상태를 토글
-            }));
+      console.log('스크랩 상태가 성공적으로 업데이트되었습니다.');
+    } catch (error) {
+      console.error('스크랩 상태 업데이트 중 오류가 발생했습니다:', error);
+      alert('스크랩 상태 업데이트에 실패했습니다. 다시 시도해주세요.');
+    }
+  };
 
-            console.log('스크랩 상태가 성공적으로 업데이트되었습니다.');
-        } catch (error) {
-            console.error('스크랩 상태 업데이트 중 오류가 발생했습니다:', error);
-            alert('스크랩 상태 업데이트에 실패했습니다. 다시 시도해주세요.');
-        }
-    };
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
