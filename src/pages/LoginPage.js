@@ -31,8 +31,8 @@ const LoginPage = () => {
         `${BASE_URL}/login`,
         { username, password },
         {
-          headers: { 'Content-Type': 'application/json','ngrok-skip-browser-warning': 1 },
-          withCredentials: true 
+          headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 1 },
+          withCredentials: true
         }
       );
 
@@ -48,6 +48,8 @@ const LoginPage = () => {
 
       const jwtToken = response.headers["authorization"]?.split(" ")[1]; // Bearer 뒤의 토큰 부분
       const refreshToken = response.headers["refreshtoken"]; // RefreshToken 헤더 값
+      const role = response.headers["role"]; // 헤더에서 role 추출
+
 
       if (!jwtToken || !refreshToken) {
         throw new Error("토큰이 응답에 없습니다.");
@@ -63,108 +65,118 @@ const LoginPage = () => {
       setPassword("");
 
       // 로그인 성공 시 메인 페이지로 이동
-      navigate('/HomePage'); // 이동할 페이지 경로 설정
-    }catch (error) {
-      console.error("로그인 실패:", error.response?.data || error.message);
-      if (error.response && error.response.status === 401) {
-        setError("로그인 실패: 아이디나 비밀번호를 확인해 주세요.");
+      // 사용자 역할에 따라 네비게이트
+      // 사용자 역할에 따른 네비게이트
+      if (role.toLowerCase() === 'student') {
+        navigate('/HomePage');
+      } else if (role.toLowerCase() === 'graduate') {
+        navigate('/G_HomePage');
       } else {
-        setError("네트워크 오류가 발생했습니다. 다시 시도해 주세요.");
+        console.error('Unknown role:', role);
+        alert('알 수 없는 사용자 유형입니다. 관리자에게 문의하세요.');
       }
-    }
-  };
-
-  const handleTokenRefresh = async () => {
-    try {
-      // 저장된 리프레시 토큰을 가져옵니다.
-      const refreshToken = localStorage.getItem('refreshToken');
-      if (!refreshToken) {
-        throw new Error("리프레시 토큰이 없습니다.");
+      
+      } catch (error) {
+        console.error("로그인 실패:", error.response?.data || error.message);
+        if (error.response && error.response.status === 401) {
+          setError("로그인 실패: 아이디나 비밀번호를 확인해 주세요.");
+        } else {
+          setError("네트워크 오류가 발생했습니다. 다시 시도해 주세요.");
+        }
       }
+    };
 
-      // 리프레시 토큰으로 새로운 엑세스 토큰을 요청합니다.
-      const response = await axios.post(
-        `${BASE_URL}/auth/refresh`,
-        { refreshToken },
-        { headers: { 'Content-Type': 'application/json' } }
-      );
+    const handleTokenRefresh = async () => {
+      try {
+        // 저장된 리프레시 토큰을 가져옵니다.
+        const refreshToken = localStorage.getItem('refreshToken');
+        if (!refreshToken) {
+          throw new Error("리프레시 토큰이 없습니다.");
+        }
 
-      const newAccessToken = response.data.accessToken;
-      if (newAccessToken) {
-        // 새로운 엑세스 토큰을 로컬 스토리지에 저장합니다.
-        localStorage.setItem('authToken', newAccessToken);
-        return newAccessToken; // 새로운 엑세스 토큰 반환
-      } else {
-        throw new Error("리프레시 토큰 갱신 실패");
+        // 리프레시 토큰으로 새로운 엑세스 토큰을 요청합니다.
+        const response = await axios.post(
+          `${BASE_URL}/auth/refresh`,
+          { refreshToken },
+          { headers: { 'Content-Type': 'application/json' } }
+        );
+
+        const newAccessToken = response.data.accessToken;
+        if (newAccessToken) {
+          // 새로운 엑세스 토큰을 로컬 스토리지에 저장합니다.
+          localStorage.setItem('authToken', newAccessToken);
+          return newAccessToken; // 새로운 엑세스 토큰 반환
+        } else {
+          throw new Error("리프레시 토큰 갱신 실패");
+        }
+      } catch (error) {
+        console.error("리프레시 토큰 갱신 오류:", error);
+        return null;
       }
-    } catch (error) {
-      console.error("리프레시 토큰 갱신 오류:", error);
-      return null;
-    }
-  };
+    };
 
-  return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <div className={styles.logoSection}>
-          <div className={styles["group-info"]}>
-            <img src={back_logo} className={styles["app-back_logo"]} alt="back_logo" />
-            <h2>INFO!</h2>
-            <p className={styles["footer-text"]}>
-              인천대학교 메일로<br /> 회원가입해주세요!
-            </p>
-            <img src={Q_logo} className={styles["app-Q_logo"]} alt="Q_logo" />
+    return (
+      <div className={styles.container}>
+        <header className={styles.header}>
+          <div className={styles.logoSection}>
+            <div className={styles["group-info"]}>
+              <img src={back_logo} className={styles["app-back_logo"]} alt="back_logo" />
+              <h2>INFO!</h2>
+              <p className={styles["footer-text"]}>
+                인천대학교 메일로<br /> 회원가입해주세요!
+              </p>
+              <img src={Q_logo} className={styles["app-Q_logo"]} alt="Q_logo" />
+            </div>
           </div>
-        </div>
-      </header>
-      <h1>로그인</h1>
+        </header>
+        <h1>로그인</h1>
 
-      <div className={styles.loginBox}>
-        <div className={styles.welcomeBox}>
-          <div className={styles["group-login"]}>
-            <h3>Welcome<br /><br /> to</h3>
-            <img src={telecom_logo} className={styles["app-telecom_logo"]} alt="telecom_logo" />
-            <h3><br />INFO!</h3>
-          </div>
-          <p>INFORMATION TECHNOLOGY</p>
-        </div>
-
-        <form onSubmit={handleSubmit}>
-          <div className={styles.inputGroup}>
-            <label className={styles.l_label} htmlFor="username">학번</label>
-            <input 
-              type="text"
-              id="username"
-              value={username}
-
-              className={styles["l_input"]}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
+        <div className={styles.loginBox}>
+          <div className={styles.welcomeBox}>
+            <div className={styles["group-login"]}>
+              <h3>Welcome<br /><br /> to</h3>
+              <img src={telecom_logo} className={styles["app-telecom_logo"]} alt="telecom_logo" />
+              <h3><br />INFO!</h3>
+            </div>
+            <p>INFORMATION TECHNOLOGY</p>
           </div>
 
-          <div className={styles.inputGroup}>
-            <label className={styles.l_label} htmlFor="password">비밀번호</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              
-              className={styles["l_input"]}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit" className={styles.l_loginButton}>확인</button>
-        </form>
+          <form onSubmit={handleSubmit}>
+            <div className={styles.inputGroup}>
+              <label className={styles.l_label} htmlFor="username">학번</label>
+              <input
+                type="text"
+                id="username"
+                value={username}
 
-        <div className={styles.footerLinks}>
-          <Link to="/JoinPage">회원가입</Link>/ 
-          <Link to="/FindPWPage">비밀번호 찾기</Link>
+                className={styles["l_input"]}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className={styles.inputGroup}>
+              <label className={styles.l_label} htmlFor="password">비밀번호</label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+
+                className={styles["l_input"]}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" className={styles.l_loginButton}>확인</button>
+          </form>
+
+          <div className={styles.footerLinks}>
+            <Link to="/JoinPage">회원가입</Link>/
+            <Link to="/FindPWPage">비밀번호 찾기</Link>
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
-export default LoginPage;
+  export default LoginPage;

@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import back_logo from '../images/뒷모습 횃불이.png';
 
-const BASE_URL = "http://info-rmation.kro.kr";
+const BASE_URL = "https://fd5ca3755e85.ngrok.app";
 
 const JoinPage = () => {
     const [name, setName] = useState('');
@@ -194,7 +194,7 @@ const JoinPage = () => {
 
 
                             <div className={styles.radioOption}>
-                                <label htmlFor="student" className={styles.jointext}>재학생</label>
+                                <label htmlFor="STUDENT" className={styles.jointext}>재학생</label>
                                 <input
                                     type="radio"
                                     id="student"
@@ -208,7 +208,7 @@ const JoinPage = () => {
                                 
                             </div>
                             <div className={styles.radioOption}>
-                                <label htmlFor="graduate" className={styles.jointext}>졸업생</label>
+                                <label htmlFor="GRADUATE" className={styles.jointext}>졸업생</label>
                                 <input
                                     type="radio"
                                     id="graduate"
