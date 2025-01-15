@@ -15,6 +15,9 @@ import Header from './_2.js'; // 상단바 컴포넌트
 const Myprofile = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
+  
+  const [roomData, setRoomData] = useState({ type: 'free' }); 
+
   const [profileData, setProfileData] = useState({ userName: '', userId: '' });
 
   // API 호출로 프로필 데이터 로드
@@ -23,9 +26,9 @@ const Myprofile = () => {
       try {
         const userId = '202301641'; // 현재 로그인된 사용자 ID user?.userId
       //  if (!userId) return;
-
+      const roomType = roomData?.type;
         // 사용자 채팅방 목록 조회
-        const response = await fetch(`https://rmation-chat.kro.kr/Room/userId/${userId}`, {
+        const response = await fetch(`https://rmation-chat.kro.kr/Room/userId/${userId}/${roomType}`, {
           headers: {
               contentType: 'application/json',
               'ngrok-skip-browser-warning': 'abc',
@@ -42,7 +45,7 @@ const Myprofile = () => {
         if (userRooms && userRooms.length > 0) {
           // 필요한 데이터만 추출해 저장
           setProfileData({
-            userName: userRooms[0]?.userName || '닉네임 없음',
+            userName: userRooms[0]?.userName || '닉네임',
             userId,
           });
         } else {
