@@ -103,7 +103,7 @@ const Makechat = () => {
   
       if (response.status === 200) {
         alert('소토방 개설이 성공적으로 처리되었습니다.');
-        navigate('/FreeboardPage'); // 게시글 목록 페이지로 이동
+        navigate('/FreeRoom'); // 게시글 목록 페이지로 이동
       } else {
         console.error('Failed to save or update data:', response.statusText);
         alert('소통방 개설 처리 중 오류가 발생했습니다.');
