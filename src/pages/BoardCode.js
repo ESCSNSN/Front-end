@@ -143,14 +143,14 @@ const BoardCode = () => {
 
   // 닉네임 생성 함수
 const generateNickname = (id) => {
-  const types = ["int", "short", "double", "char"];
+  const types = ["int"];
   const randomType = types[Math.floor(Math.random() * types.length)];
   return `${randomType}${id}`;
 };
 
 useEffect(() => {
   if (!nickname) {
-    const types = ['int', 'short', 'double', 'char'];
+    const types = ['int'];
     const randomType = types[Math.floor(Math.random() * types.length)];
     setNickname(randomType);
   }
@@ -231,7 +231,7 @@ const handleAddComment = async () => {
 
     if (!anonymousId) {
       // 'char', 'int', 'short', 'double' 중 하나를 랜덤으로 선택
-      const idOptions = ['char', 'int', 'short', 'double'];
+      const idOptions = ['int'];
       anonymousId = idOptions[Math.floor(Math.random() * idOptions.length)];
 
       // 생성된 anonymousId를 localStorage에 저장
@@ -284,7 +284,7 @@ const handleAddReply = async (index) => {
     let anonymousId = localStorage.getItem(localStorageKey);
 
     if (!anonymousId) {
-      const idOptions = ['char', 'int', 'short', 'double'];
+      const idOptions = ['int'];
       anonymousId = idOptions[Math.floor(Math.random() * idOptions.length)];
 
       localStorage.setItem(localStorageKey, anonymousId);
