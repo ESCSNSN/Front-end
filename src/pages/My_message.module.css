@@ -26,6 +26,7 @@
       /*margin-top: 50px;  /* 텍스트를 아래로 살짝 내림 */
     }
     
+    
     .title-text2 {
       /*게시판*/
       font-size: 1.6rem;
@@ -131,6 +132,7 @@
         color: #555555;
         margin-top: 5px;
         line-height: 0px;
+        margin-left: 15px;
     }
     
     .messageList {
@@ -160,11 +162,17 @@
     
     .headerInfo {
       display: flex;           /* 유저 이름과 글 제목을 같은 행에 배치 */
-      gap: 10px;               /* 유저 이름과 글 제목 사이 간격 */
+      gap: 0px;               /* 유저 이름과 글 제목 사이 간격 */
       align-items: center;     /* 세로 정렬을 위해 가운데 정렬 */
     }
     
     .nickname {
+      color: black;
+      font-weight: bold;
+      font-size:large;
+    }
+
+    .boardName{
       color: black;
       font-weight: bold;
       font-size:large;
