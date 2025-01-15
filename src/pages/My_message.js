@@ -11,12 +11,12 @@ import menuIcon from '../images/메뉴버튼.png';
 // API에서 사용할 기본 URL과 헤더 설정
 const BASE_URL = 'http://info-rmation.kro.kr/api';
 const getAuthHeaders = () => {
-    const accessToken = localStorage.getItem('authToken');
+    const authToken = localStorage.getItem('authToken');
     const userId = localStorage.getItem('userId'); // 이 부분이 사용자 ID를 가져옵니다.
     console.log(localStorage.getItem('userId'));
 
     return {
-        'Authorization': `Bearer ${accessToken}`,
+        'Authorization': `Bearer ${authToken}`,
         'X-USER-ID': userId, // 사용자 ID를 X-USER-ID로 추가
         'Content-Type': 'application/json',
         'ngrok-skip-browser-warning': 1
@@ -66,23 +66,48 @@ const My_message = () => {
                     method: 'GET',
                     headers: getAuthHeaders(), // getAuthHeaders를 호출하여 헤더 설정
                 });
-
+    
                 if (response.ok) {
                     const data = await response.json();
-
+    
                     // 데이터 가공
-                    const reformattedData = data.map(item => ({
-                        id: item.id,
-                        content: item.content, // content로 매핑
-                        parentCommentId: item.parentCommentId, // parentCommentId로 매핑
-                        targetType: item.targetType, // targetType으로 매핑
-                        targetId: item.targetId, // targetId로 매핑
-                        createdAt: item.createdAt, // createdAt으로 매핑
-                        updatedAt: item.updatedAt, // updatedAt으로 매핑
-                        replies: item.replies, // replies로 매핑
-                        anonymousId: item.anonymousId, // anonymousId로 매핑
-                    }));
-
+                    const reformattedData = data.map(item => {
+                        // targetType에 따라 게시판 이름 매핑
+                        let boardName = '';
+                        switch (item.targetType) {
+                            case 'coding':
+                                boardName = '코드질문 게시판';
+                                break;
+                            case 'competition':
+                                boardName = '대회정보 게시판';
+                                break;
+                            case 'free':
+                                boardName = '자유 게시판';
+                                break;
+                            case 'study':
+                                boardName = '스터디 게시판';
+                                break;
+                            case 'quest':
+                                boardName = '질문 게시판';
+                                break;
+                            default:
+                                boardName = '알 수 없는 게시판'; // 예외 처리
+                        }
+    
+                        return {
+                            id: item.id,
+                            content: item.content,
+                            parentCommentId: item.parentCommentId,
+                            targetType: item.targetType,
+                            boardName: boardName, // 추가된 속성
+                            targetId: item.targetId,
+                            createdAt: item.createdAt,
+                            updatedAt: item.updatedAt,
+                            replies: item.replies,
+                            anonymousId: item.anonymousId,
+                        };
+                    });
+    
                     setMessages(reformattedData); // 상태에 데이터 저장
                     console.log(reformattedData); // 데이터 확인용 로그
                 } else {
@@ -92,13 +117,10 @@ const My_message = () => {
                 console.error('API 호출 중 오류 발생:', error);
             }
         };
-
+    
         fetchMessages();
     }, []);
-
-
-
-
+    
 
     // 더보기 버튼 클릭 시 화면에 보이는 메시지 수를 증가시키는 함수
     const handleLoadMore = () => {
@@ -152,6 +174,7 @@ const My_message = () => {
                         <div className={styles.messageInfo}>
                             <div className={styles.headerInfo}>
                                 <span className={styles.nickname}>{message.username}</span>
+                                <span className={styles.boardName}>{message.boardName}</span> {/* 게시판 이름 추가 */}
                                 <span className={styles.title}>{message.title}</span>
                             </div>
                             {/* 메시지 내용 표시 */}

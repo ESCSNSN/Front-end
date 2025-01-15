@@ -44,7 +44,7 @@ const MyStudy = () => {
       console.log(accessToken);
 
       try {
-        const response = await axiosInstance.get('https://2ecb-2406-5900-10f0-c886-1c07-11ef-e410-ee21.ngrok-free.app/api/board/studies/myPost', {
+        const response = await axiosInstance.get('http://info-rmation.kro.kr/api/board/studies/myPost', {
           params: {
             page,
             size,
@@ -53,7 +53,6 @@ const MyStudy = () => {
           ,
           headers: {
             'Authorization': `Bearer ${accessToken}`,
-            'ngrok-skip-browser-warning': 'true', // 경고 페이지를 우회하는 헤더 추가
           },
         });
 
@@ -91,7 +90,7 @@ const MyStudy = () => {
 
   const handlePostClick = (studyId) => {
     navigate(`/StudyApplicantList/${studyId}`); // 해당 게시물 상세 페이지로 이동
-};
+  };
 
   return (
     <div className={styles.container}>
