@@ -40,16 +40,15 @@ const RoomPage = () => {
   // 방 목록을 백엔드에서 가져오기 위한 useEffect
   useEffect(() => {
     const fetchRooms = async () => {
-      const token = localStorage.getItem('authToken');
-      fetch('http://mireu-server.iptime.org:8082/api/auth/get-username', {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'ngrok-skip-browser-warning': 'true'
-            },
-        method: 'GET',
-      }).then((res) => {return res.json();})
-      .then((data) => {
-           // setUserId(data.userId); // 올바른 데이터 추출
+      const authToken = localStorage.getItem('authToken');
+      const userResponse = await axiosInstance.get('http://info-rmation.kro.kr/api/auth/get-username', {
+          headers:{
+              "Authorization" : `Bearer ${authToken}`
+          }
+      });
+          
+          setUserId(userResponse.data.userId);
+          console.log(userId);
             try {
   
                 if (!token) {
