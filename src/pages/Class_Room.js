@@ -38,7 +38,7 @@ const Class_Room = () => {
   const [socket, setSocket] = useState(null); // 웹소켓 연결 상태 관리
 
   const isDesktop = useMediaQuery({ query: '(min-width: 769px)' });
-  const baseUrl = 'http://info-rmation.kro.kr';
+  const baseUrl ='http://mireu-server.iptime.org:8082';
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -63,19 +63,19 @@ const Class_Room = () => {
 
     fetchRooms();
 
-    // 웹소켓 서버와 연결
-    const newSocket = io(`${baseUrl}`); // 실제 백엔드 URL로 변경
-    setSocket(newSocket);
+  //   // 웹소켓 서버와 연결
+  //   const newSocket = io(`${baseUrl}`); // 실제 백엔드 URL로 변경
+  //   setSocket(newSocket);
 
-    // 채팅 메시지 수신 이벤트 처리
-    newSocket.on('chat-message', (message) => {
-      console.log('New message received:', message);
-      // 채팅방 리스트나 메시지 상태를 업데이트하는 로직 추가
-    });
+  //   // 채팅 메시지 수신 이벤트 처리
+  //   newSocket.on('chat-message', (message) => {
+  //     console.log('New message received:', message);
+  //     // 채팅방 리스트나 메시지 상태를 업데이트하는 로직 추가
+  //   });
 
-    // 컴포넌트 언마운트 시 웹소켓 연결 종료
-    return () => newSocket.close();
-  }, []);
+  //   // 컴포넌트 언마운트 시 웹소켓 연결 종료
+  //   return () => newSocket.close();
+   }, []);
 
   const [roomData, setRoomData] = useState({ type: 'class' });  // 기본값 설정
   

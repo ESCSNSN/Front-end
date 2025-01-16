@@ -204,7 +204,7 @@ function App() {
           <Route path="/RoomChat/" element={<RoomChat />} />
           <Route path="/RoomChat/:roomId" element={<RoomChat />} />
           
-          <Route path="/ClassChatRoom/:roomId" element={<ClassChatRoom />} />
+          <Route path="/ClassChatRoom/:id" element={<ClassChatRoom />} />
           <Route path="/G_Chat/" element={<G_Chat />} />
         </Routes>
       </BrowserRouter>

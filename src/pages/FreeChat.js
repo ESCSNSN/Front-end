@@ -37,7 +37,7 @@ const FreeChat = () => {
             return;
         }
 
-        const socketUrl = `ws://info-rmation.kro.kr/ws/chat/${roomId}`; // WebSocket 서버 URL
+        const socketUrl = `ws://info-rmation.kro.kr/ws-stomp/chat/${roomId}`; // WebSocket 서버 URL
         websocketRef.current = new WebSocket(socketUrl, [], { 
             headers: { Authorization: `Bearer ${token}` }  // JWT 토큰을 헤더에 추가
         });

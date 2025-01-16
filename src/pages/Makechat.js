@@ -81,6 +81,7 @@ const Makechat = () => {
       description: content,
       mode: 'Opened',
       isTel: 'True',
+      type:'free',
       hashTag: hashtag,
     };
   

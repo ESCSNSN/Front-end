@@ -44,7 +44,7 @@ const ChatRoom = () => {
         const fetchChatData = async () => {
             try {
                 // 백엔드 API 호출
-                const response = await axiosInstance.get(`http://info-rmation.kro.kr/GetChatData/${id}`, {
+                const response = await axiosInstance.get(`http://mireu-server.iptime.org:8082/GetChatData/${id}`, {
                     headers: {
                         'ngrok-skip-browser-warning': 'true', // 필요 시 유지
                     },

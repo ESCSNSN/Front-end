@@ -1,221 +1,184 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import styles from './ClassChatRoom.module.css';
-import CommunicationRoom_goBack from '../images/chatback.png';
-import sendIcon from '../images/메시지전송버튼.png';
+import styles from './ChatRoom.module.css';
+import Header from './_.js'; // 상단바 컴포넌트
+import axiosInstance from '../utils/api'; // Axios 인스턴스
+import { Client } from '@stomp/stompjs'; // STOMP 클라이언트 라이브러리 // npm install @stomp/stompjs
+import {jwtDecode} from 'jwt-decode';
+import CommunicationRoom_goBack from '../images/왼쪽 나가기 버튼.png';
+import sendIcon from '../images/메시지전송버튼.png'; // 메시지 전송 아이콘 이미지
 import heartIcon from '../images/하트횃불이.png';
 
-import main_mascot from '../images/대학 심볼 횃불이.png';
-import main_bell from '../images/bell.png';
-import main_message from '../images/message.png';
-import main_my from '../images/my.png';
-
-import Header from './_2.js'; // 상단바 컴포넌트
-import { useMediaQuery } from 'react-responsive'; // 반응형 페이지 만들기 위함
-import axios from 'axios'; // API 요청을 위한 axios
-
 const ClassChatRoom = () => {
-    const websocketRef = useRef(null); // 웹소켓 참조
-    const reconnectIntervalRef = useRef(null); // 재연결 타이머
-    const { roomId } = useParams();
-    const navigate = useNavigate();
+    const { id } = useParams(); // URL에서 동적 방 ID를 가져옵니다.
+    const navigate = useNavigate(); // 뒤로가기 버튼 동작을 위해 사용
+    const [roomData, setRoomData] = useState(null); // 채팅방 정보 상태
+    const [messages, setMessages] = useState([]); // 채팅 메시지 목록 상태 관리
+    const [inputMessage, setInputMessage] = useState(''); // 입력한 메시지 상태 관리
+    const messageListRef = useRef(null); // 스크롤을 제어하기 위한 참조
+    const stompClientRef = useRef(null); // STOMP 클라이언트 참조
+    const [usId, setUsId] = useState("");
 
-    const [messages, setMessages] = useState([]);
-    const [inputMessage, setInputMessage] = useState('');
-    const [userCount, setUserCount] = useState(0); // 채팅방 인원 수
-    const [users, setUsers] = useState([]); // 채팅방 사용자 목록
-    const messageListRef = useRef(null);
-    const [room, setRoom] = useState([]); // 채팅방 정보
-    //const token = localStorage.getItem('token'); // 로컬 스토리지에서 JWT 토큰 가져오기
-    const token = 'abc';
-    const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
-    const baseUrl = 'http://info-rmation.kro.kr'; // 백엔드 서버 URL
-    // 웹소켓 초기화 함수
-    const initializeWebSocket = () => {
-        if (!token) {
-            console.error('인증되지 않은 사용자입니다. 토큰이 없습니다.');
-            return;
-        }
+    useEffect(() => {
+        const fetchRoomData = async () => {
+            const userResponse = await axiosInstance.get('http://info-rmation.kro.kr/api/auth/get-username');
+                
+                setUsId(userResponse.data.userId);
+                console.log(usId);
 
-        const socketUrl = `ws://info-rmation.kro.kr/ws/chat/${roomId}`; // WebSocket 서버 URL
-        websocketRef.current = new WebSocket(socketUrl, [], { 
-            headers: { Authorization: `Bearer ${token}` }  // JWT 토큰을 헤더에 추가
+            try {
+                const response = await axiosInstance.get(`http://info-rmation.kro.kr/Room/${id}`,{
+                    headers: {
+                        'ngrok-skip-browser-warning': 'true', // 필요 시 유지
+                    },
+                });
+                if (response.data.code !== 200) {
+                    throw new Error('채팅방 정보를 불러오는데 실패했습니다.');
+                }
+                setRoomData(response.data.data);
+            } catch (error) {
+                console.error('채팅방 정보를 불러오는 중 오류가 발생했습니다:', error);
+            }
+        };
+        
+        const fetchChatData = async () => {
+            try {
+                // 백엔드 API 호출
+                const response = await axiosInstance.get(`http://mireu-server.iptime.org:8082/GetChatData/${id}`, {
+                    headers: {
+                        'ngrok-skip-browser-warning': 'true', // 필요 시 유지
+                    },
+                });
+        
+                // 응답 상태 확인
+                if (response.data.code !== 200) {
+                    throw new Error('채팅방 대화 내용을 불러오는데 실패했습니다.');
+                }
+        
+                // 메시지 데이터를 상태에 저장
+                setMessages(response.data.data.data); // 백엔드에서 가져온 메시지 데이터를 저장
+                console.log('채팅 내역:', response.data.data);
+            } catch (error) {
+                console.error('채팅 내역 불러오는 중 오류 발생:', error);
+            }
+        };
+
+        fetchRoomData();
+        fetchChatData();
+
+        // STOMP 클라이언트 설정
+        const stompClient = new Client({
+            brokerURL: 'ws://info-rmation.kro.kr/ws-stomp', // WebSocket 서버 URL
+            reconnectDelay: 5000, // 재연결 딜레이
+            heartbeatIncoming: 4000, // 서버로부터 heartbeat 수신 간격
+            heartbeatOutgoing: 4000, // 서버로 heartbeat 전송 간격
         });
 
-        websocketRef.current.onopen = () => {
-            console.log('WebSocket 연결 수립');
-            if (reconnectIntervalRef.current) {
-                clearInterval(reconnectIntervalRef.current); // 재연결 타이머 정리
-            }
-        };
+        stompClient.onConnect = () => {
+            console.log('STOMP 연결 성공');
 
-        websocketRef.current.onmessage = (event) => {
-            try {
-                const receivedData = JSON.parse(event.data);
-
-                // 사용자 수 업데이트 메시지 처리
-                if (receivedData.type === 'userCount') {
-                    setUserCount(receivedData.count);
-                } else if (receivedData.type === 'message') {
-                    setMessages((prevMessages) => [...prevMessages, receivedData]);
-                }
-            } catch (error) {
-                console.error('메시지 파싱 실패:', error);
-            }
-        };
-
-        websocketRef.current.onclose = () => {
-            console.error('WebSocket 연결 끊김. 재연결 시도');
-            attemptReconnect(); // 재연결
-        };
-
-        websocketRef.current.onerror = (error) => {
-            console.error('WebSocket 오류:', error);
-            websocketRef.current.close(); // 오류 발생 시 연결 종료
-        };
-    };
-
-    // 웹소켓 재연결 시도
-    const attemptReconnect = () => {
-        if (!reconnectIntervalRef.current) {
-            reconnectIntervalRef.current = setInterval(() => {
-                console.log('WebSocket 재연결 시도 중...');
-                initializeWebSocket();
-            }, 5000); // 5초마다 재연결
-        }
-    };
-
-    // 메시지 전송 함수
-    const sendMessage = () => {
-        if (websocketRef.current && websocketRef.current.readyState === WebSocket.OPEN) {
-            const message = {
-                sender: 'me',
-                text: inputMessage,
-                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            };
-            websocketRef.current.send(JSON.stringify(message)); // 서버에 메시지 전송
-            setMessages((prevMessages) => [...prevMessages, message]); // 클라이언트 메시지 상태 업데이트
-            setInputMessage(''); // 입력창 초기화
-        } else {
-            console.error('WebSocket 연결 상태가 아닙니다.');
-        }
-    };
-
-    // 채팅방 입장 API 호출
-    const joinRoom = async () => {
-        try {
-            const response = await axios.post(`${baseUrl}/JoinRoom`, {
-                roomId: roomId,
-                userName: '김수빈', // 예시로 고정된 이름, 실제 사용자 이름을 사용
-                userId: '202301641', // 예시로 고정된 사용자 ID, 실제 사용자 ID를 사용
-            }, {
-                headers: {
-                    "ngrok-skip-browser-warning": "abc",
-                    Authorization: `Bearer ${token}`
-                }
+            // 메시지 구독
+            stompClient.subscribe(`/sub/message/${id}`, (message) => {
+                const messageData = JSON.parse(message.body);
+                setMessages((prevMessages) => [...prevMessages, messageData]);
             });
-            if (response.data.code === 200) {
-                console.log('채팅방 입장 성공');
-            }
-        } catch (error) {
-            console.error('채팅방 입장 실패:', error);
-        }
-    };
+        };
 
-    // 채팅방 정보 및 사용자 목록 조회
-    const fetchRoomInfo = async () => {
-        try {
-            fetch(`${baseUrl}/Room/${roomId}`, {
-                headers: { Authorization: `Bearer ${token}`,"ngrok-skip-browser-warning": "abc" },
-                method: 'GET'
-            }).then((res)=> {
-                console.log(res);
-                return res.json()})
-            .then((data) => {
-                console.log(data);
-                setRoom(data.data);
-                setUserCount(data.data.userCount);
+        stompClient.onStompError = (frame) => {
+            console.error('STOMP 오류:', frame.headers['message']);
+        };
 
-            });
-            fetch(`${baseUrl}/GetChatData/${roomId}`, {
-                headers: { Authorization: `Bearer ${token}`,"ngrok-skip-browser-warning": "abc" },
-                method: 'GET'
-            }).then((res)=> {return res.json()})
-            .then((data) => {
-                console.log(data);
-                setMessages(data.data.data);
-            });
-        } catch (error) {
-            console.error('채팅방 정보 또는 사용자 목록 조회 실패:', error);
-        }
-    };
-
-    useEffect(() => {
-        //initializeWebSocket(); // 웹소켓 초기화
-
-        fetchRoomInfo(); // 채팅방 정보 및 사용자 목록 조회
-      //  joinRoom(); // 채팅방 입장
-
+        stompClient.activate();
+        stompClientRef.current = stompClient;
 
         return () => {
-            if (websocketRef.current) {
-                websocketRef.current.close(); // 컴포넌트 언마운트 시 연결 종료
+            if (stompClient) {
+              stompClient.deactivate();
             }
-            if (reconnectIntervalRef.current) {
-                clearInterval(reconnectIntervalRef.current); // 재연결 타이머 정리
-            }
-        };
-    }, []);
+          };
+    }, [id]);
+    
 
     useEffect(() => {
+        // 새로운 메시지가 추가되면 스크롤을 가장 하단으로 이동
         if (messageListRef.current) {
             messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
         }
-    }, [messages.length]);
+    }, [messages]);
 
+    // 메시지 전송 핸들러
     const handleSendMessage = () => {
-        if (inputMessage.trim()) {
-            sendMessage();
+        if (inputMessage.trim() !== '') {
+            const token = localStorage.getItem('authToken'); // JWT 토큰 가져오기
+            const decodedToken = jwtDecode(token); // JWT 디코딩
+
+            const messageData = {
+                roomId: id,
+                message: inputMessage,
+                userId: usId, // 사용자 ID
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            };
+
+            // STOMP 클라이언트를 통해 메시지 전송
+            if (stompClientRef.current && stompClientRef.current.connected) {
+                stompClientRef.current.publish({
+                    destination: `/pub/messages/${id}`,
+                    body: JSON.stringify(messageData),
+                });
+
+                setInputMessage('');
+            } else {
+                console.error('STOMP 클라이언트 연결이 닫혀 있습니다.');
+            }
         }
     };
 
+    // 엔터키로 메시지 전송하는 핸들러
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            event.preventDefault();
             handleSendMessage();
         }
     };
 
+    if (!roomData) {
+        return <div>Loading...</div>; // 데이터가 없을 때 로딩 상태 표시
+    }
+
     return (
         <div className={styles.container}>
-          <Header />
-
+            <Header />
             <div className={styles.content}>
-                <div className={`${styles.headerRow} ${isDesktop ? styles.desktopHeaderRow : styles.mobileHeaderRow}`}>
+                <h2 className={styles.sectionTitle}></h2>
+                <div className={styles.headerRow}>
+                    {/* 왼쪽 나가기 버튼 */}
                     <img
                         src={CommunicationRoom_goBack}
+                        className={styles.goBackButton}
                         alt="뒤로가기"
-                        className={`${styles.goBackButton} ${isDesktop ? styles.desktopGoBackButton : styles.mobileGoBackButton}`}
                         onClick={() => navigate(-1)}
                     />
-                    <h2 className={`${styles.sectionTitle} ${isDesktop ? styles.desktopSectionTitle : styles.mobileSectionTitle}`}>{room.roomName}</h2>
+                    {/* 사용자 이름 및 글 제목 */}
+                    <div className={styles.roomHeaderInfo}>
+                        <span className={styles.roomUsername}>{roomData.userName}</span>
+                        <span className={styles.separator}>|</span>
+                        <span className={styles.roomTitle}>{roomData.roomName}</span>
+                    </div>
                 </div>
 
-                <div className={`${styles.classInfo} ${isDesktop ? styles.desktopClassInfo : styles.mobileClassInfo}`}>
-                    <span></span>
-                    <span>인원 : {userCount}</span>
-                </div>
-
+                {/* 기존 메시지 스타일 유지 */}
                 <div className={styles.messageList} ref={messageListRef}>
-                    {messages.map((msg, index) => (
-                        <div key={index} className={msg.userId === '202301641' ? styles.sentMessage : styles.receivedMessage}>
-                            <span className={styles.messageText}>{msg.message}</span>
-                            <span className={styles.messageTime}>{msg.time.split('T')[1].slice(0, 5)}</span>
+                    {messages.map((message, index) => (
+                        <div
+                            key={index}
+                            className={`${message.userId == usId ? styles.sentMessage: styles.receivedMessage}`}
+                        >
+                            <span className={styles.messageText}>{message.message}</span>
+                            <span className={styles.messageTime}>{message.time}</span>
                         </div>
                     ))}
                 </div>
 
-                {/* 채팅 입력창*/}
+                {/* 채팅 입력창 - 화면 하단 고정 */}
                 <div className={styles.inputContainer}>
                     <img src={heartIcon} alt="Icon" className={styles.heartIcon} />
                     <input

@@ -59,7 +59,7 @@ function ChatPreview() {
   }, [roomId]);
 
   const handleJoinClick = () => {
-    navigate(`/FreeChat/${roomId}`);
+    navigate(`/ChatRoom/${roomId}`);
   }
   
   
