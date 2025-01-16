@@ -153,7 +153,7 @@ const ChatRoom = () => {
         <div className={styles.container}>
             <Header />
             <div className={styles.content}>
-                <h2 className={styles.sectionTitle}>쪽지</h2>
+                <h2 className={styles.sectionTitle}></h2>
                 <div className={styles.headerRow}>
                     {/* 왼쪽 나가기 버튼 */}
                     <img

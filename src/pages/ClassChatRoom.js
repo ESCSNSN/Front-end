@@ -21,7 +21,12 @@ const ClassChatRoom = () => {
 
     useEffect(() => {
         const fetchRoomData = async () => {
-            const userResponse = await axiosInstance.get('http://info-rmation.kro.kr/api/auth/get-username');
+            const authToken = localStorage.getItem('authToken');
+            const userResponse = await axiosInstance.get('http://info-rmation.kro.kr/api/auth/get-username', {
+                headers:{
+                    "Authorization" : `Bearer ${authToken}`
+                }
+            });
                 
                 setUsId(userResponse.data.userId);
                 console.log(usId);
